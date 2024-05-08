@@ -1,0 +1,28 @@
+{
+  "generator-jhipster": {
+    "applicationIndex": 0,
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "SmartIoT",
+    "buildTool": "maven",
+    "cacheProvider": "ehcache",
+    "clientFramework": "angular",
+    "clientTheme": "none",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "devServerPort": 4200,
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "entities": [],
+    "jhipsterVersion": "8.4.0",
+    "jwtSecretKey": "NDY5N2YzZTlhOWU4NWJhMjg2NjFmMGFiODVlZDU5NjIwZjk1YjNkYTRiZTQ5MTQ3NjEwZDc5OWJkZjVjZDJmNGNjZDBkMjkwMjAyNmIyNTA4MmI1MTI2OWRiYzA1YTA1ZGZmYTZlMjgwM2RiNjViYjBkMWFlMzJhNTAwNmNiMTE=",
+    "languages": ["en", "pt-br"],
+    "nativeLanguage": "en",
+    "packageFolder": "br/com/supera/smartiot",
+    "packageName": "br.com.supera.smartiot",
+    "prodDatabaseType": "mysql",
+    "serverPort": "8080",
+    "testFrameworks": ["protractor"]
+  }
+}
