@@ -94,7 +94,7 @@ def replace_with_svg(directory, original_logo_path, text):
                     adapted_logo_path = os.path.join(root, 'adapted_logo.jpg')
                     create_adapted_logo(original_logo_path, text, dimensions, adapted_logo_path)
                     
-                    new_svg_path = os.path.splitext(full_path)[0] + '.jpg'
+                    new_svg_path = os.path.splitext(full_path)[0] + '.png'
                     os.replace(adapted_logo_path, new_svg_path)
                     print(f'Replaced SVG: {full_path} with {new_svg_path}')
 
@@ -112,7 +112,7 @@ def replace_background_urls(directory):
                     # Pattern to match background URL with .svg extension
                     r"background:\s*url\(\s*'([^']+\.svg)'\s*\)\s*no-repeat\s*center\s*top;",
                     # Replacement string with captured filename and .png extension
-                    r"background: url('\1.jpg') no-repeat center top;",
+                    r"background: url('\1.png') no-repeat center top;",
                     css_content
                 )
 
