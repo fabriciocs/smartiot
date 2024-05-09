@@ -4,7 +4,7 @@ build:
   commands:
    
     build:
-      - mvn -ntp verify -DskipTests --batch-mode  -Pprod
+      - mvn  -Pprod -ntp  clean  verify -DskipTests --batch-mode 
   env:
     - name: M2
       value: "/usr/local/apache-maven/bin"
