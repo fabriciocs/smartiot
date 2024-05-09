@@ -4,7 +4,7 @@ build:
   commands:
    
     build:
-      - npm run java:jar:prod
+      - mvn -ntp verify -DskipTests --batch-mode  -Pprod
   env:
     - name: M2
       value: "/usr/local/apache-maven/bin"
