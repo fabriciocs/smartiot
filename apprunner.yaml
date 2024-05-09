@@ -1,21 +1,22 @@
 version: 1.0
 runtime: corretto11
+
 build:
   commands:
-   
-    build:
-      - mvn  -Pprod -ntp  clean  verify -DskipTests --batch-mode 
+    - mvn -Pprod -ntp clean verify -DskipTests --batch-mode
   env:
     - name: M2
       value: "/usr/local/apache-maven/bin"
     - name: M2_HOME
       value: "/usr/local/apache-maven/bin"
+
 run:
   runtime-version: 11.0.13.08.1
   command: java -jar /target/smart-io-t-0.0.1-SNAPSHOT.jar
   network:
-    port: 8000
-    env: APP_PORT
+    port: 8080
   env:
+    - name: APP_PORT
+      value: "8080"  # Ensure your application uses this environment variable if necessary
     - name: MY_VAR_EXAMPLE
       value: "example"
