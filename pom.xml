@@ -5,7 +5,7 @@
 
     <groupId>br.com.supera.smartiot</groupId>
     <artifactId>smart-io-t</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
     <name>Smart Io T</name>
     <description>Description for Smart Io T</description>
@@ -414,7 +414,7 @@
                             </platforms>
                         </from>
                         <to>
-                            <image>smartiot:latest</image>
+                            <image>smartiot:${version}</image>
                         </to>
                         <container>
                             <entrypoint>
