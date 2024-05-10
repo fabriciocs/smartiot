@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20240510010646"
+  },
+  "applications": ["SmartIoT"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "dados",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "timestamp",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "DadoSensor",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "sensor",
+      "otherEntityRelationshipName": "dadoSensores",
+      "relationshipName": "sensor",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

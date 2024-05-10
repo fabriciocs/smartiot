@@ -43,3 +43,4 @@ function Install-Potrace {
 Install-Chocolatey
 Install-ImageMagick
 Install-Potrace
+npm install -g @angular/cli

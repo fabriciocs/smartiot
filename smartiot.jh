@@ -1,53 +1,52 @@
 application {
   config {
-    baseName SmartIoT,
-    packageName br.com.supera.smartiot,
-    applicationType monolith,
-    databaseType sql,
-    devDatabaseType h2Disk,
-    prodDatabaseType mysql,
-    enableTranslation true,
-    nativeLanguage en,
-    languages [pt-br],
-    buildTool maven,
-    clientFramework angularX,
-    authenticationType jwt,
-    testFrameworks [protractor],
-    cacheProvider ehcache,
-    enableHibernateCache true,
-    enableSwaggerCodegen false,
-    clientTheme none,
-    serverPort 8080
+    baseName SmartIoT
+    packageName br.com.supera.smartiot
+    applicationType monolith
+    databaseType sql
+    devDatabaseType h2Disk
+    prodDatabaseType mysql
+    enableTranslation true
+    nativeLanguage en
+    languages [pt-br]
+    buildTool maven
+    clientFramework angularX
+    authenticationType jwt
+    testFrameworks [protractor]
+    cacheProvider ehcache
+    enableHibernateCache true
+    enableSwaggerCodegen false
+    clientTheme none
+    serverPort 29090
   }
+  entities *
 }
 
+enum TipoSensor {
+  TEMPERATURE, HUMIDITY, PRESSURE
+}
 entity Cliente {
-  nome String required,
-  email String
+  nome String required maxlength(100)
+  email String required pattern(/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/)
 }
-
 entity Sensor {
-  nome String required,
-  tipo String,
-  configuracao JSON
+  nome String required maxlength(100)
+  tipo TipoSensor required
+  configuracao String
 }
-
 entity ConfiguracaoAlerta {
-  limite Decimal,
-  email String
+  limite BigDecimal
+  email String required pattern(/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/)
 }
-
 entity DadoSensor {
-  dados JSON,
+  dados String
   timestamp Instant
 }
-
 relationship ManyToOne {
-  Cliente{sensor(s)} to Sensor{cliente},
-  Sensor{configuracaoAlerta(s)} to ConfiguracaoAlerta{sensor},
-  Sensor{dadoSensor(s)} to DadoSensor{sensor}
+  Cliente{sensores} to Sensor{cliente}
+  Sensor{configuracaoAlertas} to ConfiguracaoAlerta{sensor}
+  Sensor{dadoSensores} to DadoSensor{sensor}
 }
-
 paginate Cliente, Sensor, ConfiguracaoAlerta, DadoSensor with pagination
 dto * with mapstruct
 service all with serviceClass

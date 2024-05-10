@@ -1,0 +1,151 @@
+<div>
+  <h2 id="page-heading" data-cy="SensorHeading">
+    <span jhiTranslate="smartIoTApp.sensor.home.title">Sensors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="smartIoTApp.sensor.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-sensor"
+        [routerLink]="['/sensor/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="smartIoTApp.sensor.home.createLabel">Create a new Sensor</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (sensors?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="smartIoTApp.sensor.home.notFound">No Sensors found</span>
+    </div>
+  }
+
+  @if (sensors && sensors.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nome">
+              <div class="d-flex">
+                <span jhiTranslate="smartIoTApp.sensor.nome">Nome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipo">
+              <div class="d-flex">
+                <span jhiTranslate="smartIoTApp.sensor.tipo">Tipo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="configuracao">
+              <div class="d-flex">
+                <span jhiTranslate="smartIoTApp.sensor.configuracao">Configuracao</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="configuracaoAlertas.id">
+              <div class="d-flex">
+                <span jhiTranslate="smartIoTApp.sensor.configuracaoAlertas">Configuracao Alertas</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dadoSensores.id">
+              <div class="d-flex">
+                <span jhiTranslate="smartIoTApp.sensor.dadoSensores">Dado Sensores</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (sensor of sensors; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/sensor', sensor.id, 'view']">{{ sensor.id }}</a>
+              </td>
+              <td>{{ sensor.nome }}</td>
+              <td [jhiTranslate]="'smartIoTApp.TipoSensor.' + (sensor.tipo ?? 'null')">
+                {{ { null: '', TEMPERATURE: 'TEMPERATURE', HUMIDITY: 'HUMIDITY', PRESSURE: 'PRESSURE' }[sensor.tipo ?? 'null'] }}
+              </td>
+              <td>{{ sensor.configuracao }}</td>
+              <td>
+                @if (sensor.configuracaoAlertas) {
+                  <div>
+                    <a [routerLink]="['/configuracao-alerta', sensor.configuracaoAlertas.id, 'view']">{{
+                      sensor.configuracaoAlertas.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (sensor.dadoSensores) {
+                  <div>
+                    <a [routerLink]="['/dado-sensor', sensor.dadoSensores.id, 'view']">{{ sensor.dadoSensores.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/sensor', sensor.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/sensor', sensor.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(sensor)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (sensors && sensors.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

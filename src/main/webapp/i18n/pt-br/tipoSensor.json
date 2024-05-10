@@ -1,0 +1,10 @@
+{
+  "smartIoTApp": {
+    "TipoSensor": {
+      "null": "",
+      "TEMPERATURE": "TEMPERATURE",
+      "HUMIDITY": "HUMIDITY",
+      "PRESSURE": "PRESSURE"
+    }
+  }
+}

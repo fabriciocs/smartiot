@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (configuracaoAlerta()) {
+      <div>
+        <h2 data-cy="configuracaoAlertaDetailsHeading">
+          <span jhiTranslate="smartIoTApp.configuracaoAlerta.detail.title">Configuracao Alerta</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ configuracaoAlerta()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.configuracaoAlerta.limite">Limite</span></dt>
+          <dd>
+            <span>{{ configuracaoAlerta()!.limite }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.configuracaoAlerta.email">Email</span></dt>
+          <dd>
+            <span>{{ configuracaoAlerta()!.email }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/configuracao-alerta', configuracaoAlerta()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

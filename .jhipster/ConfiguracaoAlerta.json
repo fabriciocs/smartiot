@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20240510010645"
+  },
+  "applications": ["SmartIoT"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "limite",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "pattern"],
+      "fieldValidateRulesPattern": "^[^@\\\\s]+@[^@\\\\s]+\\\\.[^@\\\\s]+$"
+    }
+  ],
+  "name": "ConfiguracaoAlerta",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "sensor",
+      "otherEntityRelationshipName": "configuracaoAlertas",
+      "relationshipName": "sensor",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

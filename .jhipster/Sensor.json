@@ -1,0 +1,52 @@
+{
+  "annotations": {
+    "changelogDate": "20240510010644"
+  },
+  "applications": ["SmartIoT"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "tipo",
+      "fieldType": "TipoSensor",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "TEMPERATURE,HUMIDITY,PRESSURE"
+    },
+    {
+      "fieldName": "configuracao",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Sensor",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "configuracaoAlerta",
+      "otherEntityRelationshipName": "sensor",
+      "relationshipName": "configuracaoAlertas",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "dadoSensor",
+      "otherEntityRelationshipName": "sensor",
+      "relationshipName": "dadoSensores",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "cliente",
+      "otherEntityRelationshipName": "sensores",
+      "relationshipName": "cliente",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -34,7 +34,7 @@
     "java:docker:arm64": "npm run java:docker -- -Djib-maven-plugin.architecture=arm64",
     "java:docker:dev": "npm run java:docker -- -Pdev,webapp",
     "java:docker:prod": "npm run java:docker -- -Pprod",
-    "java:jar": "mvnw -ntp verify -DskipTests --batch-mode",
+    "java:jar": "./mvnw -ntp verify -DskipTests --batch-mode",
     "java:jar:dev": "npm run java:jar -- -Pdev,webapp",
     "java:jar:prod": "npm run java:jar -- -Pprod",
     "java:war": "./mvnw -ntp verify -DskipTests --batch-mode -Pwar",
@@ -64,7 +64,7 @@
     "webapp:test": "npm run test --"
   },
   "config": {
-    "backend_port": "8080",
+    "backend_port": "29090",
     "default_environment": "prod",
     "packaging": "jar"
   },

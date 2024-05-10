@@ -1,0 +1,26 @@
+{
+  "smartIoTApp": {
+    "dadoSensor": {
+      "home": {
+        "title": "Dado Sensors",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Dado Sensor",
+        "createOrEditLabel": "Create or edit a Dado Sensor",
+        "notFound": "No Dado Sensors found"
+      },
+      "created": "A new Dado Sensor is created with identifier {{ param }}",
+      "updated": "A Dado Sensor is updated with identifier {{ param }}",
+      "deleted": "A Dado Sensor is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Dado Sensor {{ id }}?"
+      },
+      "detail": {
+        "title": "Dado Sensor"
+      },
+      "id": "ID",
+      "dados": "Dados",
+      "timestamp": "Timestamp",
+      "sensor": "Sensor"
+    }
+  }
+}

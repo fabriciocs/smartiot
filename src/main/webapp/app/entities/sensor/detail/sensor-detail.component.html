@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (sensor()) {
+      <div>
+        <h2 data-cy="sensorDetailsHeading"><span jhiTranslate="smartIoTApp.sensor.detail.title">Sensor</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ sensor()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.sensor.nome">Nome</span></dt>
+          <dd>
+            <span>{{ sensor()!.nome }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.sensor.tipo">Tipo</span></dt>
+          <dd>
+            <span [jhiTranslate]="'smartIoTApp.TipoSensor.' + (sensor()!.tipo ?? 'null')">{{
+              { null: '', TEMPERATURE: 'TEMPERATURE', HUMIDITY: 'HUMIDITY', PRESSURE: 'PRESSURE' }[sensor()!.tipo ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.sensor.configuracao">Configuracao</span></dt>
+          <dd>
+            <span>{{ sensor()!.configuracao }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.sensor.configuracaoAlertas">Configuracao Alertas</span></dt>
+          <dd>
+            @if (sensor()!.configuracaoAlertas) {
+              <div>
+                <a [routerLink]="['/configuracao-alerta', sensor()!.configuracaoAlertas?.id, 'view']">{{
+                  sensor()!.configuracaoAlertas?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.sensor.dadoSensores">Dado Sensores</span></dt>
+          <dd>
+            @if (sensor()!.dadoSensores) {
+              <div>
+                <a [routerLink]="['/dado-sensor', sensor()!.dadoSensores?.id, 'view']">{{ sensor()!.dadoSensores?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/sensor', sensor()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
