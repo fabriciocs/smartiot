@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="fabriwin (generated)" id="1715337440073-6">
+        <dropForeignKeyConstraint baseTableName="CLIENTE" constraintName="FK_CLIENTE__SENSORES_ID"/>
+    </changeSet>
+    <changeSet author="fabriwin (generated)" id="1715337440073-7">
+        <dropForeignKeyConstraint baseTableName="SENSOR" constraintName="FK_SENSOR__CONFIGURACAO_ALERTAS_ID"/>
+    </changeSet>
+    <changeSet author="fabriwin (generated)" id="1715337440073-2">
+        <addColumn tableName="sensor">
+            <column name="cliente_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="fabriwin (generated)" id="1715337440073-3">
+        <addColumn tableName="configuracao_alerta">
+            <column name="sensor_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="fabriwin (generated)" id="1715337440073-4">
+        <addForeignKeyConstraint baseColumnNames="sensor_id" baseTableName="configuracao_alerta" constraintName="FK7d3m1504us2lekc0719ivv0of" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="sensor" validate="true"/>
+    </changeSet>
+    <changeSet author="fabriwin (generated)" id="1715337440073-5">
+        <addForeignKeyConstraint baseColumnNames="cliente_id" baseTableName="sensor" constraintName="FKi74i5oju9uc6b3gigu1tm73iu" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="cliente" validate="true"/>
+    </changeSet>
+    <changeSet author="fabriwin (generated)" id="1715337440073-8">
+        <dropColumn columnName="CONFIGURACAO_ALERTAS_ID" tableName="SENSOR"/>
+    </changeSet>
+    <changeSet author="fabriwin (generated)" id="1715337440073-9">
+        <dropColumn columnName="SENSORES_ID" tableName="CLIENTE"/>
+    </changeSet>
+    <changeSet author="fabriwin (generated)" id="1715337440073-1">
+        <modifyDataType columnName="email" newDataType="varchar(254)" tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>
