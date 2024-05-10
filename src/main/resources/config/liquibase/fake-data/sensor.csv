@@ -1,51 +1,51 @@
-id;nome;tipo;configuracao;cliente_id
-1;Sensor de Umidade do Solo;HUMIDITY;"Intervalo de Medição: 1 hora";1
-2;Sensor de Velocidade do Vento;WIND_SPEED;"Intervalo de Medição: 10 minutos";1
-3;Sensor de Radiação Solar;SOLAR_RADIATION;"Intervalo de Medição: 30 minutos";2
-4;Sensor de Temperatura do Motor;ENGINE_TEMPERATURE;"Intervalo de Medição: 5 minutos";3
-5;Sensor de Pressão Atmosférica;PRESSURE;"Intervalo de Medição: 15 minutos";4
-6;Sensor de Qualidade do Ar;AIR_QUALITY;"Intervalo de Medição: 1 hora";5
-7;Sensor de Nível de Ruído;NOISE_LEVEL;"Intervalo de Medição: 30 minutos";6
-8;Sensor de Tráfego;TRAFFIC;"Intervalo de Medição: 5 minutos";7
-9;Sensor de Consumo de Energia;ELECTRICITY_CONSUMPTION;"Intervalo de Medição: 1 hora";8
-10;Sensor de Gás;GAZ;"Intervalo de Medição: 30 minutos";9
-11;Sensor de Movimento;MOTION;"Intervalo de Medição: 10 minutos";10
-12;Sensor de CO2;CO2;"Intervalo de Medição: 1 hora";11
-13;Sensor de PH;PH;"Intervalo de Medição: 30 minutos";12
-14;Sensor de Umidade Relativa do Ar;RELATIVE_HUMIDITY;"Intervalo de Medição: 15 minutos";13
-15;Sensor de Luminosidade;LIGHT;"Intervalo de Medição: 10 minutos";14
-16;Sensor de Temperatura Ambiental;AMBIENT_TEMPERATURE;"Intervalo de Medição: 30 minutos";15
-17;Sensor de Frequência Cardíaca;HEART_RATE;"Intervalo de Medição: 1 minuto";16
-18;Sensor de Movimento Respiratório;RESPIRATORY_RATE;"Intervalo de Medição: 10 minutos";17
-19;Sensor de Pressão Arterial;BLOOD_PRESSURE;"Intervalo de Medição: 15 minutos";18
-20;Sensor de Glicose;GLUCOSE;"Intervalo de Medição: 30 minutos";19
-21;Sensor de Peso Corporal;BODY_WEIGHT;"Intervalo de Medição: 1 hora";20
-22;Sensor de Índice de Massa Corporal;BODY_MASS_INDEX;"Intervalo de Medição: 10 minutos";21
-23;Sensor de Contagem de Passos;STEP_COUNT;"Intervalo de Medição: 5 minutos";22
-24;Sensor de Exposição Solar;SUN_EXPOSURE;"Intervalo de Medição: 1 hora";23
-25;Sensor de Distância Percorrida;DISTANCE_TRAVELED;"Intervalo de Medição: 30 minutos";24
-26;Sensor de Consumo de Água;WATER_CONSUMPTION;"Intervalo de Medição: 15 minutos";25
-27;Sensor de Pressão da Água;WATER_PRESSURE;"Intervalo de Medição: 5 minutos";26
-28;Sensor de Temperatura da Água;WATER_TEMPERATURE;"Intervalo de Medição: 1 hora";27
-29;Sensor de Qualidade da Água;WATER_QUALITY;"Intervalo de Medição: 30 minutos";28
-30;Sensor de Corrente Elétrica;ELECTRIC_CURRENT;"Intervalo de Medição: 10 minutos";29
-31;Sensor de Tensão Elétrica;ELECTRIC_VOLTAGE;"Intervalo de Medição: 1 minuto";30
-32;Sensor de Potência Elétrica;ELECTRIC_POWER;"Intervalo de Medição: 15 minutos";31
-33;Sensor de Fator de Potência;POWER_FACTOR;"Intervalo de Medição: 30 minutos";32
-34;Sensor de Energia Solar Captada;SOLAR_ENERGY;"Intervalo de Medição: 1 hora";33
-35;Sensor de Energia Eólica Captada;WIND_ENERGY;"Intervalo de Medição: 10 minutos";34
-36;Sensor de Ruído do Tráfego;TRAFFIC_NOISE;"Intervalo de Medição: 5 minutos";35
-37;Sensor de Nível de CO;CO_LEVEL;"Intervalo de Medição: 1 minuto";36
-38;Sensor de Nível de NO2;NO2_LEVEL;"Intervalo de Medição: 30 minutos";37
-39;Sensor de Nível de SO2;SO2_LEVEL;"Intervalo de Medição: 15 minutos";38
-40;Sensor de Nível de O3;O3_LEVEL;"Intervalo de Medição: 10 minutos";39
-41;Sensor de Nível de PM2.5;PM25_LEVEL;"Intervalo de Medição: 5 minutos";40
-42;Sensor de Nível de PM10;PM10_LEVEL;"Intervalo de Medição: 1 hora";41
-43;Sensor de Radiação Ultravioleta;UV_RADIATION;"Intervalo de Medição: 1 minuto";42
-44;Sensor de Nível de Lixo;LITTER_LEVEL;"Intervalo de Medição: 30 minutos";43
-45;Sensor de Nível de Reciclagem;RECYCLING_LEVEL;"Intervalo de Medição: 15 minutos";44
-46;Sensor de Nível de Água Potável;POTABLE_WATER_LEVEL;"Intervalo de Medição: 10 minutos";45
-47;Sensor de Nível de Esgoto;SEWAGE_LEVEL;"Intervalo de Medição: 5 minutos";46
-48;Sensor de Nível de Emissões de Carbono;CARBON_EMISSIONS_LEVEL;"Intervalo de Medição: 1 hora";47
-49;Sensor de Nível de Emissões de Metano;METHANE_EMISSIONS_LEVEL;"Intervalo de Medição: 30 minutos";48
-50;Sensor de Nível de Emissões de Óxidos de Nitrogênio;NITROGEN_OXIDES_EMISSIONS_LEVEL;"Intervalo de Medição: 15 minutos";49
+id;nome;tipo;configuracao
+1;Sensor de Umidade do Solo;HUMIDITY;"Intervalo de Medição: 1 hora"
+2;Sensor de Velocidade do Vento;PRESSURE;"Intervalo de Medição: 10 minutos"
+3;Sensor de Radiação Solar;PRESSURE;"Intervalo de Medição: 30 minutos"
+4;Sensor de Temperatura do Motor;TEMPERATURE;"Intervalo de Medição: 5 minutos"
+5;Sensor de Pressão Atmosférica;PRESSURE;"Intervalo de Medição: 15 minutos"
+6;Sensor de Qualidade do Ar;PRESSURE;"Intervalo de Medição: 1 hora"
+7;Sensor de Nível de Ruído;PRESSURE;"Intervalo de Medição: 30 minutos"
+8;Sensor de Tráfego;PRESSURE;"Intervalo de Medição: 5 minutos"
+9;Sensor de Consumo de Energia;PRESSURE;"Intervalo de Medição: 1 hora"
+10;Sensor de Gás;PRESSURE;"Intervalo de Medição: 30 minutos"
+11;Sensor de Movimento;PRESSURE;"Intervalo de Medição: 10 minutos"
+12;Sensor de CO2;PRESSURE;"Intervalo de Medição: 1 hora"
+13;Sensor de PH;PRESSURE;"Intervalo de Medição: 30 minutos"
+14;Sensor de Umidade Relativa do Ar;HUMIDITY;"Intervalo de Medição: 15 minutos"
+15;Sensor de Luminosidade;PRESSURE;"Intervalo de Medição: 10 minutos"
+16;Sensor de Temperatura Ambiental;TEMPERATURE;"Intervalo de Medição: 30 minutos"
+17;Sensor de Frequência Cardíaca;PRESSURE;"Intervalo de Medição: 1 minuto"
+18;Sensor de Movimento Respiratório;PRESSURE;"Intervalo de Medição: 10 minutos"
+19;Sensor de Pressão Arterial;PRESSURE;"Intervalo de Medição: 15 minutos"
+20;Sensor de Glicose;PRESSURE;"Intervalo de Medição: 30 minutos"
+21;Sensor de Peso Corporal;PRESSURE;"Intervalo de Medição: 1 hora"
+22;Sensor de Índice de Massa Corporal;PRESSURE;"Intervalo de Medição: 10 minutos"
+23;Sensor de Contagem de Passos;PRESSURE;"Intervalo de Medição: 5 minutos"
+24;Sensor de Exposição Solar;PRESSURE;"Intervalo de Medição: 1 hora"
+25;Sensor de Distância Percorrida;PRESSURE;"Intervalo de Medição: 30 minutos"
+26;Sensor de Consumo de Água;PRESSURE;"Intervalo de Medição: 15 minutos"
+27;Sensor de Pressão da Água;PRESSURE;"Intervalo de Medição: 5 minutos"
+28;Sensor de Temperatura da Água;TEMPERATURE;"Intervalo de Medição: 1 hora"
+29;Sensor de Qualidade da Água;PRESSURE;"Intervalo de Medição: 30 minutos"
+30;Sensor de Corrente Elétrica;PRESSURE;"Intervalo de Medição: 10 minutos"
+31;Sensor de Tensão Elétrica;PRESSURE;"Intervalo de Medição: 1 minuto"
+32;Sensor de Potência Elétrica;PRESSURE;"Intervalo de Medição: 15 minutos"
+33;Sensor de Fator de Potência;PRESSURE;"Intervalo de Medição: 30 minutos"
+34;Sensor de Energia Solar Captada;PRESSURE;"Intervalo de Medição: 1 hora"
+35;Sensor de Energia Eólica Captada;PRESSURE;"Intervalo de Medição: 10 minutos"
+36;Sensor de Ruído do Tráfego;PRESSURE;"Intervalo de Medição: 5 minutos"
+37;Sensor de Nível de CO;PRESSURE;"Intervalo de Medição: 1 minuto"
+38;Sensor de Nível de NO2;PRESSURE;"Intervalo de Medição: 30 minutos"
+39;Sensor de Nível de SO2;PRESSURE;"Intervalo de Medição: 15 minutos"
+40;Sensor de Nível de O3;PRESSURE;"Intervalo de Medição: 10 minutos"
+41;Sensor de Nível de PM2.5;PRESSURE;"Intervalo de Medição: 5 minutos"
+42;Sensor de Nível de PM10;PRESSURE;"Intervalo de Medição: 1 hora"
+43;Sensor de Radiação Ultravioleta;PRESSURE;"Intervalo de Medição: 1 minuto"
+44;Sensor de Nível de Lixo;PRESSURE;"Intervalo de Medição: 30 minutos"
+45;Sensor de Nível de Reciclagem;PRESSURE;"Intervalo de Medição: 15 minutos"
+46;Sensor de Nível de Água Potável;PRESSURE;"Intervalo de Medição: 10 minutos"
+47;Sensor de Nível de Esgoto;PRESSURE;"Intervalo de Medição: 5 minutos"
+48;Sensor de Nível de Emissões de Carbono;PRESSURE;"Intervalo de Medição: 1 hora"
+49;Sensor de Nível de Emissões de Metano;PRESSURE;"Intervalo de Medição: 30 minutos"
+50;Sensor de Nível de Emissões de Óxidos de Nitrogênio;PRESSURE;"Intervalo de Medição: 15 minutos"

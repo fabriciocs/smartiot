@@ -1,23 +1,18 @@
 
 #FROM centos:7.6.1810
 
-FROM registry.access.redhat.com/rhel7-minimal
+FROM public.ecr.aws/amazoncorretto/amazoncorretto:latest
 
 USER root
 
-RUN microdnf --enablerepo=rhel-7-server-rpms \
-install java-1.8.0-openjdk --nodocs ;\
-microdnf clean all
-
-
-# Set the JAVA_HOME variable to make it clear where Java is located
-ENV JAVA_HOME /etc/alternatives/jre
-
 RUN mkdir -p /app
+COPY . /app/
+RUN chmod 755 /app/mvnw
+RUN chmod 755 /app/npmw
 
 EXPOSE 8080
 
-COPY target/smart-io-t-*.jar /app/
+
 
 COPY run-java.sh /app/
 
