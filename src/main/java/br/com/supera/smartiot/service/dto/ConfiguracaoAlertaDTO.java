@@ -16,8 +16,11 @@ public class ConfiguracaoAlertaDTO implements Serializable {
     private BigDecimal limite;
 
     @NotNull
-    @Pattern(regexp = "^[^@\\\\s]+@[^@\\\\s]+\\\\.[^@\\\\s]+$")
+    @Pattern(regexp = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")
     private String email;
+
+    @NotNull
+    private SensorDTO sensor;
 
     public Long getId() {
         return id;
@@ -41,6 +44,14 @@ public class ConfiguracaoAlertaDTO implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public SensorDTO getSensor() {
+        return sensor;
+    }
+
+    public void setSensor(SensorDTO sensor) {
+        this.sensor = sensor;
     }
 
     @Override
@@ -71,6 +82,7 @@ public class ConfiguracaoAlertaDTO implements Serializable {
             "id=" + getId() +
             ", limite=" + getLimite() +
             ", email='" + getEmail() + "'" +
+            ", sensor=" + getSensor() +
             "}";
     }
 }

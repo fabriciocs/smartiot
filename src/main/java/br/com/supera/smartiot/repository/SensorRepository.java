@@ -27,16 +27,14 @@ public interface SensorRepository extends JpaRepository<Sensor, Long> {
     }
 
     @Query(
-        value = "select sensor from Sensor sensor left join fetch sensor.configuracaoAlertas left join fetch sensor.dadoSensores",
+        value = "select sensor from Sensor sensor left join fetch sensor.cliente left join fetch sensor.dadoSensores",
         countQuery = "select count(sensor) from Sensor sensor"
     )
     Page<Sensor> findAllWithToOneRelationships(Pageable pageable);
 
-    @Query("select sensor from Sensor sensor left join fetch sensor.configuracaoAlertas left join fetch sensor.dadoSensores")
+    @Query("select sensor from Sensor sensor left join fetch sensor.cliente left join fetch sensor.dadoSensores")
     List<Sensor> findAllWithToOneRelationships();
 
-    @Query(
-        "select sensor from Sensor sensor left join fetch sensor.configuracaoAlertas left join fetch sensor.dadoSensores where sensor.id =:id"
-    )
+    @Query("select sensor from Sensor sensor left join fetch sensor.cliente left join fetch sensor.dadoSensores where sensor.id =:id")
     Optional<Sensor> findOneWithToOneRelationships(@Param("id") Long id);
 }

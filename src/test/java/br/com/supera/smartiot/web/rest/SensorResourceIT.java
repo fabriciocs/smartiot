@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import br.com.supera.smartiot.IntegrationTest;
+import br.com.supera.smartiot.domain.Cliente;
 import br.com.supera.smartiot.domain.Sensor;
 import br.com.supera.smartiot.domain.enumeration.TipoSensor;
 import br.com.supera.smartiot.repository.SensorRepository;
@@ -89,6 +90,16 @@ class SensorResourceIT {
      */
     public static Sensor createEntity(EntityManager em) {
         Sensor sensor = new Sensor().nome(DEFAULT_NOME).tipo(DEFAULT_TIPO).configuracao(DEFAULT_CONFIGURACAO);
+        // Add required entity
+        Cliente cliente;
+        if (TestUtil.findAll(em, Cliente.class).isEmpty()) {
+            cliente = ClienteResourceIT.createEntity(em);
+            em.persist(cliente);
+            em.flush();
+        } else {
+            cliente = TestUtil.findAll(em, Cliente.class).get(0);
+        }
+        sensor.setCliente(cliente);
         return sensor;
     }
 
@@ -100,6 +111,16 @@ class SensorResourceIT {
      */
     public static Sensor createUpdatedEntity(EntityManager em) {
         Sensor sensor = new Sensor().nome(UPDATED_NOME).tipo(UPDATED_TIPO).configuracao(UPDATED_CONFIGURACAO);
+        // Add required entity
+        Cliente cliente;
+        if (TestUtil.findAll(em, Cliente.class).isEmpty()) {
+            cliente = ClienteResourceIT.createUpdatedEntity(em);
+            em.persist(cliente);
+            em.flush();
+        } else {
+            cliente = TestUtil.findAll(em, Cliente.class).get(0);
+        }
+        sensor.setCliente(cliente);
         return sensor;
     }
 

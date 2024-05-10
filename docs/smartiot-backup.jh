@@ -54,9 +54,9 @@ enum TipoSensor {
 }
 
 relationship ManyToOne {
-  Cliente{sensores} to Sensor{cliente(nome)}
-  Sensor{configuracaoAlertas} to ConfiguracaoAlerta{sensor(nome)}
-  Sensor{dadoSensores} to DadoSensor{sensor(nome)}
+  Cliente{sensores(nome)} to Sensor{cliente(nome)}
+  Sensor{configuracaoAlertas(email)} to ConfiguracaoAlerta{sensor(nome)}
+  Sensor{dadoSensores(timestamp)} to DadoSensor{sensor(nome)}
 }
 
 dto Cliente, ConfiguracaoAlerta, DadoSensor, Sensor with mapstruct

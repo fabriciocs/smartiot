@@ -61,9 +61,7 @@ public class SensorAsserts {
     public static void assertSensorUpdatableRelationshipsEquals(Sensor expected, Sensor actual) {
         assertThat(expected)
             .as("Verify Sensor relationships")
-            .satisfies(
-                e -> assertThat(e.getConfiguracaoAlertas()).as("check configuracaoAlertas").isEqualTo(actual.getConfiguracaoAlertas())
-            )
+            .satisfies(e -> assertThat(e.getCliente()).as("check cliente").isEqualTo(actual.getCliente()))
             .satisfies(e -> assertThat(e.getDadoSensores()).as("check dadoSensores").isEqualTo(actual.getDadoSensores()));
     }
 }

@@ -22,7 +22,8 @@ public class SensorDTO implements Serializable {
 
     private String configuracao;
 
-    private ConfiguracaoAlertaDTO configuracaoAlertas;
+    @NotNull
+    private ClienteDTO cliente;
 
     private DadoSensorDTO dadoSensores;
 
@@ -58,12 +59,12 @@ public class SensorDTO implements Serializable {
         this.configuracao = configuracao;
     }
 
-    public ConfiguracaoAlertaDTO getConfiguracaoAlertas() {
-        return configuracaoAlertas;
+    public ClienteDTO getCliente() {
+        return cliente;
     }
 
-    public void setConfiguracaoAlertas(ConfiguracaoAlertaDTO configuracaoAlertas) {
-        this.configuracaoAlertas = configuracaoAlertas;
+    public void setCliente(ClienteDTO cliente) {
+        this.cliente = cliente;
     }
 
     public DadoSensorDTO getDadoSensores() {
@@ -103,7 +104,7 @@ public class SensorDTO implements Serializable {
             ", nome='" + getNome() + "'" +
             ", tipo='" + getTipo() + "'" +
             ", configuracao='" + getConfiguracao() + "'" +
-            ", configuracaoAlertas=" + getConfiguracaoAlertas() +
+            ", cliente=" + getCliente() +
             ", dadoSensores=" + getDadoSensores() +
             "}";
     }

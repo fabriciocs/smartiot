@@ -5,23 +5,32 @@ import static br.com.supera.smartiot.web.rest.TestUtil.createUpdateProxyForBean;
 import static br.com.supera.smartiot.web.rest.TestUtil.sameNumber;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import br.com.supera.smartiot.IntegrationTest;
 import br.com.supera.smartiot.domain.ConfiguracaoAlerta;
+import br.com.supera.smartiot.domain.Sensor;
 import br.com.supera.smartiot.repository.ConfiguracaoAlertaRepository;
+import br.com.supera.smartiot.service.ConfiguracaoAlertaService;
 import br.com.supera.smartiot.service.dto.ConfiguracaoAlertaDTO;
 import br.com.supera.smartiot.service.mapper.ConfiguracaoAlertaMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -31,6 +40,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the {@link ConfiguracaoAlertaResource} REST controller.
  */
 @IntegrationTest
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class ConfiguracaoAlertaResourceIT {
@@ -38,8 +48,8 @@ class ConfiguracaoAlertaResourceIT {
     private static final BigDecimal DEFAULT_LIMITE = new BigDecimal(1);
     private static final BigDecimal UPDATED_LIMITE = new BigDecimal(2);
 
-    private static final String DEFAULT_EMAIL = ":-]0#@Jj:\\=oNze9z";
-    private static final String UPDATED_EMAIL = "EO@f4 5f.\\{8Z,";
+    private static final String DEFAULT_EMAIL = "<.]1$@Kk;.pp";
+    private static final String UPDATED_EMAIL = "zf:@<FPog6.6";
 
     private static final String ENTITY_API_URL = "/api/configuracao-alertas";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -53,8 +63,14 @@ class ConfiguracaoAlertaResourceIT {
     @Autowired
     private ConfiguracaoAlertaRepository configuracaoAlertaRepository;
 
+    @Mock
+    private ConfiguracaoAlertaRepository configuracaoAlertaRepositoryMock;
+
     @Autowired
     private ConfiguracaoAlertaMapper configuracaoAlertaMapper;
+
+    @Mock
+    private ConfiguracaoAlertaService configuracaoAlertaServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -72,6 +88,16 @@ class ConfiguracaoAlertaResourceIT {
      */
     public static ConfiguracaoAlerta createEntity(EntityManager em) {
         ConfiguracaoAlerta configuracaoAlerta = new ConfiguracaoAlerta().limite(DEFAULT_LIMITE).email(DEFAULT_EMAIL);
+        // Add required entity
+        Sensor sensor;
+        if (TestUtil.findAll(em, Sensor.class).isEmpty()) {
+            sensor = SensorResourceIT.createEntity(em);
+            em.persist(sensor);
+            em.flush();
+        } else {
+            sensor = TestUtil.findAll(em, Sensor.class).get(0);
+        }
+        configuracaoAlerta.setSensor(sensor);
         return configuracaoAlerta;
     }
 
@@ -83,6 +109,16 @@ class ConfiguracaoAlertaResourceIT {
      */
     public static ConfiguracaoAlerta createUpdatedEntity(EntityManager em) {
         ConfiguracaoAlerta configuracaoAlerta = new ConfiguracaoAlerta().limite(UPDATED_LIMITE).email(UPDATED_EMAIL);
+        // Add required entity
+        Sensor sensor;
+        if (TestUtil.findAll(em, Sensor.class).isEmpty()) {
+            sensor = SensorResourceIT.createUpdatedEntity(em);
+            em.persist(sensor);
+            em.flush();
+        } else {
+            sensor = TestUtil.findAll(em, Sensor.class).get(0);
+        }
+        configuracaoAlerta.setSensor(sensor);
         return configuracaoAlerta;
     }
 
@@ -165,6 +201,23 @@ class ConfiguracaoAlertaResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(configuracaoAlerta.getId().intValue())))
             .andExpect(jsonPath("$.[*].limite").value(hasItem(sameNumber(DEFAULT_LIMITE))))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)));
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllConfiguracaoAlertasWithEagerRelationshipsIsEnabled() throws Exception {
+        when(configuracaoAlertaServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restConfiguracaoAlertaMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
+
+        verify(configuracaoAlertaServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllConfiguracaoAlertasWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(configuracaoAlertaServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restConfiguracaoAlertaMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
+        verify(configuracaoAlertaRepositoryMock, times(1)).findAll(any(Pageable.class));
     }
 
     @Test
@@ -292,7 +345,7 @@ class ConfiguracaoAlertaResourceIT {
         ConfiguracaoAlerta partialUpdatedConfiguracaoAlerta = new ConfiguracaoAlerta();
         partialUpdatedConfiguracaoAlerta.setId(configuracaoAlerta.getId());
 
-        partialUpdatedConfiguracaoAlerta.limite(UPDATED_LIMITE).email(UPDATED_EMAIL);
+        partialUpdatedConfiguracaoAlerta.email(UPDATED_EMAIL);
 
         restConfiguracaoAlertaMockMvc
             .perform(

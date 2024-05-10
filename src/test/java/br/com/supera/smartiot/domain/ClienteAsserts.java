@@ -57,9 +57,5 @@ public class ClienteAsserts {
      * @param expected the expected entity
      * @param actual the actual entity
      */
-    public static void assertClienteUpdatableRelationshipsEquals(Cliente expected, Cliente actual) {
-        assertThat(expected)
-            .as("Verify Cliente relationships")
-            .satisfies(e -> assertThat(e.getSensores()).as("check sensores").isEqualTo(actual.getSensores()));
-    }
+    public static void assertClienteUpdatableRelationshipsEquals(Cliente expected, Cliente actual) {}
 }

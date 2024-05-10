@@ -15,7 +15,7 @@
       "fieldName": "email",
       "fieldType": "String",
       "fieldValidateRules": ["required", "pattern"],
-      "fieldValidateRulesPattern": "^[^@\\\\s]+@[^@\\\\s]+\\\\.[^@\\\\s]+$"
+      "fieldValidateRulesPattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
     }
   ],
   "name": "Cliente",
@@ -27,7 +27,7 @@
       "otherEntityRelationshipName": "cliente",
       "relationshipName": "sensores",
       "relationshipSide": "left",
-      "relationshipType": "many-to-one"
+      "relationshipType": "one-to-many"
     }
   ],
   "searchEngine": "no",

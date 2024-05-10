@@ -23,14 +23,6 @@
           <dd>
             <span>{{ cliente()!.email }}</span>
           </dd>
-          <dt><span jhiTranslate="smartIoTApp.cliente.sensores">Sensores</span></dt>
-          <dd>
-            @if (cliente()!.sensores) {
-              <div>
-                <a [routerLink]="['/sensor', cliente()!.sensores?.id, 'view']">{{ cliente()!.sensores?.nome }}</a>
-              </div>
-            }
-          </dd>
         </dl>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

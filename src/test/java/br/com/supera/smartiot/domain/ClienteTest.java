@@ -5,6 +5,8 @@ import static br.com.supera.smartiot.domain.SensorTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import br.com.supera.smartiot.web.rest.TestUtil;
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 class ClienteTest {
@@ -28,10 +30,20 @@ class ClienteTest {
         Cliente cliente = getClienteRandomSampleGenerator();
         Sensor sensorBack = getSensorRandomSampleGenerator();
 
-        cliente.setSensores(sensorBack);
-        assertThat(cliente.getSensores()).isEqualTo(sensorBack);
+        cliente.addSensores(sensorBack);
+        assertThat(cliente.getSensores()).containsOnly(sensorBack);
+        assertThat(sensorBack.getCliente()).isEqualTo(cliente);
 
-        cliente.sensores(null);
-        assertThat(cliente.getSensores()).isNull();
+        cliente.removeSensores(sensorBack);
+        assertThat(cliente.getSensores()).doesNotContain(sensorBack);
+        assertThat(sensorBack.getCliente()).isNull();
+
+        cliente.sensores(new HashSet<>(Set.of(sensorBack)));
+        assertThat(cliente.getSensores()).containsOnly(sensorBack);
+        assertThat(sensorBack.getCliente()).isEqualTo(cliente);
+
+        cliente.setSensores(new HashSet<>());
+        assertThat(cliente.getSensores()).doesNotContain(sensorBack);
+        assertThat(sensorBack.getCliente()).isNull();
     }
 }

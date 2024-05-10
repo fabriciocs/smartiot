@@ -143,14 +143,21 @@ public class ConfiguracaoAlertaResource {
      * {@code GET  /configuracao-alertas} : get all the configuracaoAlertas.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of configuracaoAlertas in body.
      */
     @GetMapping("")
     public ResponseEntity<List<ConfiguracaoAlertaDTO>> getAllConfiguracaoAlertas(
-        @org.springdoc.core.annotations.ParameterObject Pageable pageable
+        @org.springdoc.core.annotations.ParameterObject Pageable pageable,
+        @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
     ) {
         log.debug("REST request to get a page of ConfiguracaoAlertas");
-        Page<ConfiguracaoAlertaDTO> page = configuracaoAlertaService.findAll(pageable);
+        Page<ConfiguracaoAlertaDTO> page;
+        if (eagerload) {
+            page = configuracaoAlertaService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = configuracaoAlertaService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

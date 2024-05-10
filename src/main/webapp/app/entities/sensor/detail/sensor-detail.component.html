@@ -29,13 +29,11 @@
           <dd>
             <span>{{ sensor()!.configuracao }}</span>
           </dd>
-          <dt><span jhiTranslate="smartIoTApp.sensor.configuracaoAlertas">Configuracao Alertas</span></dt>
+          <dt><span jhiTranslate="smartIoTApp.sensor.cliente">Cliente</span></dt>
           <dd>
-            @if (sensor()!.configuracaoAlertas) {
+            @if (sensor()!.cliente) {
               <div>
-                <a [routerLink]="['/configuracao-alerta', sensor()!.configuracaoAlertas?.id, 'view']">{{
-                  sensor()!.configuracaoAlertas?.email
-                }}</a>
+                <a [routerLink]="['/cliente', sensor()!.cliente?.id, 'view']">{{ sensor()!.cliente?.nome }}</a>
               </div>
             }
           </dd>

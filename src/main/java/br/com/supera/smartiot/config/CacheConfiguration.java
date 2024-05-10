@@ -51,10 +51,10 @@ public class CacheConfiguration {
             createCache(cm, br.com.supera.smartiot.domain.Authority.class.getName());
             createCache(cm, br.com.supera.smartiot.domain.User.class.getName() + ".authorities");
             createCache(cm, br.com.supera.smartiot.domain.Cliente.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Cliente.class.getName() + ".sensores");
             createCache(cm, br.com.supera.smartiot.domain.Sensor.class.getName());
-            createCache(cm, br.com.supera.smartiot.domain.Sensor.class.getName() + ".clientes");
+            createCache(cm, br.com.supera.smartiot.domain.Sensor.class.getName() + ".configuracaoAlertas");
             createCache(cm, br.com.supera.smartiot.domain.ConfiguracaoAlerta.class.getName());
-            createCache(cm, br.com.supera.smartiot.domain.ConfiguracaoAlerta.class.getName() + ".sensors");
             createCache(cm, br.com.supera.smartiot.domain.DadoSensor.class.getName());
             createCache(cm, br.com.supera.smartiot.domain.DadoSensor.class.getName() + ".sensors");
             // jhipster-needle-ehcache-add-entry

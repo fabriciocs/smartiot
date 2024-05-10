@@ -27,7 +27,7 @@ enum TipoSensor {
 }
 entity Cliente {
   nome String required maxlength(100)
-  email String required pattern(/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/)
+  email String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
 }
 entity Sensor {
   nome String required maxlength(100)
@@ -36,16 +36,16 @@ entity Sensor {
 }
 entity ConfiguracaoAlerta {
   limite BigDecimal
-  email String required pattern(/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/)
+  email String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
 }
 entity DadoSensor {
   dados String
   timestamp Instant
 }
-relationship ManyToOne {
-  Cliente{sensores(nome)} to Sensor{cliente(nome)}
-  Sensor{configuracaoAlertas(email)} to ConfiguracaoAlerta{sensor(nome)}
-  Sensor{dadoSensores(timestamp)} to DadoSensor{sensor(nome)}
+relationship OneToMany {
+  Sensor{configuracaoAlertas(email)} to ConfiguracaoAlerta{sensor(nome) required}
+  Cliente{sensores(nome)} to Sensor{cliente(nome) required}
+  DadoSensor{sensor(nome) required} to Sensor{dadoSensores(timestamp)}
 }
 paginate Cliente, Sensor, ConfiguracaoAlerta, DadoSensor with pagination
 dto * with mapstruct

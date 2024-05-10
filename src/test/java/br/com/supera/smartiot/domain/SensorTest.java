@@ -32,11 +32,33 @@ class SensorTest {
         Sensor sensor = getSensorRandomSampleGenerator();
         ConfiguracaoAlerta configuracaoAlertaBack = getConfiguracaoAlertaRandomSampleGenerator();
 
-        sensor.setConfiguracaoAlertas(configuracaoAlertaBack);
-        assertThat(sensor.getConfiguracaoAlertas()).isEqualTo(configuracaoAlertaBack);
+        sensor.addConfiguracaoAlertas(configuracaoAlertaBack);
+        assertThat(sensor.getConfiguracaoAlertas()).containsOnly(configuracaoAlertaBack);
+        assertThat(configuracaoAlertaBack.getSensor()).isEqualTo(sensor);
 
-        sensor.configuracaoAlertas(null);
-        assertThat(sensor.getConfiguracaoAlertas()).isNull();
+        sensor.removeConfiguracaoAlertas(configuracaoAlertaBack);
+        assertThat(sensor.getConfiguracaoAlertas()).doesNotContain(configuracaoAlertaBack);
+        assertThat(configuracaoAlertaBack.getSensor()).isNull();
+
+        sensor.configuracaoAlertas(new HashSet<>(Set.of(configuracaoAlertaBack)));
+        assertThat(sensor.getConfiguracaoAlertas()).containsOnly(configuracaoAlertaBack);
+        assertThat(configuracaoAlertaBack.getSensor()).isEqualTo(sensor);
+
+        sensor.setConfiguracaoAlertas(new HashSet<>());
+        assertThat(sensor.getConfiguracaoAlertas()).doesNotContain(configuracaoAlertaBack);
+        assertThat(configuracaoAlertaBack.getSensor()).isNull();
+    }
+
+    @Test
+    void clienteTest() throws Exception {
+        Sensor sensor = getSensorRandomSampleGenerator();
+        Cliente clienteBack = getClienteRandomSampleGenerator();
+
+        sensor.setCliente(clienteBack);
+        assertThat(sensor.getCliente()).isEqualTo(clienteBack);
+
+        sensor.cliente(null);
+        assertThat(sensor.getCliente()).isNull();
     }
 
     @Test
@@ -49,27 +71,5 @@ class SensorTest {
 
         sensor.dadoSensores(null);
         assertThat(sensor.getDadoSensores()).isNull();
-    }
-
-    @Test
-    void clienteTest() throws Exception {
-        Sensor sensor = getSensorRandomSampleGenerator();
-        Cliente clienteBack = getClienteRandomSampleGenerator();
-
-        sensor.addCliente(clienteBack);
-        assertThat(sensor.getClientes()).containsOnly(clienteBack);
-        assertThat(clienteBack.getSensores()).isEqualTo(sensor);
-
-        sensor.removeCliente(clienteBack);
-        assertThat(sensor.getClientes()).doesNotContain(clienteBack);
-        assertThat(clienteBack.getSensores()).isNull();
-
-        sensor.clientes(new HashSet<>(Set.of(clienteBack)));
-        assertThat(sensor.getClientes()).containsOnly(clienteBack);
-        assertThat(clienteBack.getSensores()).isEqualTo(sensor);
-
-        sensor.setClientes(new HashSet<>());
-        assertThat(sensor.getClientes()).doesNotContain(clienteBack);
-        assertThat(clienteBack.getSensores()).isNull();
     }
 }

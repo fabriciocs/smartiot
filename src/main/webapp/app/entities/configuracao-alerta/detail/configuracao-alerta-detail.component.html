@@ -25,6 +25,14 @@
           <dd>
             <span>{{ configuracaoAlerta()!.email }}</span>
           </dd>
+          <dt><span jhiTranslate="smartIoTApp.configuracaoAlerta.sensor">Sensor</span></dt>
+          <dd>
+            @if (configuracaoAlerta()!.sensor) {
+              <div>
+                <a [routerLink]="['/sensor', configuracaoAlerta()!.sensor?.id, 'view']">{{ configuracaoAlerta()!.sensor?.nome }}</a>
+              </div>
+            }
+          </dd>
         </dl>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

@@ -20,6 +20,7 @@ type ConfiguracaoAlertaFormGroupContent = {
   id: FormControl<IConfiguracaoAlerta['id'] | NewConfiguracaoAlerta['id']>;
   limite: FormControl<IConfiguracaoAlerta['limite']>;
   email: FormControl<IConfiguracaoAlerta['email']>;
+  sensor: FormControl<IConfiguracaoAlerta['sensor']>;
 };
 
 export type ConfiguracaoAlertaFormGroup = FormGroup<ConfiguracaoAlertaFormGroupContent>;
@@ -41,7 +42,10 @@ export class ConfiguracaoAlertaFormService {
       ),
       limite: new FormControl(configuracaoAlertaRawValue.limite),
       email: new FormControl(configuracaoAlertaRawValue.email, {
-        validators: [Validators.required, Validators.pattern('^[^@\\\\s]+@[^@\\\\s]+\\\\.[^@\\\\s]+$')],
+        validators: [Validators.required, Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')],
+      }),
+      sensor: new FormControl(configuracaoAlertaRawValue.sensor, {
+        validators: [Validators.required],
       }),
     });
   }

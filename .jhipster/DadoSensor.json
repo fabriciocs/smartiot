@@ -22,8 +22,9 @@
       "otherEntityName": "sensor",
       "otherEntityRelationshipName": "dadoSensores",
       "relationshipName": "sensor",
-      "relationshipSide": "right",
-      "relationshipType": "one-to-many"
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
     }
   ],
   "searchEngine": "no",

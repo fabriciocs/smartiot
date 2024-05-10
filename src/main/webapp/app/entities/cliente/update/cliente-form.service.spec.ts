@@ -22,7 +22,6 @@ describe('Cliente Form Service', () => {
             id: expect.any(Object),
             nome: expect.any(Object),
             email: expect.any(Object),
-            sensores: expect.any(Object),
           }),
         );
       });
@@ -35,7 +34,6 @@ describe('Cliente Form Service', () => {
             id: expect.any(Object),
             nome: expect.any(Object),
             email: expect.any(Object),
-            sensores: expect.any(Object),
           }),
         );
       });

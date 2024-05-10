@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -30,14 +28,14 @@ public class ConfiguracaoAlerta implements Serializable {
     private BigDecimal limite;
 
     @NotNull
-    @Pattern(regexp = "^[^@\\\\s]+@[^@\\\\s]+\\\\.[^@\\\\s]+$")
+    @Pattern(regexp = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")
     @Column(name = "email", nullable = false)
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "configuracaoAlertas")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "configuracaoAlertas", "dadoSensores", "clientes" }, allowSetters = true)
-    private Set<Sensor> sensors = new HashSet<>();
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties(value = { "configuracaoAlertas", "cliente", "dadoSensores" }, allowSetters = true)
+    private Sensor sensor;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -80,34 +78,16 @@ public class ConfiguracaoAlerta implements Serializable {
         this.email = email;
     }
 
-    public Set<Sensor> getSensors() {
-        return this.sensors;
+    public Sensor getSensor() {
+        return this.sensor;
     }
 
-    public void setSensors(Set<Sensor> sensors) {
-        if (this.sensors != null) {
-            this.sensors.forEach(i -> i.setConfiguracaoAlertas(null));
-        }
-        if (sensors != null) {
-            sensors.forEach(i -> i.setConfiguracaoAlertas(this));
-        }
-        this.sensors = sensors;
+    public void setSensor(Sensor sensor) {
+        this.sensor = sensor;
     }
 
-    public ConfiguracaoAlerta sensors(Set<Sensor> sensors) {
-        this.setSensors(sensors);
-        return this;
-    }
-
-    public ConfiguracaoAlerta addSensor(Sensor sensor) {
-        this.sensors.add(sensor);
-        sensor.setConfiguracaoAlertas(this);
-        return this;
-    }
-
-    public ConfiguracaoAlerta removeSensor(Sensor sensor) {
-        this.sensors.remove(sensor);
-        sensor.setConfiguracaoAlertas(null);
+    public ConfiguracaoAlerta sensor(Sensor sensor) {
+        this.setSensor(sensor);
         return this;
     }
 

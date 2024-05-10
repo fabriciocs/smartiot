@@ -22,6 +22,7 @@ describe('ConfiguracaoAlerta Form Service', () => {
             id: expect.any(Object),
             limite: expect.any(Object),
             email: expect.any(Object),
+            sensor: expect.any(Object),
           }),
         );
       });
@@ -34,6 +35,7 @@ describe('ConfiguracaoAlerta Form Service', () => {
             id: expect.any(Object),
             limite: expect.any(Object),
             email: expect.any(Object),
+            sensor: expect.any(Object),
           }),
         );
       });

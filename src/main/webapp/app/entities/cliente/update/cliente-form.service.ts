@@ -20,7 +20,6 @@ type ClienteFormGroupContent = {
   id: FormControl<ICliente['id'] | NewCliente['id']>;
   nome: FormControl<ICliente['nome']>;
   email: FormControl<ICliente['email']>;
-  sensores: FormControl<ICliente['sensores']>;
 };
 
 export type ClienteFormGroup = FormGroup<ClienteFormGroupContent>;
@@ -44,9 +43,8 @@ export class ClienteFormService {
         validators: [Validators.required, Validators.maxLength(100)],
       }),
       email: new FormControl(clienteRawValue.email, {
-        validators: [Validators.required, Validators.pattern('^[^@\\\\s]+@[^@\\\\s]+\\\\.[^@\\\\s]+$')],
+        validators: [Validators.required, Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')],
       }),
-      sensores: new FormControl(clienteRawValue.sensores),
     });
   }
 

@@ -5,8 +5,6 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { of, Subject, from } from 'rxjs';
 
-import { ISensor } from 'app/entities/sensor/sensor.model';
-import { SensorService } from 'app/entities/sensor/service/sensor.service';
 import { ClienteService } from '../service/cliente.service';
 import { ICliente } from '../cliente.model';
 import { ClienteFormService } from './cliente-form.service';
@@ -19,7 +17,6 @@ describe('Cliente Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let clienteFormService: ClienteFormService;
   let clienteService: ClienteService;
-  let sensorService: SensorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -41,43 +38,17 @@ describe('Cliente Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     clienteFormService = TestBed.inject(ClienteFormService);
     clienteService = TestBed.inject(ClienteService);
-    sensorService = TestBed.inject(SensorService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call Sensor query and add missing value', () => {
-      const cliente: ICliente = { id: 456 };
-      const sensores: ISensor = { id: 3966 };
-      cliente.sensores = sensores;
-
-      const sensorCollection: ISensor[] = [{ id: 15649 }];
-      jest.spyOn(sensorService, 'query').mockReturnValue(of(new HttpResponse({ body: sensorCollection })));
-      const additionalSensors = [sensores];
-      const expectedCollection: ISensor[] = [...additionalSensors, ...sensorCollection];
-      jest.spyOn(sensorService, 'addSensorToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ cliente });
-      comp.ngOnInit();
-
-      expect(sensorService.query).toHaveBeenCalled();
-      expect(sensorService.addSensorToCollectionIfMissing).toHaveBeenCalledWith(
-        sensorCollection,
-        ...additionalSensors.map(expect.objectContaining),
-      );
-      expect(comp.sensorsSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const cliente: ICliente = { id: 456 };
-      const sensores: ISensor = { id: 23327 };
-      cliente.sensores = sensores;
 
       activatedRoute.data = of({ cliente });
       comp.ngOnInit();
 
-      expect(comp.sensorsSharedCollection).toContain(sensores);
       expect(comp.cliente).toEqual(cliente);
     });
   });
@@ -147,18 +118,6 @@ describe('Cliente Management Update Component', () => {
       expect(clienteService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('Compare relationships', () => {
-    describe('compareSensor', () => {
-      it('Should forward to sensorService', () => {
-        const entity = { id: 123 };
-        const entity2 = { id: 456 };
-        jest.spyOn(sensorService, 'compareSensor');
-        comp.compareSensor(entity, entity2);
-        expect(sensorService.compareSensor).toHaveBeenCalledWith(entity, entity2);
-      });
     });
   });
 });

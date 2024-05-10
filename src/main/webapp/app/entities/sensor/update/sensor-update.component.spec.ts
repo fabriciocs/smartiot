@@ -5,8 +5,8 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { of, Subject, from } from 'rxjs';
 
-import { IConfiguracaoAlerta } from 'app/entities/configuracao-alerta/configuracao-alerta.model';
-import { ConfiguracaoAlertaService } from 'app/entities/configuracao-alerta/service/configuracao-alerta.service';
+import { ICliente } from 'app/entities/cliente/cliente.model';
+import { ClienteService } from 'app/entities/cliente/service/cliente.service';
 import { IDadoSensor } from 'app/entities/dado-sensor/dado-sensor.model';
 import { DadoSensorService } from 'app/entities/dado-sensor/service/dado-sensor.service';
 import { ISensor } from '../sensor.model';
@@ -21,7 +21,7 @@ describe('Sensor Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let sensorFormService: SensorFormService;
   let sensorService: SensorService;
-  let configuracaoAlertaService: ConfiguracaoAlertaService;
+  let clienteService: ClienteService;
   let dadoSensorService: DadoSensorService;
 
   beforeEach(() => {
@@ -44,33 +44,33 @@ describe('Sensor Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     sensorFormService = TestBed.inject(SensorFormService);
     sensorService = TestBed.inject(SensorService);
-    configuracaoAlertaService = TestBed.inject(ConfiguracaoAlertaService);
+    clienteService = TestBed.inject(ClienteService);
     dadoSensorService = TestBed.inject(DadoSensorService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should call ConfiguracaoAlerta query and add missing value', () => {
+    it('Should call Cliente query and add missing value', () => {
       const sensor: ISensor = { id: 456 };
-      const configuracaoAlertas: IConfiguracaoAlerta = { id: 26699 };
-      sensor.configuracaoAlertas = configuracaoAlertas;
+      const cliente: ICliente = { id: 21604 };
+      sensor.cliente = cliente;
 
-      const configuracaoAlertaCollection: IConfiguracaoAlerta[] = [{ id: 823 }];
-      jest.spyOn(configuracaoAlertaService, 'query').mockReturnValue(of(new HttpResponse({ body: configuracaoAlertaCollection })));
-      const additionalConfiguracaoAlertas = [configuracaoAlertas];
-      const expectedCollection: IConfiguracaoAlerta[] = [...additionalConfiguracaoAlertas, ...configuracaoAlertaCollection];
-      jest.spyOn(configuracaoAlertaService, 'addConfiguracaoAlertaToCollectionIfMissing').mockReturnValue(expectedCollection);
+      const clienteCollection: ICliente[] = [{ id: 15981 }];
+      jest.spyOn(clienteService, 'query').mockReturnValue(of(new HttpResponse({ body: clienteCollection })));
+      const additionalClientes = [cliente];
+      const expectedCollection: ICliente[] = [...additionalClientes, ...clienteCollection];
+      jest.spyOn(clienteService, 'addClienteToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ sensor });
       comp.ngOnInit();
 
-      expect(configuracaoAlertaService.query).toHaveBeenCalled();
-      expect(configuracaoAlertaService.addConfiguracaoAlertaToCollectionIfMissing).toHaveBeenCalledWith(
-        configuracaoAlertaCollection,
-        ...additionalConfiguracaoAlertas.map(expect.objectContaining),
+      expect(clienteService.query).toHaveBeenCalled();
+      expect(clienteService.addClienteToCollectionIfMissing).toHaveBeenCalledWith(
+        clienteCollection,
+        ...additionalClientes.map(expect.objectContaining),
       );
-      expect(comp.configuracaoAlertasSharedCollection).toEqual(expectedCollection);
+      expect(comp.clientesSharedCollection).toEqual(expectedCollection);
     });
 
     it('Should call DadoSensor query and add missing value', () => {
@@ -97,15 +97,15 @@ describe('Sensor Management Update Component', () => {
 
     it('Should update editForm', () => {
       const sensor: ISensor = { id: 456 };
-      const configuracaoAlertas: IConfiguracaoAlerta = { id: 7297 };
-      sensor.configuracaoAlertas = configuracaoAlertas;
+      const cliente: ICliente = { id: 11539 };
+      sensor.cliente = cliente;
       const dadoSensores: IDadoSensor = { id: 2350 };
       sensor.dadoSensores = dadoSensores;
 
       activatedRoute.data = of({ sensor });
       comp.ngOnInit();
 
-      expect(comp.configuracaoAlertasSharedCollection).toContain(configuracaoAlertas);
+      expect(comp.clientesSharedCollection).toContain(cliente);
       expect(comp.dadoSensorsSharedCollection).toContain(dadoSensores);
       expect(comp.sensor).toEqual(sensor);
     });
@@ -180,13 +180,13 @@ describe('Sensor Management Update Component', () => {
   });
 
   describe('Compare relationships', () => {
-    describe('compareConfiguracaoAlerta', () => {
-      it('Should forward to configuracaoAlertaService', () => {
+    describe('compareCliente', () => {
+      it('Should forward to clienteService', () => {
         const entity = { id: 123 };
         const entity2 = { id: 456 };
-        jest.spyOn(configuracaoAlertaService, 'compareConfiguracaoAlerta');
-        comp.compareConfiguracaoAlerta(entity, entity2);
-        expect(configuracaoAlertaService.compareConfiguracaoAlerta).toHaveBeenCalledWith(entity, entity2);
+        jest.spyOn(clienteService, 'compareCliente');
+        comp.compareCliente(entity, entity2);
+        expect(clienteService.compareCliente).toHaveBeenCalledWith(entity, entity2);
       });
     });
 

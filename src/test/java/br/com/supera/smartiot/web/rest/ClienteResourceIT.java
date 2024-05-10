@@ -4,30 +4,22 @@ import static br.com.supera.smartiot.domain.ClienteAsserts.*;
 import static br.com.supera.smartiot.web.rest.TestUtil.createUpdateProxyForBean;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import br.com.supera.smartiot.IntegrationTest;
 import br.com.supera.smartiot.domain.Cliente;
 import br.com.supera.smartiot.repository.ClienteRepository;
-import br.com.supera.smartiot.service.ClienteService;
 import br.com.supera.smartiot.service.dto.ClienteDTO;
 import br.com.supera.smartiot.service.mapper.ClienteMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -37,7 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the {@link ClienteResource} REST controller.
  */
 @IntegrationTest
-@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class ClienteResourceIT {
@@ -45,8 +36,8 @@ class ClienteResourceIT {
     private static final String DEFAULT_NOME = "AAAAAAAAAA";
     private static final String UPDATED_NOME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_EMAIL = "8eBk@tVR#\\A`P5_X(";
-    private static final String UPDATED_EMAIL = "rSKz`@i4VT\\Do,";
+    private static final String DEFAULT_EMAIL = "9fCl@tXT$.o`Q";
+    private static final String UPDATED_EMAIL = "`Z@b.UMzaVj";
 
     private static final String ENTITY_API_URL = "/api/clientes";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -60,14 +51,8 @@ class ClienteResourceIT {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @Mock
-    private ClienteRepository clienteRepositoryMock;
-
     @Autowired
     private ClienteMapper clienteMapper;
-
-    @Mock
-    private ClienteService clienteServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -192,23 +177,6 @@ class ClienteResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(cliente.getId().intValue())))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)));
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllClientesWithEagerRelationshipsIsEnabled() throws Exception {
-        when(clienteServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restClienteMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
-
-        verify(clienteServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllClientesWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(clienteServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restClienteMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
-        verify(clienteRepositoryMock, times(1)).findAll(any(Pageable.class));
     }
 
     @Test

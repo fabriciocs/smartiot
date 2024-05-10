@@ -1,4 +1,4 @@
-import { IConfiguracaoAlerta } from 'app/entities/configuracao-alerta/configuracao-alerta.model';
+import { ICliente } from 'app/entities/cliente/cliente.model';
 import { IDadoSensor } from 'app/entities/dado-sensor/dado-sensor.model';
 import { TipoSensor } from 'app/entities/enumerations/tipo-sensor.model';
 
@@ -7,7 +7,7 @@ export interface ISensor {
   nome?: string | null;
   tipo?: keyof typeof TipoSensor | null;
   configuracao?: string | null;
-  configuracaoAlertas?: Pick<IConfiguracaoAlerta, 'id' | 'email'> | null;
+  cliente?: Pick<ICliente, 'id' | 'nome'> | null;
   dadoSensores?: Pick<IDadoSensor, 'id' | 'timestamp'> | null;
 }
 

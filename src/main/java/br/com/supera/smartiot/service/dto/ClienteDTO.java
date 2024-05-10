@@ -17,10 +17,8 @@ public class ClienteDTO implements Serializable {
     private String nome;
 
     @NotNull
-    @Pattern(regexp = "^[^@\\\\s]+@[^@\\\\s]+\\\\.[^@\\\\s]+$")
+    @Pattern(regexp = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")
     private String email;
-
-    private SensorDTO sensores;
 
     public Long getId() {
         return id;
@@ -44,14 +42,6 @@ public class ClienteDTO implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public SensorDTO getSensores() {
-        return sensores;
-    }
-
-    public void setSensores(SensorDTO sensores) {
-        this.sensores = sensores;
     }
 
     @Override
@@ -82,7 +72,6 @@ public class ClienteDTO implements Serializable {
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
             ", email='" + getEmail() + "'" +
-            ", sensores=" + getSensores() +
             "}";
     }
 }

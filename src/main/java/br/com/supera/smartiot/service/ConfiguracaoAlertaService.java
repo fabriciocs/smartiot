@@ -92,6 +92,15 @@ public class ConfiguracaoAlertaService {
     }
 
     /**
+     * Get all the configuracaoAlertas with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<ConfiguracaoAlertaDTO> findAllWithEagerRelationships(Pageable pageable) {
+        return configuracaoAlertaRepository.findAllWithEagerRelationships(pageable).map(configuracaoAlertaMapper::toDto);
+    }
+
+    /**
      * Get one configuracaoAlerta by id.
      *
      * @param id the id of the entity.
@@ -100,7 +109,7 @@ public class ConfiguracaoAlertaService {
     @Transactional(readOnly = true)
     public Optional<ConfiguracaoAlertaDTO> findOne(Long id) {
         log.debug("Request to get ConfiguracaoAlerta : {}", id);
-        return configuracaoAlertaRepository.findById(id).map(configuracaoAlertaMapper::toDto);
+        return configuracaoAlertaRepository.findOneWithEagerRelationships(id).map(configuracaoAlertaMapper::toDto);
     }
 
     /**

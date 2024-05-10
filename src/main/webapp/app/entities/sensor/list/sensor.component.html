@@ -63,9 +63,9 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="configuracaoAlertas.email">
+            <th scope="col" jhiSortBy="cliente.nome">
               <div class="d-flex">
-                <span jhiTranslate="smartIoTApp.sensor.configuracaoAlertas">Configuracao Alertas</span>
+                <span jhiTranslate="smartIoTApp.sensor.cliente">Cliente</span>
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
@@ -90,11 +90,9 @@
               </td>
               <td>{{ sensor.configuracao }}</td>
               <td>
-                @if (sensor.configuracaoAlertas) {
+                @if (sensor.cliente) {
                   <div>
-                    <a [routerLink]="['/configuracao-alerta', sensor.configuracaoAlertas.id, 'view']">{{
-                      sensor.configuracaoAlertas.email
-                    }}</a>
+                    <a [routerLink]="['/cliente', sensor.cliente.id, 'view']">{{ sensor.cliente.nome }}</a>
                   </div>
                 }
               </td>

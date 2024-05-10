@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -29,13 +31,14 @@ public class Cliente implements Serializable {
     private String nome;
 
     @NotNull
-    @Pattern(regexp = "^[^@\\\\s]+@[^@\\\\s]+\\\\.[^@\\\\s]+$")
+    @Pattern(regexp = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")
     @Column(name = "email", nullable = false)
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "configuracaoAlertas", "dadoSensores", "clientes" }, allowSetters = true)
-    private Sensor sensores;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "configuracaoAlertas", "cliente", "dadoSensores" }, allowSetters = true)
+    private Set<Sensor> sensores = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -78,16 +81,34 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-    public Sensor getSensores() {
+    public Set<Sensor> getSensores() {
         return this.sensores;
     }
 
-    public void setSensores(Sensor sensor) {
-        this.sensores = sensor;
+    public void setSensores(Set<Sensor> sensors) {
+        if (this.sensores != null) {
+            this.sensores.forEach(i -> i.setCliente(null));
+        }
+        if (sensors != null) {
+            sensors.forEach(i -> i.setCliente(this));
+        }
+        this.sensores = sensors;
     }
 
-    public Cliente sensores(Sensor sensor) {
-        this.setSensores(sensor);
+    public Cliente sensores(Set<Sensor> sensors) {
+        this.setSensores(sensors);
+        return this;
+    }
+
+    public Cliente addSensores(Sensor sensor) {
+        this.sensores.add(sensor);
+        sensor.setCliente(this);
+        return this;
+    }
+
+    public Cliente removeSensores(Sensor sensor) {
+        this.sensores.remove(sensor);
+        sensor.setCliente(null);
         return this;
     }
 

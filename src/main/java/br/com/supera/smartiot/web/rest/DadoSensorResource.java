@@ -4,6 +4,8 @@ import br.com.supera.smartiot.repository.DadoSensorRepository;
 import br.com.supera.smartiot.service.DadoSensorService;
 import br.com.supera.smartiot.service.dto.DadoSensorDTO;
 import br.com.supera.smartiot.web.rest.errors.BadRequestAlertException;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -53,7 +55,7 @@ public class DadoSensorResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("")
-    public ResponseEntity<DadoSensorDTO> createDadoSensor(@RequestBody DadoSensorDTO dadoSensorDTO) throws URISyntaxException {
+    public ResponseEntity<DadoSensorDTO> createDadoSensor(@Valid @RequestBody DadoSensorDTO dadoSensorDTO) throws URISyntaxException {
         log.debug("REST request to save DadoSensor : {}", dadoSensorDTO);
         if (dadoSensorDTO.getId() != null) {
             throw new BadRequestAlertException("A new dadoSensor cannot already have an ID", ENTITY_NAME, "idexists");
@@ -77,7 +79,7 @@ public class DadoSensorResource {
     @PutMapping("/{id}")
     public ResponseEntity<DadoSensorDTO> updateDadoSensor(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody DadoSensorDTO dadoSensorDTO
+        @Valid @RequestBody DadoSensorDTO dadoSensorDTO
     ) throws URISyntaxException {
         log.debug("REST request to update DadoSensor : {}, {}", id, dadoSensorDTO);
         if (dadoSensorDTO.getId() == null) {
@@ -111,7 +113,7 @@ public class DadoSensorResource {
     @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<DadoSensorDTO> partialUpdateDadoSensor(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody DadoSensorDTO dadoSensorDTO
+        @NotNull @RequestBody DadoSensorDTO dadoSensorDTO
     ) throws URISyntaxException {
         log.debug("REST request to partial update DadoSensor partially : {}, {}", id, dadoSensorDTO);
         if (dadoSensorDTO.getId() == null) {

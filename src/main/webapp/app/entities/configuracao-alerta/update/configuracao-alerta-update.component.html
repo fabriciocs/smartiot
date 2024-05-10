@@ -40,6 +40,32 @@
             </div>
           }
         </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sensor" jhiTranslate="smartIoTApp.configuracaoAlerta.sensor">Sensor</label>
+          <select
+            class="form-control"
+            id="field_sensor"
+            data-cy="sensor"
+            name="sensor"
+            formControlName="sensor"
+            [compareWith]="compareSensor"
+          >
+            @if (editForm.get(['sensor'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (sensorOption of sensorsSharedCollection; track $index) {
+              <option [ngValue]="sensorOption">{{ sensorOption.nome }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['sensor'])!.invalid && (editForm.get(['sensor'])!.dirty || editForm.get(['sensor'])!.touched)) {
+          <div>
+            @if (editForm.get(['sensor'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+            }
+          </div>
+        }
       </div>
 
       <div>

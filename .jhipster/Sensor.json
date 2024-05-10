@@ -31,15 +31,7 @@
       "otherEntityRelationshipName": "sensor",
       "relationshipName": "configuracaoAlertas",
       "relationshipSide": "left",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityField": "timestamp",
-      "otherEntityName": "dadoSensor",
-      "otherEntityRelationshipName": "sensor",
-      "relationshipName": "dadoSensores",
-      "relationshipSide": "left",
-      "relationshipType": "many-to-one"
+      "relationshipType": "one-to-many"
     },
     {
       "otherEntityField": "nome",
@@ -47,7 +39,16 @@
       "otherEntityRelationshipName": "sensores",
       "relationshipName": "cliente",
       "relationshipSide": "right",
-      "relationshipType": "one-to-many"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "timestamp",
+      "otherEntityName": "dadoSensor",
+      "otherEntityRelationshipName": "sensor",
+      "relationshipName": "dadoSensores",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
     }
   ],
   "searchEngine": "no",

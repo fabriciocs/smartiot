@@ -48,23 +48,6 @@
             </div>
           }
         </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_sensores" jhiTranslate="smartIoTApp.cliente.sensores">Sensores</label>
-          <select
-            class="form-control"
-            id="field_sensores"
-            data-cy="sensores"
-            name="sensores"
-            formControlName="sensores"
-            [compareWith]="compareSensor"
-          >
-            <option [ngValue]="null"></option>
-            @for (sensorOption of sensorsSharedCollection; track $index) {
-              <option [ngValue]="sensorOption">{{ sensorOption.nome }}</option>
-            }
-          </select>
-        </div>
       </div>
 
       <div>

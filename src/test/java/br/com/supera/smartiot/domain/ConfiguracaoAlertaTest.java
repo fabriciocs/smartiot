@@ -5,8 +5,6 @@ import static br.com.supera.smartiot.domain.SensorTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import br.com.supera.smartiot.web.rest.TestUtil;
-import java.util.HashSet;
-import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 class ConfiguracaoAlertaTest {
@@ -30,20 +28,10 @@ class ConfiguracaoAlertaTest {
         ConfiguracaoAlerta configuracaoAlerta = getConfiguracaoAlertaRandomSampleGenerator();
         Sensor sensorBack = getSensorRandomSampleGenerator();
 
-        configuracaoAlerta.addSensor(sensorBack);
-        assertThat(configuracaoAlerta.getSensors()).containsOnly(sensorBack);
-        assertThat(sensorBack.getConfiguracaoAlertas()).isEqualTo(configuracaoAlerta);
+        configuracaoAlerta.setSensor(sensorBack);
+        assertThat(configuracaoAlerta.getSensor()).isEqualTo(sensorBack);
 
-        configuracaoAlerta.removeSensor(sensorBack);
-        assertThat(configuracaoAlerta.getSensors()).doesNotContain(sensorBack);
-        assertThat(sensorBack.getConfiguracaoAlertas()).isNull();
-
-        configuracaoAlerta.sensors(new HashSet<>(Set.of(sensorBack)));
-        assertThat(configuracaoAlerta.getSensors()).containsOnly(sensorBack);
-        assertThat(sensorBack.getConfiguracaoAlertas()).isEqualTo(configuracaoAlerta);
-
-        configuracaoAlerta.setSensors(new HashSet<>());
-        assertThat(configuracaoAlerta.getSensors()).doesNotContain(sensorBack);
-        assertThat(sensorBack.getConfiguracaoAlertas()).isNull();
+        configuracaoAlerta.sensor(null);
+        assertThat(configuracaoAlerta.getSensor()).isNull();
     }
 }

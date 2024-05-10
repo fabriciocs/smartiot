@@ -1,5 +1,6 @@
 package br.com.supera.smartiot.service.dto;
 
+import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;

@@ -62,23 +62,30 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_configuracaoAlertas" jhiTranslate="smartIoTApp.sensor.configuracaoAlertas"
-            >Configuracao Alertas</label
-          >
+          <label class="form-label" for="field_cliente" jhiTranslate="smartIoTApp.sensor.cliente">Cliente</label>
           <select
             class="form-control"
-            id="field_configuracaoAlertas"
-            data-cy="configuracaoAlertas"
-            name="configuracaoAlertas"
-            formControlName="configuracaoAlertas"
-            [compareWith]="compareConfiguracaoAlerta"
+            id="field_cliente"
+            data-cy="cliente"
+            name="cliente"
+            formControlName="cliente"
+            [compareWith]="compareCliente"
           >
-            <option [ngValue]="null"></option>
-            @for (configuracaoAlertaOption of configuracaoAlertasSharedCollection; track $index) {
-              <option [ngValue]="configuracaoAlertaOption">{{ configuracaoAlertaOption.email }}</option>
+            @if (editForm.get(['cliente'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (clienteOption of clientesSharedCollection; track $index) {
+              <option [ngValue]="clienteOption">{{ clienteOption.nome }}</option>
             }
           </select>
         </div>
+        @if (editForm.get(['cliente'])!.invalid && (editForm.get(['cliente'])!.dirty || editForm.get(['cliente'])!.touched)) {
+          <div>
+            @if (editForm.get(['cliente'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+            }
+          </div>
+        }
 
         <div class="mb-3">
           <label class="form-label" for="field_dadoSensores" jhiTranslate="smartIoTApp.sensor.dadoSensores">Dado Sensores</label>

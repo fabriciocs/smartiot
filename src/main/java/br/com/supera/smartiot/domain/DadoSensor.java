@@ -2,6 +2,7 @@ package br.com.supera.smartiot.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
@@ -33,7 +34,7 @@ public class DadoSensor implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "dadoSensores")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "configuracaoAlertas", "dadoSensores", "clientes" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "configuracaoAlertas", "cliente", "dadoSensores" }, allowSetters = true)
     private Set<Sensor> sensors = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

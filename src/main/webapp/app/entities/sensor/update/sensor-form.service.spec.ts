@@ -23,7 +23,7 @@ describe('Sensor Form Service', () => {
             nome: expect.any(Object),
             tipo: expect.any(Object),
             configuracao: expect.any(Object),
-            configuracaoAlertas: expect.any(Object),
+            cliente: expect.any(Object),
             dadoSensores: expect.any(Object),
           }),
         );
@@ -38,7 +38,7 @@ describe('Sensor Form Service', () => {
             nome: expect.any(Object),
             tipo: expect.any(Object),
             configuracao: expect.any(Object),
-            configuracaoAlertas: expect.any(Object),
+            cliente: expect.any(Object),
             dadoSensores: expect.any(Object),
           }),
         );

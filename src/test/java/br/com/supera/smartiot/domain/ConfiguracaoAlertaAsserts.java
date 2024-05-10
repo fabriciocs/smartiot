@@ -58,5 +58,9 @@ public class ConfiguracaoAlertaAsserts {
      * @param expected the expected entity
      * @param actual the actual entity
      */
-    public static void assertConfiguracaoAlertaUpdatableRelationshipsEquals(ConfiguracaoAlerta expected, ConfiguracaoAlerta actual) {}
+    public static void assertConfiguracaoAlertaUpdatableRelationshipsEquals(ConfiguracaoAlerta expected, ConfiguracaoAlerta actual) {
+        assertThat(expected)
+            .as("Verify ConfiguracaoAlerta relationships")
+            .satisfies(e -> assertThat(e.getSensor()).as("check sensor").isEqualTo(actual.getSensor()));
+    }
 }

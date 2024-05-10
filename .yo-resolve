@@ -70,3 +70,4 @@ src\main\webapp\app\layouts\navbar\navbar.component.html skip
 src\main\webapp\app\layouts\footer\footer.component.html skip
 src\main\webapp\app\home\home.component.scss skip
 src\main\docker\app.yml skip
+src\main\webapp\content\images\jhipster_family_member_0_head-192.png skip

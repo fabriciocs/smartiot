@@ -7,8 +7,8 @@ import { finalize, map } from 'rxjs/operators';
 import SharedModule from 'app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { IConfiguracaoAlerta } from 'app/entities/configuracao-alerta/configuracao-alerta.model';
-import { ConfiguracaoAlertaService } from 'app/entities/configuracao-alerta/service/configuracao-alerta.service';
+import { ICliente } from 'app/entities/cliente/cliente.model';
+import { ClienteService } from 'app/entities/cliente/service/cliente.service';
 import { IDadoSensor } from 'app/entities/dado-sensor/dado-sensor.model';
 import { DadoSensorService } from 'app/entities/dado-sensor/service/dado-sensor.service';
 import { TipoSensor } from 'app/entities/enumerations/tipo-sensor.model';
@@ -27,20 +27,19 @@ export class SensorUpdateComponent implements OnInit {
   sensor: ISensor | null = null;
   tipoSensorValues = Object.keys(TipoSensor);
 
-  configuracaoAlertasSharedCollection: IConfiguracaoAlerta[] = [];
+  clientesSharedCollection: ICliente[] = [];
   dadoSensorsSharedCollection: IDadoSensor[] = [];
 
   protected sensorService = inject(SensorService);
   protected sensorFormService = inject(SensorFormService);
-  protected configuracaoAlertaService = inject(ConfiguracaoAlertaService);
+  protected clienteService = inject(ClienteService);
   protected dadoSensorService = inject(DadoSensorService);
   protected activatedRoute = inject(ActivatedRoute);
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   editForm: SensorFormGroup = this.sensorFormService.createSensorFormGroup();
 
-  compareConfiguracaoAlerta = (o1: IConfiguracaoAlerta | null, o2: IConfiguracaoAlerta | null): boolean =>
-    this.configuracaoAlertaService.compareConfiguracaoAlerta(o1, o2);
+  compareCliente = (o1: ICliente | null, o2: ICliente | null): boolean => this.clienteService.compareCliente(o1, o2);
 
   compareDadoSensor = (o1: IDadoSensor | null, o2: IDadoSensor | null): boolean => this.dadoSensorService.compareDadoSensor(o1, o2);
 
@@ -92,11 +91,10 @@ export class SensorUpdateComponent implements OnInit {
     this.sensor = sensor;
     this.sensorFormService.resetForm(this.editForm, sensor);
 
-    this.configuracaoAlertasSharedCollection =
-      this.configuracaoAlertaService.addConfiguracaoAlertaToCollectionIfMissing<IConfiguracaoAlerta>(
-        this.configuracaoAlertasSharedCollection,
-        sensor.configuracaoAlertas,
-      );
+    this.clientesSharedCollection = this.clienteService.addClienteToCollectionIfMissing<ICliente>(
+      this.clientesSharedCollection,
+      sensor.cliente,
+    );
     this.dadoSensorsSharedCollection = this.dadoSensorService.addDadoSensorToCollectionIfMissing<IDadoSensor>(
       this.dadoSensorsSharedCollection,
       sensor.dadoSensores,
@@ -104,18 +102,11 @@ export class SensorUpdateComponent implements OnInit {
   }
 
   protected loadRelationshipsOptions(): void {
-    this.configuracaoAlertaService
+    this.clienteService
       .query()
-      .pipe(map((res: HttpResponse<IConfiguracaoAlerta[]>) => res.body ?? []))
-      .pipe(
-        map((configuracaoAlertas: IConfiguracaoAlerta[]) =>
-          this.configuracaoAlertaService.addConfiguracaoAlertaToCollectionIfMissing<IConfiguracaoAlerta>(
-            configuracaoAlertas,
-            this.sensor?.configuracaoAlertas,
-          ),
-        ),
-      )
-      .subscribe((configuracaoAlertas: IConfiguracaoAlerta[]) => (this.configuracaoAlertasSharedCollection = configuracaoAlertas));
+      .pipe(map((res: HttpResponse<ICliente[]>) => res.body ?? []))
+      .pipe(map((clientes: ICliente[]) => this.clienteService.addClienteToCollectionIfMissing<ICliente>(clientes, this.sensor?.cliente)))
+      .subscribe((clientes: ICliente[]) => (this.clientesSharedCollection = clientes));
 
     this.dadoSensorService
       .query()

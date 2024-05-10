@@ -39,18 +39,19 @@ public class Sensor implements Serializable {
     @Column(name = "configuracao")
     private String configuracao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "sensors" }, allowSetters = true)
-    private ConfiguracaoAlerta configuracaoAlertas;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sensor")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "sensor" }, allowSetters = true)
+    private Set<ConfiguracaoAlerta> configuracaoAlertas = new HashSet<>();
+
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties(value = { "sensores" }, allowSetters = true)
+    private Cliente cliente;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "sensors" }, allowSetters = true)
     private DadoSensor dadoSensores;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sensores")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "sensores" }, allowSetters = true)
-    private Set<Cliente> clientes = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -106,16 +107,47 @@ public class Sensor implements Serializable {
         this.configuracao = configuracao;
     }
 
-    public ConfiguracaoAlerta getConfiguracaoAlertas() {
+    public Set<ConfiguracaoAlerta> getConfiguracaoAlertas() {
         return this.configuracaoAlertas;
     }
 
-    public void setConfiguracaoAlertas(ConfiguracaoAlerta configuracaoAlerta) {
-        this.configuracaoAlertas = configuracaoAlerta;
+    public void setConfiguracaoAlertas(Set<ConfiguracaoAlerta> configuracaoAlertas) {
+        if (this.configuracaoAlertas != null) {
+            this.configuracaoAlertas.forEach(i -> i.setSensor(null));
+        }
+        if (configuracaoAlertas != null) {
+            configuracaoAlertas.forEach(i -> i.setSensor(this));
+        }
+        this.configuracaoAlertas = configuracaoAlertas;
     }
 
-    public Sensor configuracaoAlertas(ConfiguracaoAlerta configuracaoAlerta) {
-        this.setConfiguracaoAlertas(configuracaoAlerta);
+    public Sensor configuracaoAlertas(Set<ConfiguracaoAlerta> configuracaoAlertas) {
+        this.setConfiguracaoAlertas(configuracaoAlertas);
+        return this;
+    }
+
+    public Sensor addConfiguracaoAlertas(ConfiguracaoAlerta configuracaoAlerta) {
+        this.configuracaoAlertas.add(configuracaoAlerta);
+        configuracaoAlerta.setSensor(this);
+        return this;
+    }
+
+    public Sensor removeConfiguracaoAlertas(ConfiguracaoAlerta configuracaoAlerta) {
+        this.configuracaoAlertas.remove(configuracaoAlerta);
+        configuracaoAlerta.setSensor(null);
+        return this;
+    }
+
+    public Cliente getCliente() {
+        return this.cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Sensor cliente(Cliente cliente) {
+        this.setCliente(cliente);
         return this;
     }
 
@@ -129,37 +161,6 @@ public class Sensor implements Serializable {
 
     public Sensor dadoSensores(DadoSensor dadoSensor) {
         this.setDadoSensores(dadoSensor);
-        return this;
-    }
-
-    public Set<Cliente> getClientes() {
-        return this.clientes;
-    }
-
-    public void setClientes(Set<Cliente> clientes) {
-        if (this.clientes != null) {
-            this.clientes.forEach(i -> i.setSensores(null));
-        }
-        if (clientes != null) {
-            clientes.forEach(i -> i.setSensores(this));
-        }
-        this.clientes = clientes;
-    }
-
-    public Sensor clientes(Set<Cliente> clientes) {
-        this.setClientes(clientes);
-        return this;
-    }
-
-    public Sensor addCliente(Cliente cliente) {
-        this.clientes.add(cliente);
-        cliente.setSensores(this);
-        return this;
-    }
-
-    public Sensor removeCliente(Cliente cliente) {
-        this.clientes.remove(cliente);
-        cliente.setSensores(null);
         return this;
     }
 

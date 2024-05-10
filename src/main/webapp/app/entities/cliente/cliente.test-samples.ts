@@ -1,26 +1,26 @@
 import { ICliente, NewCliente } from './cliente.model';
 
 export const sampleWithRequiredData: ICliente = {
-  id: 32110,
-  nome: 'healthily opposite prevail',
-  email: "<hW'8@lz'\\zK*cu",
+  id: 18497,
+  nome: 'mmm healthily',
+  email: 'gcJ@).IhBz',
 };
 
 export const sampleWithPartialData: ICliente = {
-  id: 16839,
-  nome: 'cheery maltreat',
-  email: 'R=w@A#U:|\\yi[T',
+  id: 13827,
+  nome: 'how',
+  email: 'mz(@PM+duQ.nOr',
 };
 
 export const sampleWithFullData: ICliente = {
-  id: 28351,
-  nome: 'however aw',
-  email: "/)Hl%G@t+~'a\\_g{",
+  id: 15491,
+  nome: 'alloy shower',
+  email: '$V<@zJi]Vr._|]h',
 };
 
 export const sampleWithNewData: NewCliente = {
-  nome: 'irresponsible subtle',
-  email: 'Sv@!<\\Oedk',
+  nome: 'unless',
+  email: 'S}0*J@&Ift,.(b_3g{',
   id: null,
 };
 

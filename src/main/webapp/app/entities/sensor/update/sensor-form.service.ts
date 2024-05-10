@@ -21,7 +21,7 @@ type SensorFormGroupContent = {
   nome: FormControl<ISensor['nome']>;
   tipo: FormControl<ISensor['tipo']>;
   configuracao: FormControl<ISensor['configuracao']>;
-  configuracaoAlertas: FormControl<ISensor['configuracaoAlertas']>;
+  cliente: FormControl<ISensor['cliente']>;
   dadoSensores: FormControl<ISensor['dadoSensores']>;
 };
 
@@ -49,7 +49,9 @@ export class SensorFormService {
         validators: [Validators.required],
       }),
       configuracao: new FormControl(sensorRawValue.configuracao),
-      configuracaoAlertas: new FormControl(sensorRawValue.configuracaoAlertas),
+      cliente: new FormControl(sensorRawValue.cliente, {
+        validators: [Validators.required],
+      }),
       dadoSensores: new FormControl(sensorRawValue.dadoSensores),
     });
   }

@@ -1,23 +1,24 @@
 import { IConfiguracaoAlerta, NewConfiguracaoAlerta } from './configuracao-alerta.model';
 
 export const sampleWithRequiredData: IConfiguracaoAlerta = {
-  id: 2865,
-  email: '#BG@*?\\$3Y?',
+  id: 31597,
+  email: '9[-@<m#.)O',
 };
 
 export const sampleWithPartialData: IConfiguracaoAlerta = {
-  id: 3085,
-  email: 'KeVp@q{kG;h\\1 ',
+  id: 12086,
+  limite: 13786.39,
+  email: '+B@O.ZA',
 };
 
 export const sampleWithFullData: IConfiguracaoAlerta = {
-  id: 543,
-  limite: 26697.28,
-  email: 'kW@S\\&R=pvTj',
+  id: 31340,
+  limite: 3085.66,
+  email: 'LfXq@r{lI<i.0!',
 };
 
 export const sampleWithNewData: NewConfiguracaoAlerta = {
-  email: "#@0',Ce\\e{=>L!F",
+  email: 'm@kY.U',
   id: null,
 };
 

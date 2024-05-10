@@ -5,6 +5,8 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { of, Subject, from } from 'rxjs';
 
+import { ISensor } from 'app/entities/sensor/sensor.model';
+import { SensorService } from 'app/entities/sensor/service/sensor.service';
 import { ConfiguracaoAlertaService } from '../service/configuracao-alerta.service';
 import { IConfiguracaoAlerta } from '../configuracao-alerta.model';
 import { ConfiguracaoAlertaFormService } from './configuracao-alerta-form.service';
@@ -17,6 +19,7 @@ describe('ConfiguracaoAlerta Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let configuracaoAlertaFormService: ConfiguracaoAlertaFormService;
   let configuracaoAlertaService: ConfiguracaoAlertaService;
+  let sensorService: SensorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -38,17 +41,43 @@ describe('ConfiguracaoAlerta Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     configuracaoAlertaFormService = TestBed.inject(ConfiguracaoAlertaFormService);
     configuracaoAlertaService = TestBed.inject(ConfiguracaoAlertaService);
+    sensorService = TestBed.inject(SensorService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should update editForm', () => {
+    it('Should call Sensor query and add missing value', () => {
       const configuracaoAlerta: IConfiguracaoAlerta = { id: 456 };
+      const sensor: ISensor = { id: 5172 };
+      configuracaoAlerta.sensor = sensor;
+
+      const sensorCollection: ISensor[] = [{ id: 1926 }];
+      jest.spyOn(sensorService, 'query').mockReturnValue(of(new HttpResponse({ body: sensorCollection })));
+      const additionalSensors = [sensor];
+      const expectedCollection: ISensor[] = [...additionalSensors, ...sensorCollection];
+      jest.spyOn(sensorService, 'addSensorToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ configuracaoAlerta });
       comp.ngOnInit();
 
+      expect(sensorService.query).toHaveBeenCalled();
+      expect(sensorService.addSensorToCollectionIfMissing).toHaveBeenCalledWith(
+        sensorCollection,
+        ...additionalSensors.map(expect.objectContaining),
+      );
+      expect(comp.sensorsSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should update editForm', () => {
+      const configuracaoAlerta: IConfiguracaoAlerta = { id: 456 };
+      const sensor: ISensor = { id: 10021 };
+      configuracaoAlerta.sensor = sensor;
+
+      activatedRoute.data = of({ configuracaoAlerta });
+      comp.ngOnInit();
+
+      expect(comp.sensorsSharedCollection).toContain(sensor);
       expect(comp.configuracaoAlerta).toEqual(configuracaoAlerta);
     });
   });
@@ -118,6 +147,18 @@ describe('ConfiguracaoAlerta Management Update Component', () => {
       expect(configuracaoAlertaService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Compare relationships', () => {
+    describe('compareSensor', () => {
+      it('Should forward to sensorService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(sensorService, 'compareSensor');
+        comp.compareSensor(entity, entity2);
+        expect(sensorService.compareSensor).toHaveBeenCalledWith(entity, entity2);
+      });
     });
   });
 });

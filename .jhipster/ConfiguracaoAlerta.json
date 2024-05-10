@@ -13,7 +13,7 @@
       "fieldName": "email",
       "fieldType": "String",
       "fieldValidateRules": ["required", "pattern"],
-      "fieldValidateRulesPattern": "^[^@\\\\s]+@[^@\\\\s]+\\\\.[^@\\\\s]+$"
+      "fieldValidateRulesPattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
     }
   ],
   "name": "ConfiguracaoAlerta",
@@ -25,7 +25,8 @@
       "otherEntityRelationshipName": "configuracaoAlertas",
       "relationshipName": "sensor",
       "relationshipSide": "right",
-      "relationshipType": "one-to-many"
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
     }
   ],
   "searchEngine": "no",
