@@ -110,7 +110,7 @@ def replace_background_urls(directory):
 
                 updated_css_content = re.sub(
                     # Pattern to match background URL with .svg extension
-                    r"background:\s*url\(\s*'([^']+\.svg)'\s*\)\s*no-repeat\s*center\s*top;",
+                    r"background:\s*url\(\s*'([^']+)\.svg'\s*\)\s*no-repeat\s*center\s*top;",
                     # Replacement string with captured filename and .png extension
                     r"background: url('\1.png') no-repeat center top;",
                     css_content
@@ -121,6 +121,50 @@ def replace_background_urls(directory):
                     f.write(updated_css_content)
 
                 print(f'Replaced background URLs in: {full_path}')
+                
+                
+def create_favicon(original_logo_path, output_path):
+    """ Create favicon.ico from logo image with resizing and cropping """
+    # Load the original logo
+    logo = Image.open(original_logo_path)
+    # Calculate aspect ratio of the original logo
+    aspect_ratio = logo.width / logo.height
+    # Define o tamanho do favicon
+    favicon_size = (256, 256)
+    
+    # Calcula as dimensões para o redimensionamento e o corte
+    if aspect_ratio > 1:  # Se a largura for maior que a altura
+        # Redimensiona o logo para que a altura seja igual ao tamanho do favicon
+        resized_logo = logo.resize((int(favicon_size[1] * aspect_ratio), favicon_size[1]))
+        # Calcula o ponto de corte para centralizar o logo
+        left = (resized_logo.width - favicon_size[0]) / 2
+        top = 0
+        right = left + favicon_size[0]
+        bottom = favicon_size[1]
+    else:  # Se a altura for maior que a largura ou igual
+        # Redimensiona o logo para que a largura seja igual ao tamanho do favicon
+        resized_logo = logo.resize((favicon_size[0], int(favicon_size[0] / aspect_ratio)))
+        # Calcula o ponto de corte para centralizar o logo
+        left = 0
+        top = (resized_logo.height - favicon_size[1]) / 2
+        right = favicon_size[0]
+        bottom = top + favicon_size[1]
+
+    # Corta o logo para o tamanho do favicon
+    cropped_logo = resized_logo.crop((left, top, right, bottom))
+
+    # Cria um novo canvas para o favicon
+    favicon = Image.new("RGBA", favicon_size, (255, 255, 255, 0))
+    # Calcula o ponto de colagem para centralizar o logo
+    x_offset = (favicon.width - cropped_logo.width) // 2
+    y_offset = (favicon.height - cropped_logo.height) // 2
+    # Cola o logo no canvas do favicon
+    favicon.paste(cropped_logo, (x_offset, y_offset))
+
+    # Salva o favicon.ico
+    favicon.save(output_path, format="ICO")
+    print(f'Favicon created: {output_path}')
+
 
 def main():
     directory_to_fix = './src/main/webapp/content/images'
@@ -130,8 +174,9 @@ def main():
     replace_with_svg(directory_to_fix, original_logo_path, text)
     replace_with_svg('./webpack', original_logo_path, text)
     directory_to_fix_bg = './src/main/webapp'
-    
+    create_favicon(original_logo_path, './favicon.ico')
     replace_background_urls(directory_to_fix_bg)
+    
 
 
 if __name__ == "__main__":

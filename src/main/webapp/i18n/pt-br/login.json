@@ -1,15 +1,15 @@
 {
   "login": {
-    "title": "Autenticação",
+    "title": "Entrar",
     "form": {
       "password": "Senha",
-      "password.placeholder": "Sua senha",
-      "rememberme": "Manter-me logado",
+      "password.placeholder": "Digite sua senha",
+      "rememberme": "Lembrar-me",
       "button": "Entrar"
     },
     "messages": {
       "error": {
-        "authentication": "<strong>Erro de autenticação!</strong> Por favor verifique suas credenciais e tente novamente."
+        "authentication": "<strong>Falha ao entrar!</strong> Verifique suas credenciais e tente novamente."
       }
     },
     "password": {

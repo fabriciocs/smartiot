@@ -51,13 +51,14 @@
       "error": {
         "dontmatch": "The passwords do not match!"
       }
-    },
-    "footer": {
-      "company": "© 2024 Smart IoT Sensor Monitoring System",
-      "terms": "Terms of Service",
-      "privacy": "Privacy Policy",
-      "support": "Support",
-      "documentation": "Documentation"
     }
+  },
+
+  "footer": {
+    "company": "© 2024 Smart IoT Sensor Monitoring System",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "support": "Support",
+    "documentation": "Documentation"
   }
 }
