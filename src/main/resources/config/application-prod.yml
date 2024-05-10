@@ -33,9 +33,9 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://smartiot.czeieuicka0a.us-east-1.rds.amazonaws.com:3306/smartiot?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
-    username: admin
-    password: vSDVcE0HixMOWc4*22
+    url: ${aws:secretsmanager:smartiot-database-url}
+    username: ${aws:secretsmanager:smartiot-database-username}
+    password: ${aws:secretsmanager:smartiot-database-password}
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -44,75 +44,58 @@ spring:
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
-  # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
   liquibase:
     contexts: prod, faker
   mail:
     host: localhost
     port: 25
-    username:
-    password:
+    username: ${aws:secretsmanager:mail-username}
+    password: ${aws:secretsmanager:mail-password}
   thymeleaf:
     cache: true
 
 # ===================================================================
-# To enable TLS in production, generate a certificate using:
-# keytool -genkey -alias smartiot -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
-#
-# You can also use Let's Encrypt:
-# See details in topic "Create a Java Keystore (.JKS) from Let's Encrypt Certificates" on https://maximilian-boehm.com/en-gb/blog
-#
-# Then, modify the server.ssl properties so your "server" configuration looks like:
+# SSL configuration reference, with sensitive values stored in AWS Secrets Manager
 #
 # server:
 #   port: 443
 #   ssl:
 #     key-store: classpath:config/tls/keystore.p12
-#     key-store-password: password
+#     key-store-password: ${aws:secretsmanager:keystore-password}
 #     key-store-type: PKCS12
 #     key-alias: selfsigned
-#     # The ciphers suite enforce the security by deactivating some old and deprecated SSL cipher, this list was tested against SSL Labs (https://www.ssllabs.com/ssltest/)
-#     ciphers: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 ,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 ,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 ,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,TLS_DHE_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA,TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA,TLS_RSA_WITH_CAMELLIA_256_CBC_SHA,TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA,TLS_RSA_WITH_CAMELLIA_128_CBC_SHA
+#     ciphers: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,...
 # ===================================================================
 server:
   port: 29090
-  shutdown: graceful # see https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-graceful-shutdown
+  shutdown: graceful
   compression:
     enabled: true
     mime-types: text/html,text/xml,text/plain,text/css,application/javascript,application/json,image/svg+xml
     min-response-size: 1024
 
 # ===================================================================
-# JHipster specific properties
+# JHipster specific properties with sensitive values in AWS Secrets Manager
 #
-# Full reference is available at: https://www.jhipster.tech/common-application-properties/
-# ===================================================================
-
 jhipster:
   http:
-    cache: # Used by the CachingHttpHeadersFilter
+    cache:
       timeToLiveInDays: 1461
-  cache: # Cache configuration
-    ehcache: # Ehcache configuration
-      time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
-      max-entries: 1000 # Number of objects in each cache entry
+  cache:
+    ehcache:
+      time-to-live-seconds: 3600
+      max-entries: 1000
   security:
     authentication:
       jwt:
-        # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        # As this is the PRODUCTION configuration, you MUST change the default key, and store it securely:
-        # - In the Consul configserver
-        # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
-        # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        base64-secret: NDY5N2YzZTlhOWU4NWJhMjg2NjFmMGFiODVlZDU5NjIwZjk1YjNkYTRiZTQ5MTQ3NjEwZDc5OWJkZjVjZDJmNGNjZDBkMjkwMjAyNmIyNTA4MmI1MTI2OWRiYzA1YTA1ZGZmYTZlMjgwM2RiNjViYjBkMWFlMzJhNTAwNmNiMTE=
-        # Token is valid 24 hours
+        base64-secret: ${aws:secretsmanager:jwt-base64-secret}
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
-  mail: # specific JHipster mail property, for standard properties see MailProperties
-    base-url: http://my-server-url-to-change # Modify according to your server's URL
+  mail:
+    base-url: http://my-server-url-to-change
   logging:
-    use-json-format: false # By default, logs are not in Json format
-    logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
+    use-json-format: false
+    logstash:
       enabled: false
       host: localhost
       port: 5000

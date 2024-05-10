@@ -171,11 +171,11 @@ def main():
     original_logo_path = './logo.jpg'
     text = "Custom Text"
 
-    replace_with_svg(directory_to_fix, original_logo_path, text)
-    replace_with_svg('./webpack', original_logo_path, text)
+    # replace_with_svg(directory_to_fix, original_logo_path, text)
+    # replace_with_svg('./webpack', original_logo_path, text)
     directory_to_fix_bg = './src/main/webapp'
-    create_favicon(original_logo_path, './favicon.ico')
-    replace_background_urls(directory_to_fix_bg)
+    create_favicon(original_logo_path, f'{directory_to_fix_bg}/favicon.ico')
+    # replace_background_urls(directory_to_fix_bg)
     
 
 
