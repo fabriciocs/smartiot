@@ -2,24 +2,24 @@
   "smartIoTApp": {
     "configuracaoAlerta": {
       "home": {
-        "title": "Configuracao Alertas",
+        "title": "Configurações de Alertas",
         "refreshListLabel": "Atualizar lista",
-        "createLabel": "Criar novo Configuracao Alerta",
-        "createOrEditLabel": "Criar ou editar Configuracao Alerta",
-        "notFound": "Nenhum Configuracao Alerta encontrado"
+        "createLabel": "Criar nova Configuração de Alerta",
+        "createOrEditLabel": "Criar ou editar Configuração de Alerta",
+        "notFound": "Nenhuma Configuração de Alerta encontrada"
       },
-      "created": "Um novo Configuracao Alerta foi criado com o identificador {{ param }}",
-      "updated": "Um Configuracao Alerta foi atualizado com o identificador {{ param }}",
-      "deleted": "Um Configuracao Alerta foi excluído com o identificador {{ param }}",
+      "created": "Uma nova Configuração de Alerta foi criada com o identificador {{ param }}",
+      "updated": "Uma Configuração de Alerta foi atualizada com o identificador {{ param }}",
+      "deleted": "Uma Configuração de Alerta foi excluída com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Configuracao Alerta {{ id }}?"
+        "question": "Tem certeza de que deseja excluir esta Configuração de Alerta {{ id }}?"
       },
       "detail": {
-        "title": "Configuracao Alerta"
+        "title": "Configuração de Alerta"
       },
       "id": "ID",
       "limite": "Limite",
-      "email": "Email",
+      "email": "E-mail",
       "sensor": "Sensor"
     }
   }

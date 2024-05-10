@@ -2,7 +2,7 @@
   "smartIoTApp": {
     "sensor": {
       "home": {
-        "title": "Sensors",
+        "title": "Sensores",
         "refreshListLabel": "Atualizar lista",
         "createLabel": "Criar novo Sensor",
         "createOrEditLabel": "Criar ou editar Sensor",
@@ -12,7 +12,7 @@
       "updated": "Um Sensor foi atualizado com o identificador {{ param }}",
       "deleted": "Um Sensor foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Sensor {{ id }}?"
+        "question": "Tem certeza de que deseja excluir o Sensor {{ id }}?"
       },
       "detail": {
         "title": "Sensor"
@@ -20,9 +20,9 @@
       "id": "ID",
       "nome": "Nome",
       "tipo": "Tipo",
-      "configuracao": "Configuracao",
-      "configuracaoAlertas": "Configuracao Alertas",
-      "dadoSensores": "Dado Sensores",
+      "configuracao": "Configuração",
+      "configuracaoAlertas": "Configurações de Alertas",
+      "dadoSensores": "Dados dos Sensores",
       "cliente": "Cliente"
     }
   }
