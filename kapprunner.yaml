@@ -3,7 +3,10 @@ runtime: corretto11
 
 build:
   commands:
-    - mvn -Pprod -ntp clean verify -DskipTests --batch-mode
+    - chmod +x mvnw
+    - chmod +x npmw
+    - ./npmw run clean-www && ./npmw run webapp:build:prod
+    - ./mvnw -Pprod -ntp clean verify -DskipTests --batch-mode
   env:
     - name: M2
       value: "/usr/local/apache-maven/bin"

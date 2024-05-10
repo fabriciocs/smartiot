@@ -18,6 +18,7 @@
   "pagination": "pagination",
   "relationships": [
     {
+      "otherEntityField": "nome",
       "otherEntityName": "sensor",
       "otherEntityRelationshipName": "dadoSensores",
       "relationshipName": "sensor",

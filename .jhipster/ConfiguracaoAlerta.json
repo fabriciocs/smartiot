@@ -20,6 +20,7 @@
   "pagination": "pagination",
   "relationships": [
     {
+      "otherEntityField": "nome",
       "otherEntityName": "sensor",
       "otherEntityRelationshipName": "configuracaoAlertas",
       "relationshipName": "sensor",
