@@ -11,11 +11,12 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface ClienteMapper extends EntityMapper<ClienteDTO, Cliente> {
-    @Mapping(target = "sensores", source = "sensores", qualifiedByName = "sensorId")
+    @Mapping(target = "sensores", source = "sensores", qualifiedByName = "sensorNome")
     ClienteDTO toDto(Cliente s);
 
-    @Named("sensorId")
+    @Named("sensorNome")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    SensorDTO toDtoSensorId(Sensor sensor);
+    @Mapping(target = "nome", source = "nome")
+    SensorDTO toDtoSensorNome(Sensor sensor);
 }

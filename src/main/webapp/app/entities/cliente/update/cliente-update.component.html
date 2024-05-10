@@ -61,7 +61,7 @@
           >
             <option [ngValue]="null"></option>
             @for (sensorOption of sensorsSharedCollection; track $index) {
-              <option [ngValue]="sensorOption">{{ sensorOption.id }}</option>
+              <option [ngValue]="sensorOption">{{ sensorOption.nome }}</option>
             }
           </select>
         </div>

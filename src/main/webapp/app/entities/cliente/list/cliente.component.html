@@ -56,7 +56,7 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="sensores.id">
+            <th scope="col" jhiSortBy="sensores.nome">
               <div class="d-flex">
                 <span jhiTranslate="smartIoTApp.cliente.sensores">Sensores</span>
                 <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -76,7 +76,7 @@
               <td>
                 @if (cliente.sensores) {
                   <div>
-                    <a [routerLink]="['/sensor', cliente.sensores.id, 'view']">{{ cliente.sensores.id }}</a>
+                    <a [routerLink]="['/sensor', cliente.sensores.id, 'view']">{{ cliente.sensores.nome }}</a>
                   </div>
                 }
               </td>

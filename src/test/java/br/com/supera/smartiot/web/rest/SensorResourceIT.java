@@ -4,6 +4,7 @@ import static br.com.supera.smartiot.domain.SensorAsserts.*;
 import static br.com.supera.smartiot.web.rest.TestUtil.createUpdateProxyForBean;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -11,16 +12,23 @@ import br.com.supera.smartiot.IntegrationTest;
 import br.com.supera.smartiot.domain.Sensor;
 import br.com.supera.smartiot.domain.enumeration.TipoSensor;
 import br.com.supera.smartiot.repository.SensorRepository;
+import br.com.supera.smartiot.service.SensorService;
 import br.com.supera.smartiot.service.dto.SensorDTO;
 import br.com.supera.smartiot.service.mapper.SensorMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -30,6 +38,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the {@link SensorResource} REST controller.
  */
 @IntegrationTest
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class SensorResourceIT {
@@ -55,8 +64,14 @@ class SensorResourceIT {
     @Autowired
     private SensorRepository sensorRepository;
 
+    @Mock
+    private SensorRepository sensorRepositoryMock;
+
     @Autowired
     private SensorMapper sensorMapper;
+
+    @Mock
+    private SensorService sensorServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -182,6 +197,23 @@ class SensorResourceIT {
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
             .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())))
             .andExpect(jsonPath("$.[*].configuracao").value(hasItem(DEFAULT_CONFIGURACAO)));
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllSensorsWithEagerRelationshipsIsEnabled() throws Exception {
+        when(sensorServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restSensorMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
+
+        verify(sensorServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllSensorsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(sensorServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restSensorMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
+        verify(sensorRepositoryMock, times(1)).findAll(any(Pageable.class));
     }
 
     @Test

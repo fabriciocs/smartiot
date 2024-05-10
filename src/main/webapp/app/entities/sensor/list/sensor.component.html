@@ -63,13 +63,13 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="configuracaoAlertas.id">
+            <th scope="col" jhiSortBy="configuracaoAlertas.email">
               <div class="d-flex">
                 <span jhiTranslate="smartIoTApp.sensor.configuracaoAlertas">Configuracao Alertas</span>
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="dadoSensores.id">
+            <th scope="col" jhiSortBy="dadoSensores.timestamp">
               <div class="d-flex">
                 <span jhiTranslate="smartIoTApp.sensor.dadoSensores">Dado Sensores</span>
                 <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -93,7 +93,7 @@
                 @if (sensor.configuracaoAlertas) {
                   <div>
                     <a [routerLink]="['/configuracao-alerta', sensor.configuracaoAlertas.id, 'view']">{{
-                      sensor.configuracaoAlertas.id
+                      sensor.configuracaoAlertas.email
                     }}</a>
                   </div>
                 }
@@ -101,7 +101,7 @@
               <td>
                 @if (sensor.dadoSensores) {
                   <div>
-                    <a [routerLink]="['/dado-sensor', sensor.dadoSensores.id, 'view']">{{ sensor.dadoSensores.id }}</a>
+                    <a [routerLink]="['/dado-sensor', sensor.dadoSensores.id, 'view']">{{ sensor.dadoSensores.timestamp }}</a>
                   </div>
                 }
               </td>

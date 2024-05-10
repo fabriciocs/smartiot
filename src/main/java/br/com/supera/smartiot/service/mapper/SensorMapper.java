@@ -13,17 +13,19 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface SensorMapper extends EntityMapper<SensorDTO, Sensor> {
-    @Mapping(target = "configuracaoAlertas", source = "configuracaoAlertas", qualifiedByName = "configuracaoAlertaId")
-    @Mapping(target = "dadoSensores", source = "dadoSensores", qualifiedByName = "dadoSensorId")
+    @Mapping(target = "configuracaoAlertas", source = "configuracaoAlertas", qualifiedByName = "configuracaoAlertaEmail")
+    @Mapping(target = "dadoSensores", source = "dadoSensores", qualifiedByName = "dadoSensorTimestamp")
     SensorDTO toDto(Sensor s);
 
-    @Named("configuracaoAlertaId")
+    @Named("configuracaoAlertaEmail")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    ConfiguracaoAlertaDTO toDtoConfiguracaoAlertaId(ConfiguracaoAlerta configuracaoAlerta);
+    @Mapping(target = "email", source = "email")
+    ConfiguracaoAlertaDTO toDtoConfiguracaoAlertaEmail(ConfiguracaoAlerta configuracaoAlerta);
 
-    @Named("dadoSensorId")
+    @Named("dadoSensorTimestamp")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
-    DadoSensorDTO toDtoDadoSensorId(DadoSensor dadoSensor);
+    @Mapping(target = "timestamp", source = "timestamp")
+    DadoSensorDTO toDtoDadoSensorTimestamp(DadoSensor dadoSensor);
 }

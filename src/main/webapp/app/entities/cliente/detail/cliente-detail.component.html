@@ -27,7 +27,7 @@
           <dd>
             @if (cliente()!.sensores) {
               <div>
-                <a [routerLink]="['/sensor', cliente()!.sensores?.id, 'view']">{{ cliente()!.sensores?.id }}</a>
+                <a [routerLink]="['/sensor', cliente()!.sensores?.id, 'view']">{{ cliente()!.sensores?.nome }}</a>
               </div>
             }
           </dd>

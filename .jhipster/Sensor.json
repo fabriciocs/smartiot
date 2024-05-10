@@ -26,6 +26,7 @@
   "pagination": "pagination",
   "relationships": [
     {
+      "otherEntityField": "email",
       "otherEntityName": "configuracaoAlerta",
       "otherEntityRelationshipName": "sensor",
       "relationshipName": "configuracaoAlertas",
@@ -33,6 +34,7 @@
       "relationshipType": "many-to-one"
     },
     {
+      "otherEntityField": "timestamp",
       "otherEntityName": "dadoSensor",
       "otherEntityRelationshipName": "sensor",
       "relationshipName": "dadoSensores",

@@ -7,8 +7,8 @@ export interface ISensor {
   nome?: string | null;
   tipo?: keyof typeof TipoSensor | null;
   configuracao?: string | null;
-  configuracaoAlertas?: Pick<IConfiguracaoAlerta, 'id'> | null;
-  dadoSensores?: Pick<IDadoSensor, 'id'> | null;
+  configuracaoAlertas?: Pick<IConfiguracaoAlerta, 'id' | 'email'> | null;
+  dadoSensores?: Pick<IDadoSensor, 'id' | 'timestamp'> | null;
 }
 
 export type NewSensor = Omit<ISensor, 'id'> & { id: null };

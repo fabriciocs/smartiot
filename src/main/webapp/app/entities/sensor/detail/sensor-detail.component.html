@@ -34,7 +34,7 @@
             @if (sensor()!.configuracaoAlertas) {
               <div>
                 <a [routerLink]="['/configuracao-alerta', sensor()!.configuracaoAlertas?.id, 'view']">{{
-                  sensor()!.configuracaoAlertas?.id
+                  sensor()!.configuracaoAlertas?.email
                 }}</a>
               </div>
             }
@@ -43,7 +43,7 @@
           <dd>
             @if (sensor()!.dadoSensores) {
               <div>
-                <a [routerLink]="['/dado-sensor', sensor()!.dadoSensores?.id, 'view']">{{ sensor()!.dadoSensores?.id }}</a>
+                <a [routerLink]="['/dado-sensor', sensor()!.dadoSensores?.id, 'view']">{{ sensor()!.dadoSensores?.timestamp }}</a>
               </div>
             }
           </dd>

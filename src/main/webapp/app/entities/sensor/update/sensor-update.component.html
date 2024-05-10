@@ -75,7 +75,7 @@
           >
             <option [ngValue]="null"></option>
             @for (configuracaoAlertaOption of configuracaoAlertasSharedCollection; track $index) {
-              <option [ngValue]="configuracaoAlertaOption">{{ configuracaoAlertaOption.id }}</option>
+              <option [ngValue]="configuracaoAlertaOption">{{ configuracaoAlertaOption.email }}</option>
             }
           </select>
         </div>
@@ -92,7 +92,7 @@
           >
             <option [ngValue]="null"></option>
             @for (dadoSensorOption of dadoSensorsSharedCollection; track $index) {
-              <option [ngValue]="dadoSensorOption">{{ dadoSensorOption.id }}</option>
+              <option [ngValue]="dadoSensorOption">{{ dadoSensorOption.timestamp }}</option>
             }
           </select>
         </div>

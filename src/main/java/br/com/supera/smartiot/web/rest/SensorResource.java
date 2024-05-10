@@ -139,12 +139,21 @@ public class SensorResource {
      * {@code GET  /sensors} : get all the sensors.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of sensors in body.
      */
     @GetMapping("")
-    public ResponseEntity<List<SensorDTO>> getAllSensors(@org.springdoc.core.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<List<SensorDTO>> getAllSensors(
+        @org.springdoc.core.annotations.ParameterObject Pageable pageable,
+        @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
+    ) {
         log.debug("REST request to get a page of Sensors");
-        Page<SensorDTO> page = sensorService.findAll(pageable);
+        Page<SensorDTO> page;
+        if (eagerload) {
+            page = sensorService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = sensorService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

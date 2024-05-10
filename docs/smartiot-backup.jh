@@ -1,0 +1,65 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType jwt
+    baseName SmartIoT
+    buildTool maven
+    cacheProvider ehcache
+    clientFramework angular
+    clientTheme none
+    creationTimestamp 1715300515922
+    databaseType sql
+    devDatabaseType h2Disk
+    enableHibernateCache true
+    enableSwaggerCodegen false
+    enableTranslation true
+    jhipsterVersion "8.4.0"
+    jwtSecretKey "NDY5N2YzZTlhOWU4NWJhMjg2NjFmMGFiODVlZDU5NjIwZjk1YjNkYTRiZTQ5MTQ3NjEwZDc5OWJkZjVjZDJmNGNjZDBkMjkwMjAyNmIyNTA4MmI1MTI2OWRiYzA1YTA1ZGZmYTZlMjgwM2RiNjViYjBkMWFlMzJhNTAwNmNiMTE="
+    languages [en, pt-br]
+    nativeLanguage en
+    packageName br.com.supera.smartiot
+    prodDatabaseType mysql
+    serverPort 29090
+    testFrameworks [protractor]
+  }
+
+  entities Cliente, ConfiguracaoAlerta, DadoSensor, Sensor
+}
+
+@ChangelogDate("20240510010643")
+entity Cliente {
+  nome String required maxlength(100)
+  email String required pattern(/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/)
+}
+@ChangelogDate("20240510010645")
+entity ConfiguracaoAlerta {
+  limite BigDecimal
+  email String required pattern(/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/)
+}
+@ChangelogDate("20240510010646")
+entity DadoSensor {
+  dados String
+  timestamp Instant
+}
+@ChangelogDate("20240510010644")
+entity Sensor {
+  nome String required maxlength(100)
+  tipo TipoSensor required
+  configuracao String
+}
+enum TipoSensor {
+  TEMPERATURE,
+  HUMIDITY,
+  PRESSURE
+}
+
+relationship ManyToOne {
+  Cliente{sensores} to Sensor{cliente(nome)}
+  Sensor{configuracaoAlertas} to ConfiguracaoAlerta{sensor(nome)}
+  Sensor{dadoSensores} to DadoSensor{sensor(nome)}
+}
+
+dto Cliente, ConfiguracaoAlerta, DadoSensor, Sensor with mapstruct
+paginate Cliente, ConfiguracaoAlerta, DadoSensor, Sensor with pagination
+service Cliente, ConfiguracaoAlerta, DadoSensor, Sensor with serviceClass
+search Cliente, ConfiguracaoAlerta, DadoSensor, Sensor with no
