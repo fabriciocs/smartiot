@@ -43,9 +43,9 @@ entity DadoSensor {
   timestamp Instant
 }
 relationship ManyToOne {
-  Cliente{sensores} to Sensor{cliente}
-  Sensor{configuracaoAlertas} to ConfiguracaoAlerta{sensor}
-  Sensor{dadoSensores} to DadoSensor{sensor}
+  Cliente{sensores} to Sensor{cliente(nome)}
+  Sensor{configuracaoAlertas} to ConfiguracaoAlerta{sensor(nome)}
+  Sensor{dadoSensores} to DadoSensor{sensor(nome)}
 }
 paginate Cliente, Sensor, ConfiguracaoAlerta, DadoSensor with pagination
 dto * with mapstruct

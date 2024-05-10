@@ -1,61 +1,157 @@
 {
   "global": {
     "title": "SmartIoT",
-    "browsehappy": "Você está usando um navegador <strong>desatualizado</strong>. Por favor <a href=\"http://browsehappy.com/?locale=pt_BR\">atualize seu navegador</a> para melhorar sua experiência.",
+    "browsehappy": "Você está usando um navegador desatualizado. Para melhorar sua experiência, por favor <a href=\"http://browsehappy.com/?locale=pt_BR\">atualize seu navegador</a>.",
     "menu": {
       "home": "Início",
+      "jhipster-needle-menu-add-element": "Entradas adicionais de menu serão inseridas automaticamente aqui.",
       "entities": {
         "main": "Entidades",
-        "adminAuthority": "Autoridade",
-        "cliente": "Cliente",
-        "sensor": "Sensor",
-        "configuracaoAlerta": "Configuração de Alerta",
-        "dadoSensor": "Dados do Sensor"
+        "adminAuthority": "Gerenciamento de Autoridades",
+        "cliente": "Clientes",
+        "sensor": "Sensores",
+        "configuracaoAlerta": "Configurações de Alerta",
+        "dadoSensor": "Dados de Sensores"
       },
       "account": {
-        "main": "Conta",
+        "main": "Minha Conta",
         "settings": "Configurações",
-        "password": "Senha",
-        "sessions": "Sessões",
+        "password": "Alterar Senha",
+        "sessions": "Sessões Ativas",
         "login": "Entrar",
         "logout": "Sair",
-        "register": "Registrar"
+        "register": "Registrar-se"
       },
       "admin": {
         "main": "Administração",
-        "userManagement": "Gestão de Usuários",
-        "tracker": "Rastreador de Usuários",
-        "metrics": "Métricas",
+        "userManagement": "Gerenciamento de Usuários",
+        "tracker": "Rastreador de Atividades",
+        "metrics": "Métricas de Desempenho",
         "health": "Saúde do Sistema",
-        "configuration": "Configuração",
-        "logs": "Logs",
+        "configuration": "Configurações",
+        "logs": "Logs do Sistema",
         "apidocs": "Documentação da API",
-        "database": "Banco de Dados"
+        "database": "Gerenciamento do Banco de Dados",
+        "jhipster-needle-menu-add-admin-element": "Ferramentas administrativas adicionais serão inseridas automaticamente aqui."
       },
-      "language": "Idioma"
+      "language": "Selecionar Idioma"
+    },
+    "form": {
+      "username.label": "Nome de Usuário",
+      "username.placeholder": "Digite seu nome de usuário",
+      "currentpassword.label": "Senha Atual",
+      "currentpassword.placeholder": "Digite sua senha atual",
+      "newpassword.label": "Nova Senha",
+      "newpassword.placeholder": "Crie uma nova senha",
+      "confirmpassword.label": "Confirmação da Nova Senha",
+      "confirmpassword.placeholder": "Confirme sua nova senha",
+      "email.label": "E-mail",
+      "email.placeholder": "Digite seu e-mail"
     },
     "messages": {
       "info": {
         "authenticated": {
           "prefix": "Para entrar, ",
           "link": "clique aqui",
-          "suffix": " utilizando as contas padrão: Administrador (usuário: 'admin', senha: 'admin') ou Usuário (usuário: 'user', senha: 'user')."
+          "suffix": ", e use uma das contas padrão: Administrador (usuário: 'admin', senha: 'admin') ou Usuário (usuário: 'user', senha: 'user')."
         },
         "register": {
-          "noaccount": "Não possui uma conta?",
-          "link": "Registre-se aqui."
+          "noaccount": "Novo por aqui?",
+          "link": "Cadastre-se agora."
         }
       },
       "error": {
-        "dontmatch": "As senhas não coincidem!"
+        "dontmatch": "As senhas digitadas não coincidem."
       }
     },
-    "footer": {
-      "company": "© 2024 Sistema de Monitoramento de Sensores IoT",
-      "terms": "Termos de Serviço",
-      "privacy": "Política de Privacidade",
-      "support": "Suporte",
-      "documentation": "Documentação"
+    "validation": {
+      "newpassword": {
+        "required": "A senha é obrigatória.",
+        "minlength": "A senha deve ter pelo menos 4 caracteres.",
+        "maxlength": "A senha não pode ter mais de 50 caracteres.",
+        "strength": "A força da senha deve ser adequada."
+      },
+      "confirmpassword": {
+        "required": "A confirmação da senha é obrigatória.",
+        "minlength": "A confirmação deve ter pelo menos 4 caracteres.",
+        "maxlength": "A confirmação não pode ter mais de 50 caracteres."
+      },
+      "email": {
+        "required": "O e-mail é obrigatório.",
+        "invalid": "Por favor, insira um e-mail válido.",
+        "minlength": "O e-mail deve ter pelo menos 5 caracteres.",
+        "maxlength": "O e-mail não pode ter mais de 50 caracteres."
+      }
+    },
+    "field": {
+      "id": "ID"
+    },
+    "ribbon": {
+      "dev": "Modo de Desenvolvimento"
+    },
+    "item-count": "Exibindo de {{first}} a {{second}} de {{total}} entradas."
+  },
+  "entity": {
+    "action": {
+      "addblob": "Adicionar Arquivo",
+      "addimage": "Enviar Imagem",
+      "back": "Voltar",
+      "cancel": "Cancelar",
+      "delete": "Deletar",
+      "edit": "Editar",
+      "open": "Abrir",
+      "save": "Salvar",
+      "view": "Visualizar",
+      "show": "Mostrar Detalhes de {{otherEntity}}"
+    },
+    "detail": {
+      "field": "Campo",
+      "value": "Valor"
+    },
+    "delete": {
+      "title": "Confirmar Exclusão"
+    },
+    "validation": {
+      "required": "Este campo é obrigatório.",
+      "minlength": "Deve ter pelo menos {{ min }} caracteres.",
+      "maxlength": "Não pode exceder {{ max }} caracteres.",
+      "min": "Deve ser no mínimo {{ min }}.",
+      "max": "Não pode ser mais que {{ max }}.",
+      "minbytes": "Deve ter no mínimo {{ min }} bytes.",
+      "maxbytes": "Não pode exceder {{ max }} bytes.",
+      "pattern": "Deve seguir o padrão: {{ pattern }}.",
+      "number": "Deve ser um número.",
+      "datetimelocal": "Deve ser uma data e hora válidas.",
+      "patternLogin": "Só pode conter caracteres alfanuméricos e sublinhados."
+    },
+    "filters": {
+      "set": "Filtros Ativos",
+      "clear": "Limpar Filtro",
+      "clearAll": "Limpar Todos os Filtros"
     }
+  },
+  "error": {
+    "internalServerError": "Ocorreu um erro interno no servidor.",
+    "server.not.reachable": "Não foi possível alcançar o servidor.",
+    "url.not.found": "URL não encontrada.",
+    "NotNull": "O campo {{ fieldName }} não pode estar vazio.",
+    "Size": "O campo {{ fieldName }} deve estar dentro dos limites de tamanho requeridos.",
+    "userexists": "Este nome de usuário já está em uso.",
+    "emailexists": "Este endereço de e-mail já está registrado.",
+    "idexists": "Esta entidade não pode já ter um ID.",
+    "idnull": "O ID fornecido é inválido.",
+    "idinvalid": "O ID é inválido.",
+    "idnotfound": "O ID especificado não foi encontrado.",
+    "file": {
+      "could.not.extract": "Não foi possível extrair o arquivo.",
+      "not.image": "Esperava-se um arquivo de imagem, mas foi encontrado: '{{ fileType }}'."
+    }
+  },
+  "footer": {
+    "company": "© 2024 Sistema de Monitoramento de Sensores IoT",
+    "terms": "Termos de Serviço",
+    "privacy": "Política de Privacidade",
+    "support": "Suporte",
+    "documentation": "Documentação"
   }
 }

@@ -1,10 +1,9 @@
-id;limite;email
-1;4007.7;"fX4@0\}|R_&'"
-2;13487.68;"^XBr72@54c\nXg"
-3;315.62;"^*@ 6r\1V"
-5;21312.2;"A#@b\-OOU?"
-6;24464.01;"F@_\<3Xr"
-7;20748.67;"DB@M~5NJ\YzE"
-8;27912.74;"n`a*m.@3cp\Ie?X<f"
-9;28202.24;";@I*\,mE}"
-10;14819.18;"5V@k\/~;<"
+id;limite;email;sensor_id
+1;60.0;alertas@example.com;1
+2;25.0;admin@example.com;2
+3;800.0;suporte@example.com;3
+4;90.0;engenharia@example.com;4
+5;200.0;manutencao@example.com;5
+6;50.0;saude@example.com;6
+7;70.0;seguranca@example.com;7
+8;500.0;logistica@example.com;
