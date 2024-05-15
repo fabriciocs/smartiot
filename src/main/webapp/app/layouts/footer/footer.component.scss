@@ -1,0 +1,12 @@
+.footer {
+  background-color: #f2f2f2;
+  color: #333333;
+  padding: 20px 0;
+  p,
+  a {
+    color: #333333;
+    &:hover {
+      color: #0056b3;
+    }
+  }
+}
