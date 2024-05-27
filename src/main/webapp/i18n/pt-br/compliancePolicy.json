@@ -1,0 +1,26 @@
+{
+  "feedback360App": {
+    "compliancePolicy": {
+      "home": {
+        "title": "Compliance Policies",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Compliance Policy",
+        "createOrEditLabel": "Criar ou editar Compliance Policy",
+        "notFound": "Nenhum Compliance Policy encontrado"
+      },
+      "created": "Um novo Compliance Policy foi criado com o identificador {{ param }}",
+      "updated": "Um Compliance Policy foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Compliance Policy foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Compliance Policy {{ id }}?"
+      },
+      "detail": {
+        "title": "Compliance Policy"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "rules": "Rules"
+    }
+  }
+}

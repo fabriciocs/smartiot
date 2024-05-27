@@ -1,0 +1,7 @@
+export enum TipoSensor {
+  TEMPERATURE = 'TEMPERATURE',
+
+  HUMIDITY = 'HUMIDITY',
+
+  PRESSURE = 'PRESSURE',
+}

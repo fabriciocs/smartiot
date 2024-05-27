@@ -1,0 +1,39 @@
+{
+  "annotations": {
+    "changelogDate": "20240520220248"
+  },
+  "applications": ["feedback360"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "responseData",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "submittedAt",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "FeedbackResponse",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "feedbackForm",
+      "relationshipName": "form",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "sysUser",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,26 @@
+{
+  "annotations": {
+    "changelogDate": "20240520220448"
+  },
+  "applications": ["feedback360"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "preferences",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "NotificationSettings",
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "sysUser",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

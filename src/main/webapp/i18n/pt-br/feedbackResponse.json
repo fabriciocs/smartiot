@@ -1,0 +1,27 @@
+{
+  "feedback360App": {
+    "feedbackResponse": {
+      "home": {
+        "title": "Feedback Responses",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Feedback Response",
+        "createOrEditLabel": "Criar ou editar Feedback Response",
+        "notFound": "Nenhum Feedback Response encontrado"
+      },
+      "created": "Um novo Feedback Response foi criado com o identificador {{ param }}",
+      "updated": "Um Feedback Response foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Feedback Response foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Feedback Response {{ id }}?"
+      },
+      "detail": {
+        "title": "Feedback Response"
+      },
+      "id": "ID",
+      "responseData": "Response Data",
+      "submittedAt": "Submitted At",
+      "form": "Form",
+      "user": "User"
+    }
+  }
+}

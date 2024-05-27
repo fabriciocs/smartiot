@@ -1,0 +1,29 @@
+{
+  "feedback360App": {
+    "feedbackForm": {
+      "home": {
+        "title": "Feedback Forms",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Feedback Form",
+        "createOrEditLabel": "Create or edit a Feedback Form",
+        "notFound": "No Feedback Forms found"
+      },
+      "created": "A new Feedback Form is created with identifier {{ param }}",
+      "updated": "A Feedback Form is updated with identifier {{ param }}",
+      "deleted": "A Feedback Form is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Feedback Form {{ id }}?"
+      },
+      "detail": {
+        "title": "Feedback Form"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "creator": "Creator"
+    }
+  }
+}

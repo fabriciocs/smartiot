@@ -1,157 +1,165 @@
 {
   "global": {
-    "title": "SmartIoT",
-    "browsehappy": "Você está usando um navegador desatualizado. Para melhorar sua experiência, por favor <a href=\"http://browsehappy.com/?locale=pt_BR\">atualize seu navegador</a>.",
+    "title": "Feedback360",
+    "browsehappy": "Você está usando um navegador <strong>desatualizado</strong>. Favor <a href=\"http://browsehappy.com/?locale=pt_BR\">atualize o seu navegador</a> para ter uma experiência melhor.",
     "menu": {
       "home": "Início",
-      "jhipster-needle-menu-add-element": "Entradas adicionais de menu serão inseridas automaticamente aqui.",
+      "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
-        "adminAuthority": "Gerenciamento de Autoridades",
-        "cliente": "Clientes",
-        "sensor": "Sensores",
-        "configuracaoAlerta": "Configurações de Alerta",
-        "dadoSensor": "Dados de Sensores"
+        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
+        "cliente": "Cliente",
+        "sensor": "Sensor",
+        "configuracaoAlerta": "Configuracao Alerta",
+        "dadoSensor": "Dado Sensor",
+        "sysUser": "Sys User",
+        "sysRole": "Sys Role",
+        "profile": "Profile",
+        "feedbackForm": "Feedback Form",
+        "question": "Question",
+        "feedbackResponse": "Feedback Response",
+        "notification": "Notification",
+        "notificationSettings": "Notification Settings",
+        "report": "Report",
+        "analytics": "Analytics",
+        "integrationConfig": "Integration Config",
+        "externalSystem": "External System",
+        "auditLog": "Audit Log",
+        "compliancePolicy": "Compliance Policy"
       },
       "account": {
-        "main": "Minha Conta",
-        "settings": "Configurações",
-        "password": "Alterar Senha",
-        "sessions": "Sessões Ativas",
+        "main": "Conta",
+        "settings": "Configuração",
+        "password": "Senha",
+        "sessions": "Sessões",
         "login": "Entrar",
         "logout": "Sair",
-        "register": "Registrar-se"
+        "register": "Criar uma conta"
       },
       "admin": {
         "main": "Administração",
-        "userManagement": "Gerenciamento de Usuários",
-        "tracker": "Rastreador de Atividades",
-        "metrics": "Métricas de Desempenho",
-        "health": "Saúde do Sistema",
-        "configuration": "Configurações",
-        "logs": "Logs do Sistema",
-        "apidocs": "Documentação da API",
-        "database": "Gerenciamento do Banco de Dados",
-        "jhipster-needle-menu-add-admin-element": "Ferramentas administrativas adicionais serão inseridas automaticamente aqui."
+        "userManagement": "Gerenciamento de usuário",
+        "tracker": "Rastreamento de usuário",
+        "metrics": "Métricas",
+        "health": "Estado do Sistema",
+        "configuration": "Configuração",
+        "logs": "Logs",
+        "apidocs": "API",
+        "database": "Banco de dados",
+        "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
       },
-      "language": "Selecionar Idioma"
+      "language": "Idioma"
     },
     "form": {
-      "username.label": "Nome de Usuário",
-      "username.placeholder": "Digite seu nome de usuário",
-      "currentpassword.label": "Senha Atual",
-      "currentpassword.placeholder": "Digite sua senha atual",
-      "newpassword.label": "Nova Senha",
-      "newpassword.placeholder": "Crie uma nova senha",
-      "confirmpassword.label": "Confirmação da Nova Senha",
-      "confirmpassword.placeholder": "Confirme sua nova senha",
+      "username.label": "Usuário",
+      "username.placeholder": "Seu usuário",
+      "currentpassword.label": "Senha atual",
+      "currentpassword.placeholder": "Senha atual",
+      "newpassword.label": "Nova senha",
+      "newpassword.placeholder": "Nova senha",
+      "confirmpassword.label": "Confirmação de nova senha",
+      "confirmpassword.placeholder": "Confirme a nova senha",
       "email.label": "E-mail",
-      "email.placeholder": "Digite seu e-mail"
+      "email.placeholder": "Seu e-mail"
     },
     "messages": {
       "info": {
         "authenticated": {
-          "prefix": "Para entrar, ",
-          "link": "clique aqui",
-          "suffix": ", e use uma das contas padrão: Administrador (usuário: 'admin', senha: 'admin') ou Usuário (usuário: 'user', senha: 'user')."
+          "prefix": "Se deseja ",
+          "link": "entrar",
+          "suffix": ", utilize as seguintes contas padrões:<br/>- Administrador (usuário=\"admin\" and senha=\"admin\") <br/>- Usuário (usuário=\"user\" e senha=\"user\")."
         },
         "register": {
-          "noaccount": "Novo por aqui?",
-          "link": "Cadastre-se agora."
+          "noaccount": "Não possui uma conta ainda?",
+          "link": "Crie uma nova conta"
         }
       },
       "error": {
-        "dontmatch": "As senhas digitadas não coincidem."
-      }
-    },
-    "validation": {
-      "newpassword": {
-        "required": "A senha é obrigatória.",
-        "minlength": "A senha deve ter pelo menos 4 caracteres.",
-        "maxlength": "A senha não pode ter mais de 50 caracteres.",
-        "strength": "A força da senha deve ser adequada."
+        "dontmatch": "A senha e sua confirmação devem ser iguais!"
       },
-      "confirmpassword": {
-        "required": "A confirmação da senha é obrigatória.",
-        "minlength": "A confirmação deve ter pelo menos 4 caracteres.",
-        "maxlength": "A confirmação não pode ter mais de 50 caracteres."
-      },
-      "email": {
-        "required": "O e-mail é obrigatório.",
-        "invalid": "Por favor, insira um e-mail válido.",
-        "minlength": "O e-mail deve ter pelo menos 5 caracteres.",
-        "maxlength": "O e-mail não pode ter mais de 50 caracteres."
+      "validate": {
+        "newpassword": {
+          "required": "A senha é obrigatória.",
+          "minlength": "A senha deve ter pelo menos 4 caracteres",
+          "maxlength": "A senha não pode ter mais de 50 caracteres",
+          "strength": "Nível de dificuldade da senha:"
+        },
+        "confirmpassword": {
+          "required": "A confirmação da senha é obrigatória.",
+          "minlength": "A confirmação da senha deve ter pelo menos 4 caracteres",
+          "maxlength": "A confirmação da senha não pode ter mais de 50 caracteres"
+        },
+        "email": {
+          "required": "O e-mail é obrigatório.",
+          "invalid": "E-mail inválido.",
+          "minlength": "O e-mail deve ter pelo menos 5 caracteres",
+          "maxlength": "O e-mail não pode ter mais de 50 caracteres"
+        }
       }
     },
     "field": {
-      "id": "ID"
+      "id": "Código"
     },
     "ribbon": {
-      "dev": "Modo de Desenvolvimento"
+      "dev": "Desenvolvimento"
     },
-    "item-count": "Exibindo de {{first}} a {{second}} de {{total}} entradas."
+    "item-count": "Mostrando {{first}} - {{second}} de {{total}} resultados."
   },
   "entity": {
     "action": {
-      "addblob": "Adicionar Arquivo",
-      "addimage": "Enviar Imagem",
+      "addblob": "Adicionar arquivo",
+      "addimage": "Adicionar imagem",
       "back": "Voltar",
       "cancel": "Cancelar",
-      "delete": "Deletar",
+      "delete": "Excluir",
       "edit": "Editar",
       "open": "Abrir",
       "save": "Salvar",
       "view": "Visualizar",
-      "show": "Mostrar Detalhes de {{otherEntity}}"
+      "show": "Mostrar {{otherEntity}}"
     },
     "detail": {
       "field": "Campo",
       "value": "Valor"
     },
     "delete": {
-      "title": "Confirmar Exclusão"
+      "title": "Confirme a exclusão"
     },
     "validation": {
-      "required": "Este campo é obrigatório.",
-      "minlength": "Deve ter pelo menos {{ min }} caracteres.",
-      "maxlength": "Não pode exceder {{ max }} caracteres.",
-      "min": "Deve ser no mínimo {{ min }}.",
-      "max": "Não pode ser mais que {{ max }}.",
-      "minbytes": "Deve ter no mínimo {{ min }} bytes.",
-      "maxbytes": "Não pode exceder {{ max }} bytes.",
-      "pattern": "Deve seguir o padrão: {{ pattern }}.",
-      "number": "Deve ser um número.",
-      "datetimelocal": "Deve ser uma data e hora válidas.",
-      "patternLogin": "Só pode conter caracteres alfanuméricos e sublinhados."
+      "required": "O campo é obrigatório.",
+      "minlength": "Este campo deve ter pelo menos {{ min }} caracteres.",
+      "maxlength": "Este campo não pode ter mais de {{ max }} caracteres.",
+      "min": "Este campo deve ser maior que {{ min }}.",
+      "max": "Este campo não pode ser maior que {{ max }}.",
+      "minbytes": "Este campo deve ter pelo menos {{ min }} bytes.",
+      "maxbytes": "Este campo não pode ter mais de {{ max }} bytes.",
+      "pattern": "Este campo deve estar dentro do seguinte padrão {{ pattern }}.",
+      "number": "Este campo é do tipo numérico.",
+      "datetimelocal": "Este campo é do tipo data/hora.",
+      "patternLogin": "Este campo só pode conter letras, números e e-mail."
     },
     "filters": {
-      "set": "Filtros Ativos",
-      "clear": "Limpar Filtro",
-      "clearAll": "Limpar Todos os Filtros"
+      "set": "Filtros aplicados",
+      "clear": "Limpar filtro",
+      "clearAll": "Limpar todos filtros"
     }
   },
   "error": {
-    "internalServerError": "Ocorreu um erro interno no servidor.",
-    "server.not.reachable": "Não foi possível alcançar o servidor.",
-    "url.not.found": "URL não encontrada.",
-    "NotNull": "O campo {{ fieldName }} não pode estar vazio.",
-    "Size": "O campo {{ fieldName }} deve estar dentro dos limites de tamanho requeridos.",
-    "userexists": "Este nome de usuário já está em uso.",
-    "emailexists": "Este endereço de e-mail já está registrado.",
-    "idexists": "Esta entidade não pode já ter um ID.",
-    "idnull": "O ID fornecido é inválido.",
-    "idinvalid": "O ID é inválido.",
-    "idnotfound": "O ID especificado não foi encontrado.",
+    "internalServerError": "Erro interno do servidor",
+    "server.not.reachable": "Servidor indisponível",
+    "url.not.found": "Não encontrado",
+    "NotNull": "O Campo {{ fieldName }} não pode ser vazio!",
+    "Size": "O campo {{ fieldName }} não obedece os requisitos de tamanho mínimo ou máximo!",
+    "userexists": "Usuário já está cadastrado!",
+    "emailexists": "E-mail já está cadastrado!",
+    "idexists": "Novo(a) {{entityName}} não pode ter um identificador",
+    "idnull": "Identificador inválido",
+    "idinvalid": "Invalid Id",
+    "idnotfound": "ID cannot be found",
     "file": {
-      "could.not.extract": "Não foi possível extrair o arquivo.",
-      "not.image": "Esperava-se um arquivo de imagem, mas foi encontrado: '{{ fileType }}'."
+      "could.not.extract": "Could not extract file",
+      "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": {
-    "company": "© 2024 Sistema de Monitoramento de Sensores IoT",
-    "terms": "Termos de Serviço",
-    "privacy": "Política de Privacidade",
-    "support": "Suporte",
-    "documentation": "Documentação"
-  }
+  "footer": "Este é o rodapé da página"
 }

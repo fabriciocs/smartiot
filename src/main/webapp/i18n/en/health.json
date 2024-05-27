@@ -16,7 +16,7 @@
       "livenessState": "Liveness state",
       "readinessState": "Readiness state",
       "ping": "Application",
-      "db": "Database"
+      "r2dbc": "Database"
     },
     "table": {
       "service": "Service name",
@@ -25,7 +25,6 @@
     "status": {
       "UNKNOWN": "UNKNOWN",
       "UP": "UP",
-      "OUT_OF_SERVICE": "OUT_OF_SERVICE",
       "DOWN": "DOWN"
     }
   }

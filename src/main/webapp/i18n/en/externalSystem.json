@@ -1,0 +1,27 @@
+{
+  "feedback360App": {
+    "externalSystem": {
+      "home": {
+        "title": "External Systems",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new External System",
+        "createOrEditLabel": "Create or edit a External System",
+        "notFound": "No External Systems found"
+      },
+      "created": "A new External System is created with identifier {{ param }}",
+      "updated": "A External System is updated with identifier {{ param }}",
+      "deleted": "A External System is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete External System {{ id }}?"
+      },
+      "detail": {
+        "title": "External System"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "apiEndpoint": "Api Endpoint",
+      "authDetails": "Auth Details"
+    }
+  }
+}

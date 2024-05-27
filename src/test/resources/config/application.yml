@@ -15,7 +15,7 @@
 
 spring:
   application:
-    name: SmartIoT
+    name: feedback360
   # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
   liquibase:
     contexts: test
@@ -30,13 +30,13 @@ spring:
     basename: i18n/messages
   task:
     execution:
-      thread-name-prefix: smart-io-t-task-
+      thread-name-prefix: feedback-360-task-
       pool:
         core-size: 1
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: smart-io-t-scheduling-
+      thread-name-prefix: feedback-360-scheduling-
       pool:
         size: 20
   thymeleaf:
@@ -53,9 +53,9 @@ server:
 # ===================================================================
 jhipster:
   clientApp:
-    name: 'smartIoTApp'
+    name: 'feedback360App'
   mail:
-    from: SmartIoT@localhost.com
+    from: feedback360@localhost.com
     base-url: http://127.0.0.1:8080
   logging:
     # To test json console appender
@@ -69,7 +69,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-        base64-secret: NDY5N2YzZTlhOWU4NWJhMjg2NjFmMGFiODVlZDU5NjIwZjk1YjNkYTRiZTQ5MTQ3NjEwZDc5OWJkZjVjZDJmNGNjZDBkMjkwMjAyNmIyNTA4MmI1MTI2OWRiYzA1YTA1ZGZmYTZlMjgwM2RiNjViYjBkMWFlMzJhNTAwNmNiMTE=
+        base64-secret: OWM1MzJmMWMwOWM2MzRlZWZmNTQxMmU3NGMyNmU4MmNlZWIyMjZmMmU0YjE5MGI2NTI5OTM2NWU1ZTQ4ZGNhZDU2Y2E0NjU1NmEyZDI2OWEzZDliZGQyMGE0NjUwOGVjMTljMjk5N2FjZmVmNzY3YWVhMDcyNjgzZDcwNDkyMGY=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 86400

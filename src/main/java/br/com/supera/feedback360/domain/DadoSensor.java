@@ -1,0 +1,137 @@
+package br.com.supera.feedback360.domain;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.validation.constraints.*;
+import java.io.Serializable;
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
+/**
+ * A DadoSensor.
+ */
+@Table("dado_sensor")
+@SuppressWarnings("common-java:DuplicatedBlocks")
+public class DadoSensor implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @Column("id")
+    private Long id;
+
+    @Column("dados")
+    private String dados;
+
+    @Column("timestamp")
+    private Instant timestamp;
+
+    @Transient
+    @JsonIgnoreProperties(value = { "configuracaoAlertas", "cliente", "dadoSensores" }, allowSetters = true)
+    private Set<Sensor> sensors = new HashSet<>();
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public DadoSensor id(Long id) {
+        this.setId(id);
+        return this;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDados() {
+        return this.dados;
+    }
+
+    public DadoSensor dados(String dados) {
+        this.setDados(dados);
+        return this;
+    }
+
+    public void setDados(String dados) {
+        this.dados = dados;
+    }
+
+    public Instant getTimestamp() {
+        return this.timestamp;
+    }
+
+    public DadoSensor timestamp(Instant timestamp) {
+        this.setTimestamp(timestamp);
+        return this;
+    }
+
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Set<Sensor> getSensors() {
+        return this.sensors;
+    }
+
+    public void setSensors(Set<Sensor> sensors) {
+        if (this.sensors != null) {
+            this.sensors.forEach(i -> i.setDadoSensores(null));
+        }
+        if (sensors != null) {
+            sensors.forEach(i -> i.setDadoSensores(this));
+        }
+        this.sensors = sensors;
+    }
+
+    public DadoSensor sensors(Set<Sensor> sensors) {
+        this.setSensors(sensors);
+        return this;
+    }
+
+    public DadoSensor addSensor(Sensor sensor) {
+        this.sensors.add(sensor);
+        sensor.setDadoSensores(this);
+        return this;
+    }
+
+    public DadoSensor removeSensor(Sensor sensor) {
+        this.sensors.remove(sensor);
+        sensor.setDadoSensores(null);
+        return this;
+    }
+
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof DadoSensor)) {
+            return false;
+        }
+        return getId() != null && getId().equals(((DadoSensor) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        return getClass().hashCode();
+    }
+
+    // prettier-ignore
+    @Override
+    public String toString() {
+        return "DadoSensor{" +
+            "id=" + getId() +
+            ", dados='" + getDados() + "'" +
+            ", timestamp='" + getTimestamp() + "'" +
+            "}";
+    }
+}

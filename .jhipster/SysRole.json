@@ -1,0 +1,22 @@
+{
+  "annotations": {
+    "changelogDate": "20240520215848"
+  },
+  "applications": ["feedback360"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "roleName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "name": "SysRole",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

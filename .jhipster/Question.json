@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20240520220148"
+  },
+  "applications": ["feedback360"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "questionText",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "questionType",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Question",
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "feedbackForm",
+      "relationshipName": "feedbackForm",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,29 @@
+{
+  "feedback360App": {
+    "sysUser": {
+      "home": {
+        "title": "Sys Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Sys User",
+        "createOrEditLabel": "Create or edit a Sys User",
+        "notFound": "No Sys Users found"
+      },
+      "created": "A new Sys User is created with identifier {{ param }}",
+      "updated": "A Sys User is updated with identifier {{ param }}",
+      "deleted": "A Sys User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sys User {{ id }}?"
+      },
+      "detail": {
+        "title": "Sys User"
+      },
+      "id": "ID",
+      "name": "Name",
+      "email": "Email",
+      "passwordHash": "Password Hash",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "role": "Role"
+    }
+  }
+}
