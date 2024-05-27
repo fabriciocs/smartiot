@@ -1,0 +1,136 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType jwt
+    baseName feedback360
+    buildTool maven
+    clientFramework react
+    clientTheme materia
+    clientThemeVariant primary
+    creationTimestamp 1716242208494
+    databaseType sql
+    devDatabaseType h2Disk
+    enableSwaggerCodegen false
+    enableTranslation true
+    jhipsterVersion "8.4.0"
+    jwtSecretKey "OWM1MzJmMWMwOWM2MzRlZWZmNTQxMmU3NGMyNmU4MmNlZWIyMjZmMmU0YjE5MGI2NTI5OTM2NWU1ZTQ4ZGNhZDU2Y2E0NjU1NmEyZDI2OWEzZDliZGQyMGE0NjUwOGVjMTljMjk5N2FjZmVmNzY3YWVhMDcyNjgzZDcwNDkyMGY="
+    languages [en, pt-br]
+    microfrontends []
+    nativeLanguage en
+    packageName br.com.supera.feedback360
+    prodDatabaseType mysql
+    reactive true
+    serviceDiscoveryType false
+    testFrameworks [cypress, cucumber]
+    websocket false
+    withAdminUi true
+  }
+
+  entities Analytics, AuditLog, CompliancePolicy, ExternalSystem, FeedbackForm, FeedbackResponse, IntegrationConfig, Notification, NotificationSettings, Profile, Question, Report, SysRole, SysUser
+}
+
+@ChangelogDate("20240520220648")
+entity Analytics {
+  type String required
+  data String required
+  createdAt Instant required
+}
+@ChangelogDate("20240520220948")
+entity AuditLog {
+  action String required
+  timestamp Instant required
+  details String
+}
+@ChangelogDate("20240520221048")
+entity CompliancePolicy {
+  name String required
+  description String
+  rules String required
+}
+@ChangelogDate("20240520220848")
+entity ExternalSystem {
+  name String required
+  description String
+  apiEndpoint String required
+  authDetails String required
+}
+@ChangelogDate("20240520220048")
+entity FeedbackForm {
+  title String required
+  description String
+  status String required
+  createdAt Instant required
+  updatedAt Instant
+}
+@ChangelogDate("20240520220248")
+entity FeedbackResponse {
+  responseData String required
+  submittedAt Instant required
+}
+@ChangelogDate("20240520220748")
+entity IntegrationConfig {
+  serviceName String required
+  configData String required
+  createdAt Instant required
+  updatedAt Instant
+}
+@ChangelogDate("20240520220348")
+entity Notification {
+  type String required
+  message String required
+  status String required
+  createdAt Instant required
+}
+@ChangelogDate("20240520220448")
+entity NotificationSettings {
+  preferences String required
+}
+@ChangelogDate("20240520215948")
+entity Profile {
+  phoneNumber String
+  address String
+  profilePicture String
+  preferences String
+}
+@ChangelogDate("20240520220148")
+entity Question {
+  questionText String required
+  questionType String required
+}
+@ChangelogDate("20240520220548")
+entity Report {
+  title String required
+  generatedAt Instant required
+  content String required
+}
+@ChangelogDate("20240520215848")
+entity SysRole {
+  roleName String required
+  description String
+}
+@ChangelogDate("20240520215748")
+entity SysUser {
+  name String required
+  email String required unique
+  passwordHash String required
+  createdAt Instant required
+  updatedAt Instant
+}
+relationship ManyToOne {
+  AuditLog{user(name)} to SysUser
+  FeedbackForm{creator(name)} to SysUser
+  FeedbackResponse{form(title)} to FeedbackForm
+  FeedbackResponse{user(name)} to SysUser
+  IntegrationConfig{externalSystem(name)} to ExternalSystem
+  Notification{recipient(name)} to SysUser
+  NotificationSettings{user(name)} to SysUser
+  Profile{user(name)} to SysUser
+  Question{feedbackForm(title)} to FeedbackForm
+  Report{generatedBy(name)} to SysUser
+  SysUser{role(roleName)} to SysRole
+}
+
+dto Analytics, AuditLog, CompliancePolicy, ExternalSystem, FeedbackForm, FeedbackResponse, IntegrationConfig, Notification, NotificationSettings, Profile, Question, Report, SysRole, SysUser with mapstruct
+service Analytics, AuditLog, CompliancePolicy, ExternalSystem, FeedbackForm, FeedbackResponse, IntegrationConfig, Notification, NotificationSettings, Profile, Question, Report, SysRole, SysUser with serviceImpl
+search Analytics, AuditLog, CompliancePolicy, ExternalSystem, FeedbackForm, FeedbackResponse, IntegrationConfig, Notification, NotificationSettings, Profile, Question, Report, SysRole, SysUser with no
+paginate AuditLog, FeedbackForm, FeedbackResponse, Notification, Report, SysUser with pagination
