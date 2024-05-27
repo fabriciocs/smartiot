@@ -1,4 +1,4 @@
-# SmartIoT
+# feedback360
 
 This application was generated using JHipster 8.4.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v8.4.0](https://www.jhipster.tech/documentation-archive/v8.4.0).
 
@@ -34,7 +34,7 @@ You will only need to run this command when dependencies change in [package.json
 npm install
 ```
 
-We use npm scripts and [Angular CLI][] with [Webpack][] as our build system.
+We use npm scripts and [Webpack][] as our build system.
 
 Run the following commands in two separate terminals to create a blissful development experience where your browser
 auto-refreshes when files change on your hard drive.
@@ -54,11 +54,19 @@ The `npm run` command will list all of the scripts available to run for this pro
 
 JHipster ships with PWA (Progressive Web App) support, and it's turned off by default. One of the main components of a PWA is a service worker.
 
-The service worker initialization code is disabled by default. To enable it, uncomment the following code in `src/main/webapp/app/app.config.ts`:
+The service worker initialization code is commented out by default. To enable it, uncomment the following code in `src/main/webapp/index.html`:
 
-```typescript
-ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
+```html
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js').then(function () {
+      console.log('Service Worker Registered');
+    });
+  }
+</script>
 ```
+
+Note: [Workbox](https://developers.google.com/web/tools/workbox/) powers JHipster's service worker. It dynamically generates the `service-worker.js` file.
 
 ### Managing dependencies
 
@@ -75,45 +83,15 @@ npm install --save-dev --save-exact @types/leaflet
 ```
 
 Then you would import the JS and CSS files specified in library's installation instructions so that [Webpack][] knows about them:
-Edit [src/main/webapp/app/app.config.ts](src/main/webapp/app/app.config.ts) file:
-
-```
-import 'leaflet/dist/leaflet.js';
-```
-
-Edit [src/main/webapp/content/scss/vendor.scss](src/main/webapp/content/scss/vendor.scss) file:
-
-```
-@import 'leaflet/dist/leaflet.css';
-```
-
 Note: There are still a few other things remaining to do for Leaflet that we won't detail here.
 
 For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
-
-### Using Angular CLI
-
-You can also use [Angular CLI][] to generate some custom client code.
-
-For example, the following command:
-
-```
-ng generate component my-component
-```
-
-will generate few files:
-
-```
-create src/main/webapp/app/my-component/my-component.component.html
-create src/main/webapp/app/my-component/my-component.component.ts
-update src/main/webapp/app/app.config.ts
-```
 
 ## Building for production
 
 ### Packaging as jar
 
-To build the final jar and optimize the SmartIoT application for production, run:
+To build the final jar and optimize the feedback360 application for production, run:
 
 ```
 ./mvnw -Pprod clean verify
@@ -155,6 +133,15 @@ Unit tests are run by [Jest][]. They're located in [src/test/javascript/](src/te
 ```
 npm test
 ```
+
+UI end-to-end tests are powered by [Cypress][]. They're located in [src/test/javascript/cypress](src/test/javascript/cypress)
+and can be run by starting Spring Boot in one terminal (`./mvnw spring-boot:run`) and running the tests (`npm run e2e`) in a second one.
+
+#### Lighthouse audits
+
+You can execute automated [lighthouse audits][https://developers.google.com/web/tools/lighthouse/] with [cypress audits][https://github.com/mfrachet/cypress-audit] by running `npm run e2e:cypress:audits`.
+You should only run the audits when your application is packaged with the production profile.
+The lighthouse report is created in `target/cypress/lhreport.html`
 
 ### Spring Boot tests
 
@@ -255,6 +242,6 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [Webpack]: https://webpack.github.io/
 [BrowserSync]: https://www.browsersync.io/
 [Jest]: https://facebook.github.io/jest/
+[Cypress]: https://www.cypress.io/
 [Leaflet]: https://leafletjs.com/
 [DefinitelyTyped]: https://definitelytyped.org/
-[Angular CLI]: https://cli.angular.io/

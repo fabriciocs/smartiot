@@ -1,0 +1,27 @@
+{
+  "feedback360App": {
+    "auditLog": {
+      "home": {
+        "title": "Audit Logs",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Audit Log",
+        "createOrEditLabel": "Criar ou editar Audit Log",
+        "notFound": "Nenhum Audit Log encontrado"
+      },
+      "created": "Um novo Audit Log foi criado com o identificador {{ param }}",
+      "updated": "Um Audit Log foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Audit Log foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Audit Log {{ id }}?"
+      },
+      "detail": {
+        "title": "Audit Log"
+      },
+      "id": "ID",
+      "action": "Action",
+      "timestamp": "Timestamp",
+      "details": "Details",
+      "user": "User"
+    }
+  }
+}

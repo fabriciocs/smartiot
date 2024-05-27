@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20240520215948"
+  },
+  "applications": ["feedback360"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "profilePicture",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "preferences",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Profile",
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "sysUser",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,26 @@
+{
+  "feedback360App": {
+    "compliancePolicy": {
+      "home": {
+        "title": "Compliance Policies",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Compliance Policy",
+        "createOrEditLabel": "Create or edit a Compliance Policy",
+        "notFound": "No Compliance Policies found"
+      },
+      "created": "A new Compliance Policy is created with identifier {{ param }}",
+      "updated": "A Compliance Policy is updated with identifier {{ param }}",
+      "deleted": "A Compliance Policy is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Compliance Policy {{ id }}?"
+      },
+      "detail": {
+        "title": "Compliance Policy"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "rules": "Rules"
+    }
+  }
+}

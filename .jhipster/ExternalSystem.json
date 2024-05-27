@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20240520220848"
+  },
+  "applications": ["feedback360"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "apiEndpoint",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "authDetails",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "ExternalSystem",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

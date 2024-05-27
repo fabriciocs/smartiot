@@ -1,100 +1,114 @@
 {
   "global": {
-    "title": "SmartIoT",
-    "browsehappy": "Your browser is outdated. For a better experience, please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a>.",
+    "title": "Feedback360",
+    "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
     "menu": {
       "home": "Home",
-      "jhipster-needle-menu-add-element": "Additional menu items will be automatically added here.",
+      "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
-        "adminAuthority": "Manage Authorities",
-        "cliente": "Clients",
-        "sensor": "Sensors",
-        "configuracaoAlerta": "Alert Settings",
-        "dadoSensor": "Sensor Data"
+        "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
+        "cliente": "Cliente",
+        "sensor": "Sensor",
+        "configuracaoAlerta": "Configuracao Alerta",
+        "dadoSensor": "Dado Sensor",
+        "sysUser": "Sys User",
+        "sysRole": "Sys Role",
+        "profile": "Profile",
+        "feedbackForm": "Feedback Form",
+        "question": "Question",
+        "feedbackResponse": "Feedback Response",
+        "notification": "Notification",
+        "notificationSettings": "Notification Settings",
+        "report": "Report",
+        "analytics": "Analytics",
+        "integrationConfig": "Integration Config",
+        "externalSystem": "External System",
+        "auditLog": "Audit Log",
+        "compliancePolicy": "Compliance Policy"
       },
       "account": {
-        "main": "My Account",
+        "main": "Account",
         "settings": "Settings",
-        "password": "Change Password",
-        "sessions": "Active Sessions",
-        "login": "Log In",
-        "logout": "Log Out",
-        "register": "Sign Up"
+        "password": "Password",
+        "sessions": "Sessions",
+        "login": "Sign in",
+        "logout": "Sign out",
+        "register": "Register"
       },
       "admin": {
-        "main": "Admin Dashboard",
-        "userManagement": "Manage Users",
-        "tracker": "Activity Tracker",
-        "metrics": "Performance Metrics",
-        "health": "System Health",
+        "main": "Administration",
+        "userManagement": "User management",
+        "tracker": "User tracker",
+        "metrics": "Metrics",
+        "health": "Health",
         "configuration": "Configuration",
-        "logs": "View Logs",
-        "apidocs": "API Documentation",
-        "database": "Manage Database",
-        "jhipster-needle-menu-add-admin-element": "Additional admin tools will be automatically added here."
+        "logs": "Logs",
+        "apidocs": "API",
+        "database": "Database",
+        "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
       },
-      "language": "Choose Language"
+      "language": "Language"
     },
     "form": {
       "username.label": "Username",
-      "username.placeholder": "Enter your username",
-      "currentpassword.label": "Current Password",
-      "currentpassword.placeholder": "Enter your current password",
-      "newpassword.label": "New Password",
-      "newpassword.placeholder": "Create a new password",
-      "confirmpassword.label": "Confirm New Password",
-      "confirmpassword.placeholder": "Confirm your new password",
+      "username.placeholder": "Your username",
+      "currentpassword.label": "Current password",
+      "currentpassword.placeholder": "Current password",
+      "newpassword.label": "New password",
+      "newpassword.placeholder": "New password",
+      "confirmpassword.label": "New password confirmation",
+      "confirmpassword.placeholder": "Confirm the new password",
       "email.label": "Email",
-      "email.placeholder": "Enter your email address"
+      "email.placeholder": "Your email"
     },
     "messages": {
       "info": {
         "authenticated": {
-          "prefix": "To sign in, ",
-          "link": "click here",
-          "suffix": ", and use one of the default accounts: Administrator (username: 'admin', password: 'admin') or User (username: 'user', password: 'user')."
+          "prefix": "If you want to ",
+          "link": "sign in",
+          "suffix": ", you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\")."
         },
         "register": {
-          "noaccount": "New to SmartIoT?",
-          "link": "Create your account now."
+          "noaccount": "You don't have an account yet?",
+          "link": "Register a new account"
         }
       },
       "error": {
-        "dontmatch": "The entered passwords do not match."
-      }
-    },
-    "validation": {
-      "newpassword": {
-        "required": "Password is required.",
-        "minlength": "Password must be at least 4 characters.",
-        "maxlength": "Password cannot exceed 50 characters.",
-        "strength": "Password strength must be adequate."
+        "dontmatch": "The password and its confirmation do not match!"
       },
-      "confirmpassword": {
-        "required": "Password confirmation is required.",
-        "minlength": "Confirmation must be at least 4 characters.",
-        "maxlength": "Confirmation cannot exceed 50 characters."
-      },
-      "email": {
-        "required": "Email is required.",
-        "invalid": "Please enter a valid email.",
-        "minlength": "Email must be at least 5 characters.",
-        "maxlength": "Email cannot exceed 50 characters."
+      "validate": {
+        "newpassword": {
+          "required": "Your password is required.",
+          "minlength": "Your password is required to be at least 4 characters.",
+          "maxlength": "Your password cannot be longer than 50 characters.",
+          "strength": "Password strength:"
+        },
+        "confirmpassword": {
+          "required": "Your confirmation password is required.",
+          "minlength": "Your confirmation password is required to be at least 4 characters.",
+          "maxlength": "Your confirmation password cannot be longer than 50 characters."
+        },
+        "email": {
+          "required": "Your email is required.",
+          "invalid": "Your email is invalid.",
+          "minlength": "Your email is required to be at least 5 characters.",
+          "maxlength": "Your email cannot be longer than 50 characters."
+        }
       }
     },
     "field": {
       "id": "ID"
     },
     "ribbon": {
-      "dev": "Development Mode"
+      "dev": "Development"
     },
-    "item-count": "Displaying {{first}} to {{second}} of {{total}} entries."
+    "item-count": "Showing {{first}} - {{second}} of {{total}} items."
   },
   "entity": {
     "action": {
-      "addblob": "Add File",
-      "addimage": "Upload Image",
+      "addblob": "Add blob",
+      "addimage": "Add image",
       "back": "Back",
       "cancel": "Cancel",
       "delete": "Delete",
@@ -102,56 +116,50 @@
       "open": "Open",
       "save": "Save",
       "view": "View",
-      "show": "Show Details for {{otherEntity}}"
+      "show": "Show {{otherEntity}}"
     },
     "detail": {
       "field": "Field",
       "value": "Value"
     },
     "delete": {
-      "title": "Confirm Deletion"
+      "title": "Confirm delete operation"
     },
     "validation": {
       "required": "This field is required.",
-      "minlength": "Must be at least {{ min }} characters.",
-      "maxlength": "Cannot exceed {{ max }} characters.",
-      "min": "Must be at least {{ min }}.",
-      "max": "Cannot exceed {{ max }}.",
-      "minbytes": "Must be at least {{ min }} bytes.",
-      "maxbytes": "Cannot exceed {{ max }} bytes.",
-      "pattern": "Must match the pattern: {{ pattern }}.",
-      "number": "Must be a number.",
-      "datetimelocal": "Must be a valid date and time.",
-      "patternLogin": "Can only contain alphanumeric characters and underscores."
+      "minlength": "This field is required to be at least {{ min }} characters.",
+      "maxlength": "This field cannot be longer than {{ max }} characters.",
+      "min": "This field should be at least {{ min }}.",
+      "max": "This field cannot be more than {{ max }}.",
+      "minbytes": "This field should be at least {{ min }} bytes.",
+      "maxbytes": "This field cannot be more than {{ max }} bytes.",
+      "pattern": "This field should follow pattern for {{ pattern }}.",
+      "number": "This field should be a number.",
+      "datetimelocal": "This field should be a date and time.",
+      "patternLogin": "This field can only contain letters, digits and e-mail addresses."
     },
     "filters": {
-      "set": "Current Filters",
-      "clear": "Clear Filter",
-      "clearAll": "Clear All Filters"
+      "set": "Following filters are set",
+      "clear": "Clear filter",
+      "clearAll": "Clear all filters"
     }
   },
   "error": {
-    "internalServerError": "An internal server error has occurred.",
-    "server.not.reachable": "Unable to reach the server.",
-    "url.not.found": "The requested URL was not found.",
-    "NotNull": "Field {{ fieldName }} cannot be empty.",
-    "Size": "Field {{ fieldName }} must be within the required size limits.",
-    "userexists": "This username is already in use.",
-    "emailexists": "This email address is already registered.",
-    "idexists": "This entity cannot already have an ID.",
-    "idnull": "The ID provided is invalid.",
-    "idinvalid": "The ID is invalid.",
-    "idnotfound": "The specified ID could not be found.",
+    "internalServerError": "Internal server error",
+    "server.not.reachable": "Server not reachable",
+    "url.not.found": "Not found",
+    "NotNull": "Field {{ fieldName }} cannot be empty!",
+    "Size": "Field {{ fieldName }} does not meet min/max size requirements!",
+    "userexists": "Login name already used!",
+    "emailexists": "Email is already in use!",
+    "idexists": "A new {{ entityName }} cannot already have an ID",
+    "idnull": "Invalid ID",
+    "idinvalid": "Invalid ID",
+    "idnotfound": "ID cannot be found",
     "file": {
-      "could.not.extract": "Unable to extract the file.",
-      "not.image": "Expected an image file, but found: '{{ fileType }}'."
+      "could.not.extract": "Could not extract file",
+      "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": {
-    "company": "© 2024 Smart IoT Sensor Monitoring System",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy",
-    "support": "Support",
-    "documentation": "Documentation"
-  }
+  "footer": "This is your footer"
 }

@@ -1,2 +1,3 @@
 org.springframework.test.context.ContextCustomizerFactory = br.com.supera.\
-    smartiot.config.SqlTestContainersSpringContextCustomizerFactory
+    smartiot.config.SqlTestContainersSpringContextCustomizerFactory,br.com.\
+    supera.feedback360.config.SqlTestContainersSpringContextCustomizerFactory

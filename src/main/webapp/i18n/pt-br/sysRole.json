@@ -1,0 +1,25 @@
+{
+  "feedback360App": {
+    "sysRole": {
+      "home": {
+        "title": "Sys Roles",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Sys Role",
+        "createOrEditLabel": "Criar ou editar Sys Role",
+        "notFound": "Nenhum Sys Role encontrado"
+      },
+      "created": "Um novo Sys Role foi criado com o identificador {{ param }}",
+      "updated": "Um Sys Role foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Sys Role foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Sys Role {{ id }}?"
+      },
+      "detail": {
+        "title": "Sys Role"
+      },
+      "id": "ID",
+      "roleName": "Role Name",
+      "description": "Description"
+    }
+  }
+}

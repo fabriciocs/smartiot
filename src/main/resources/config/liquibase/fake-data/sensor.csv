@@ -1,51 +1,11 @@
-id;nome;tipo;configuracao
-1;Sensor de Umidade do Solo;HUMIDITY;"Intervalo de Medição: 1 hora"
-2;Sensor de Velocidade do Vento;PRESSURE;"Intervalo de Medição: 10 minutos"
-3;Sensor de Radiação Solar;PRESSURE;"Intervalo de Medição: 30 minutos"
-4;Sensor de Temperatura do Motor;TEMPERATURE;"Intervalo de Medição: 5 minutos"
-5;Sensor de Pressão Atmosférica;PRESSURE;"Intervalo de Medição: 15 minutos"
-6;Sensor de Qualidade do Ar;PRESSURE;"Intervalo de Medição: 1 hora"
-7;Sensor de Nível de Ruído;PRESSURE;"Intervalo de Medição: 30 minutos"
-8;Sensor de Tráfego;PRESSURE;"Intervalo de Medição: 5 minutos"
-9;Sensor de Consumo de Energia;PRESSURE;"Intervalo de Medição: 1 hora"
-10;Sensor de Gás;PRESSURE;"Intervalo de Medição: 30 minutos"
-11;Sensor de Movimento;PRESSURE;"Intervalo de Medição: 10 minutos"
-12;Sensor de CO2;PRESSURE;"Intervalo de Medição: 1 hora"
-13;Sensor de PH;PRESSURE;"Intervalo de Medição: 30 minutos"
-14;Sensor de Umidade Relativa do Ar;HUMIDITY;"Intervalo de Medição: 15 minutos"
-15;Sensor de Luminosidade;PRESSURE;"Intervalo de Medição: 10 minutos"
-16;Sensor de Temperatura Ambiental;TEMPERATURE;"Intervalo de Medição: 30 minutos"
-17;Sensor de Frequência Cardíaca;PRESSURE;"Intervalo de Medição: 1 minuto"
-18;Sensor de Movimento Respiratório;PRESSURE;"Intervalo de Medição: 10 minutos"
-19;Sensor de Pressão Arterial;PRESSURE;"Intervalo de Medição: 15 minutos"
-20;Sensor de Glicose;PRESSURE;"Intervalo de Medição: 30 minutos"
-21;Sensor de Peso Corporal;PRESSURE;"Intervalo de Medição: 1 hora"
-22;Sensor de Índice de Massa Corporal;PRESSURE;"Intervalo de Medição: 10 minutos"
-23;Sensor de Contagem de Passos;PRESSURE;"Intervalo de Medição: 5 minutos"
-24;Sensor de Exposição Solar;PRESSURE;"Intervalo de Medição: 1 hora"
-25;Sensor de Distância Percorrida;PRESSURE;"Intervalo de Medição: 30 minutos"
-26;Sensor de Consumo de Água;PRESSURE;"Intervalo de Medição: 15 minutos"
-27;Sensor de Pressão da Água;PRESSURE;"Intervalo de Medição: 5 minutos"
-28;Sensor de Temperatura da Água;TEMPERATURE;"Intervalo de Medição: 1 hora"
-29;Sensor de Qualidade da Água;PRESSURE;"Intervalo de Medição: 30 minutos"
-30;Sensor de Corrente Elétrica;PRESSURE;"Intervalo de Medição: 10 minutos"
-31;Sensor de Tensão Elétrica;PRESSURE;"Intervalo de Medição: 1 minuto"
-32;Sensor de Potência Elétrica;PRESSURE;"Intervalo de Medição: 15 minutos"
-33;Sensor de Fator de Potência;PRESSURE;"Intervalo de Medição: 30 minutos"
-34;Sensor de Energia Solar Captada;PRESSURE;"Intervalo de Medição: 1 hora"
-35;Sensor de Energia Eólica Captada;PRESSURE;"Intervalo de Medição: 10 minutos"
-36;Sensor de Ruído do Tráfego;PRESSURE;"Intervalo de Medição: 5 minutos"
-37;Sensor de Nível de CO;PRESSURE;"Intervalo de Medição: 1 minuto"
-38;Sensor de Nível de NO2;PRESSURE;"Intervalo de Medição: 30 minutos"
-39;Sensor de Nível de SO2;PRESSURE;"Intervalo de Medição: 15 minutos"
-40;Sensor de Nível de O3;PRESSURE;"Intervalo de Medição: 10 minutos"
-41;Sensor de Nível de PM2.5;PRESSURE;"Intervalo de Medição: 5 minutos"
-42;Sensor de Nível de PM10;PRESSURE;"Intervalo de Medição: 1 hora"
-43;Sensor de Radiação Ultravioleta;PRESSURE;"Intervalo de Medição: 1 minuto"
-44;Sensor de Nível de Lixo;PRESSURE;"Intervalo de Medição: 30 minutos"
-45;Sensor de Nível de Reciclagem;PRESSURE;"Intervalo de Medição: 15 minutos"
-46;Sensor de Nível de Água Potável;PRESSURE;"Intervalo de Medição: 10 minutos"
-47;Sensor de Nível de Esgoto;PRESSURE;"Intervalo de Medição: 5 minutos"
-48;Sensor de Nível de Emissões de Carbono;PRESSURE;"Intervalo de Medição: 1 hora"
-49;Sensor de Nível de Emissões de Metano;PRESSURE;"Intervalo de Medição: 30 minutos"
-50;Sensor de Nível de Emissões de Óxidos de Nitrogênio;PRESSURE;"Intervalo de Medição: 15 minutos"
+id;nome;tipo;configuracao;cliente_id
+1;sibling ascend dependable;PRESSURE;ack;1
+2;jewelry vapid whose;HUMIDITY;calmly wherever;2
+3;ack gently;HUMIDITY;yippee;3
+4;sojourn airbus format;PRESSURE;supervise valiantly;4
+5;but um thoroughly;PRESSURE;whether ouch worth;5
+6;knavishly;HUMIDITY;nearly;6
+7;duh;HUMIDITY;eek taut;7
+8;colt;PRESSURE;plush teepee;8
+9;after;TEMPERATURE;pish hive;9
+10;tarry resign;HUMIDITY;oh drat;10

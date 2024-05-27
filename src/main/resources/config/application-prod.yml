@@ -17,7 +17,7 @@ logging:
   level:
     ROOT: INFO
     tech.jhipster: INFO
-    br.com.supera.smartiot: INFO
+    br.com.supera.feedback360: INFO
 
 management:
   prometheus:
@@ -31,71 +31,76 @@ spring:
       enabled: false
     livereload:
       enabled: false
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    url: ${aws:secretsmanager:smartiot-database-url}
-    username: ${aws:secretsmanager:smartiot-database-username}
-    password: ${aws:secretsmanager:smartiot-database-password}
-    hikari:
-      poolName: Hikari
-      auto-commit: false
-      data-source-properties:
-        cachePrepStmts: true
-        prepStmtCacheSize: 250
-        prepStmtCacheSqlLimit: 2048
-        useServerPrepStmts: true
+  # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
   liquibase:
-    contexts: prod, faker
+    contexts: prod
+    url: jdbc:mysql://localhost:3306/feedback360?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
   mail:
     host: localhost
     port: 25
-    username: ${aws:secretsmanager:mail-username}
-    password: ${aws:secretsmanager:mail-password}
+    username:
+    password:
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/feedback360?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+    username: root
+    password:
   thymeleaf:
     cache: true
 
 # ===================================================================
-# SSL configuration reference, with sensitive values stored in AWS Secrets Manager
+# To enable TLS in production, generate a certificate using:
+# keytool -genkey -alias feedback360 -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+#
+# You can also use Let's Encrypt:
+# See details in topic "Create a Java Keystore (.JKS) from Let's Encrypt Certificates" on https://maximilian-boehm.com/en-gb/blog
+#
+# Then, modify the server.ssl properties so your "server" configuration looks like:
 #
 # server:
 #   port: 443
 #   ssl:
 #     key-store: classpath:config/tls/keystore.p12
-#     key-store-password: ${aws:secretsmanager:keystore-password}
+#     key-store-password: password
 #     key-store-type: PKCS12
 #     key-alias: selfsigned
-#     ciphers: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,...
+#     # The ciphers suite enforce the security by deactivating some old and deprecated SSL cipher, this list was tested against SSL Labs (https://www.ssllabs.com/ssltest/)
+#     ciphers: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 ,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 ,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 ,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,TLS_DHE_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA,TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA,TLS_RSA_WITH_CAMELLIA_256_CBC_SHA,TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA,TLS_RSA_WITH_CAMELLIA_128_CBC_SHA
 # ===================================================================
 server:
   port: 29090
-  shutdown: graceful
+  shutdown: graceful # see https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-graceful-shutdown
   compression:
     enabled: true
     mime-types: text/html,text/xml,text/plain,text/css,application/javascript,application/json,image/svg+xml
     min-response-size: 1024
 
 # ===================================================================
-# JHipster specific properties with sensitive values in AWS Secrets Manager
+# JHipster specific properties
 #
+# Full reference is available at: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
 jhipster:
   http:
-    cache:
+    cache: # Used by the CachingHttpHeadersFilter
       timeToLiveInDays: 1461
-  cache:
-    ehcache:
-      time-to-live-seconds: 3600
-      max-entries: 1000
   security:
     authentication:
       jwt:
-        base64-secret: ${aws:secretsmanager:jwt-base64-secret}
+        # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
+        # As this is the PRODUCTION configuration, you MUST change the default key, and store it securely:
+        # - In the Consul configserver
+        # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
+        # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
+        base64-secret: OWM1MzJmMWMwOWM2MzRlZWZmNTQxMmU3NGMyNmU4MmNlZWIyMjZmMmU0YjE5MGI2NTI5OTM2NWU1ZTQ4ZGNhZDU2Y2E0NjU1NmEyZDI2OWEzZDliZGQyMGE0NjUwOGVjMTljMjk5N2FjZmVmNzY3YWVhMDcyNjgzZDcwNDkyMGY=
+        # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
-  mail:
-    base-url: http://my-server-url-to-change
+  mail: # specific JHipster mail property, for standard properties see MailProperties
+    base-url: http://my-server-url-to-change # Modify according to your server's URL
   logging:
-    use-json-format: false
-    logstash:
+    use-json-format: false # By default, logs are not in Json format
+    logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
       enabled: false
       host: localhost
       port: 5000

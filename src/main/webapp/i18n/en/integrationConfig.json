@@ -1,0 +1,28 @@
+{
+  "feedback360App": {
+    "integrationConfig": {
+      "home": {
+        "title": "Integration Configs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Integration Config",
+        "createOrEditLabel": "Create or edit a Integration Config",
+        "notFound": "No Integration Configs found"
+      },
+      "created": "A new Integration Config is created with identifier {{ param }}",
+      "updated": "A Integration Config is updated with identifier {{ param }}",
+      "deleted": "A Integration Config is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Integration Config {{ id }}?"
+      },
+      "detail": {
+        "title": "Integration Config"
+      },
+      "id": "ID",
+      "serviceName": "Service Name",
+      "configData": "Config Data",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "externalSystem": "External System"
+    }
+  }
+}
