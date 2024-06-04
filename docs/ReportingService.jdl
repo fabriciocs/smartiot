@@ -1,0 +1,27 @@
+
+application {
+  config {
+    baseName ReportingService
+    applicationType microservice
+    packageName br.com.supera.iotapp.reportingservice
+    authenticationType jwt
+    databaseType sql
+    prodDatabaseType mysql
+    devDatabaseType h2Disk
+    cacheProvider ehcache
+    buildTool gradle
+    enableTranslation true
+    nativeLanguage en
+    languages [en, pt]
+  }
+  entities Report
+}
+
+entity Report {
+  reportName String required,
+  reportData String required
+}
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination

@@ -1,19 +1,19 @@
 {
   "home": {
-    "title": "Welcome!",
-    "subtitle": "This is your home page",
+    "title": "Welcome, Java Hipster!",
+    "subtitle": "This is your homepage",
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     },
-    "question": "If you have any questions:",
+    "question": "If you have any question on JHipster:",
     "link": {
-      "homepage": "Visit our homepage",
-      "stackoverflow": "See us on Stack Overflow",
-      "bugtracker": "Visit our bug tracker",
-      "chat": "Join our public chat room",
-      "follow": "follow @OurCompany on Twitter"
+      "homepage": "JHipster homepage",
+      "stackoverflow": "JHipster on Stack Overflow",
+      "bugtracker": "JHipster bug tracker",
+      "chat": "JHipster public chat room",
+      "follow": "follow @jhipster on Twitter"
     },
-    "like": "If you appreciate our service, don't forget to give us a star on",
+    "like": "If you like JHipster, don't forget to give us a star on",
     "github": "GitHub"
   }
 }

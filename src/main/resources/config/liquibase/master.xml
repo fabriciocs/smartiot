@@ -21,9 +21,29 @@
     <include file="config/liquibase/changelog/20240510010644_added_entity_Sensor.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240510010645_added_entity_ConfiguracaoAlerta.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240510010646_added_entity_DadoSensor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215034_added_entity_AggregatedData.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215035_added_entity_Alert.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215036_added_entity_Company.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215037_added_entity_Consumer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215038_added_entity_CostCenter.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215039_added_entity_Enrollment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215040_added_entity_ManualEntry.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215041_added_entity_Measurement.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215042_added_entity_Notification.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215043_added_entity_Payment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215044_added_entity_Pricing.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215045_added_entity_Report.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215046_added_entity_ResourceGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215356_added_entity_Concentrator.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215357_added_entity_Meter.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215358_added_entity_Repeater.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215359_added_entity_Transmitter.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603221822_added_entity_SysUser.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20240510010643_added_entity_constraints_Cliente.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240510010644_added_entity_constraints_Sensor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240510010645_added_entity_constraints_ConfiguracaoAlerta.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215035_added_entity_constraints_Alert.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240603215041_added_entity_constraints_Measurement.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

@@ -1,0 +1,89 @@
+
+entity Alert {
+  alertType String required,
+  description String required,
+  createdDate ZonedDateTime required
+}
+
+entity Consumer {
+  name String required,
+  street String required,
+  neighborhood String required,
+  propertyNumber Integer required,
+  phone String required,
+  email String required
+}
+
+entity Company {
+  name String required,
+  address String required
+}
+
+entity User {
+  username String required,
+  email String required,
+  role String required
+}
+
+entity Payment {
+  amount BigDecimal required,
+  paymentDate LocalDate required
+}
+
+entity CostCenter {
+  name String required,
+  budget BigDecimal required
+}
+
+entity Pricing {
+  serviceType String required,
+  price BigDecimal required
+}
+
+entity ResourceGroup {
+  name String required,
+  description String required
+}
+
+entity AggregatedData {
+  dataType String required,
+  value String required,
+  aggregationTime ZonedDateTime required
+}
+
+entity Enrollment {
+  enrollmentType String required,
+  enrollmentDate ZonedDateTime required
+}
+
+entity ManualEntry {
+  entryType String required,
+  value String required,
+  entryDate ZonedDateTime required
+}
+
+entity Measurement {
+  measurementType String required,
+  value String required,
+  measurementTime ZonedDateTime required
+}
+
+entity Notification {
+  notificationType String required,
+  message String required,
+  sentDate ZonedDateTime required
+}
+
+entity Report {
+  reportName String required,
+  reportData String required
+}
+
+relationship OneToMany {
+  Consumer{alert} to Alert{consumer}
+  Enrollment{measurement} to Measurement{enrollment}
+}
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination

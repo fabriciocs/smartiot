@@ -1,0 +1,25 @@
+{
+  "smartIoTApp": {
+    "pricing": {
+      "home": {
+        "title": "Pricings",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Pricing",
+        "createOrEditLabel": "Criar ou editar Pricing",
+        "notFound": "Nenhum Pricing encontrado"
+      },
+      "created": "Um novo Pricing foi criado com o identificador {{ param }}",
+      "updated": "Um Pricing foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Pricing foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Pricing {{ id }}?"
+      },
+      "detail": {
+        "title": "Pricing"
+      },
+      "id": "ID",
+      "serviceType": "Service Type",
+      "price": "Price"
+    }
+  }
+}

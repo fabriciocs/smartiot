@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20240603215035"
+  },
+  "applications": ["SmartIoT"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "alertType",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Alert",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "consumer",
+      "otherEntityRelationshipName": "alert",
+      "relationshipName": "consumer",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

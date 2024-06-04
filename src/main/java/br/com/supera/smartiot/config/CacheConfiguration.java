@@ -57,6 +57,26 @@ public class CacheConfiguration {
             createCache(cm, br.com.supera.smartiot.domain.ConfiguracaoAlerta.class.getName());
             createCache(cm, br.com.supera.smartiot.domain.DadoSensor.class.getName());
             createCache(cm, br.com.supera.smartiot.domain.DadoSensor.class.getName() + ".sensors");
+            createCache(cm, br.com.supera.smartiot.domain.AggregatedData.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Alert.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Company.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Consumer.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Consumer.class.getName() + ".alerts");
+            createCache(cm, br.com.supera.smartiot.domain.CostCenter.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Enrollment.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Enrollment.class.getName() + ".measurements");
+            createCache(cm, br.com.supera.smartiot.domain.ManualEntry.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Measurement.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Notification.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Payment.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Pricing.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Report.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.ResourceGroup.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Concentrator.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Meter.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Repeater.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.Transmitter.class.getName());
+            createCache(cm, br.com.supera.smartiot.domain.SysUser.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

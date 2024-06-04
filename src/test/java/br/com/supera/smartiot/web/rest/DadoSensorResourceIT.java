@@ -18,6 +18,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,8 @@ class DadoSensorResourceIT {
 
     private DadoSensor dadoSensor;
 
+    private DadoSensor insertedDadoSensor;
+
     /**
      * Create an entity for this test.
      *
@@ -91,6 +94,14 @@ class DadoSensorResourceIT {
         dadoSensor = createEntity(em);
     }
 
+    @AfterEach
+    public void cleanup() {
+        if (insertedDadoSensor != null) {
+            dadoSensorRepository.delete(insertedDadoSensor);
+            insertedDadoSensor = null;
+        }
+    }
+
     @Test
     @Transactional
     void createDadoSensor() throws Exception {
@@ -111,6 +122,8 @@ class DadoSensorResourceIT {
         assertIncrementedRepositoryCount(databaseSizeBeforeCreate);
         var returnedDadoSensor = dadoSensorMapper.toEntity(returnedDadoSensorDTO);
         assertDadoSensorUpdatableFieldsEquals(returnedDadoSensor, getPersistedDadoSensor(returnedDadoSensor));
+
+        insertedDadoSensor = returnedDadoSensor;
     }
 
     @Test
@@ -135,7 +148,7 @@ class DadoSensorResourceIT {
     @Transactional
     void getAllDadoSensors() throws Exception {
         // Initialize the database
-        dadoSensorRepository.saveAndFlush(dadoSensor);
+        insertedDadoSensor = dadoSensorRepository.saveAndFlush(dadoSensor);
 
         // Get all the dadoSensorList
         restDadoSensorMockMvc
@@ -151,7 +164,7 @@ class DadoSensorResourceIT {
     @Transactional
     void getDadoSensor() throws Exception {
         // Initialize the database
-        dadoSensorRepository.saveAndFlush(dadoSensor);
+        insertedDadoSensor = dadoSensorRepository.saveAndFlush(dadoSensor);
 
         // Get the dadoSensor
         restDadoSensorMockMvc
@@ -174,7 +187,7 @@ class DadoSensorResourceIT {
     @Transactional
     void putExistingDadoSensor() throws Exception {
         // Initialize the database
-        dadoSensorRepository.saveAndFlush(dadoSensor);
+        insertedDadoSensor = dadoSensorRepository.saveAndFlush(dadoSensor);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -264,15 +277,13 @@ class DadoSensorResourceIT {
     @Transactional
     void partialUpdateDadoSensorWithPatch() throws Exception {
         // Initialize the database
-        dadoSensorRepository.saveAndFlush(dadoSensor);
+        insertedDadoSensor = dadoSensorRepository.saveAndFlush(dadoSensor);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
         // Update the dadoSensor using partial update
         DadoSensor partialUpdatedDadoSensor = new DadoSensor();
         partialUpdatedDadoSensor.setId(dadoSensor.getId());
-
-        partialUpdatedDadoSensor.dados(UPDATED_DADOS);
 
         restDadoSensorMockMvc
             .perform(
@@ -295,7 +306,7 @@ class DadoSensorResourceIT {
     @Transactional
     void fullUpdateDadoSensorWithPatch() throws Exception {
         // Initialize the database
-        dadoSensorRepository.saveAndFlush(dadoSensor);
+        insertedDadoSensor = dadoSensorRepository.saveAndFlush(dadoSensor);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -385,7 +396,7 @@ class DadoSensorResourceIT {
     @Transactional
     void deleteDadoSensor() throws Exception {
         // Initialize the database
-        dadoSensorRepository.saveAndFlush(dadoSensor);
+        insertedDadoSensor = dadoSensorRepository.saveAndFlush(dadoSensor);
 
         long databaseSizeBeforeDelete = getRepositoryCount();
 

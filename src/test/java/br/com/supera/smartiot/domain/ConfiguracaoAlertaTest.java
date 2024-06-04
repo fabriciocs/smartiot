@@ -24,7 +24,7 @@ class ConfiguracaoAlertaTest {
     }
 
     @Test
-    void sensorTest() throws Exception {
+    void sensorTest() {
         ConfiguracaoAlerta configuracaoAlerta = getConfiguracaoAlertaRandomSampleGenerator();
         Sensor sensorBack = getSensorRandomSampleGenerator();
 

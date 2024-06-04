@@ -1,0 +1,30 @@
+{
+  "smartIoTApp": {
+    "consumer": {
+      "home": {
+        "title": "Consumers",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Consumer",
+        "createOrEditLabel": "Criar ou editar Consumer",
+        "notFound": "Nenhum Consumer encontrado"
+      },
+      "created": "Um novo Consumer foi criado com o identificador {{ param }}",
+      "updated": "Um Consumer foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Consumer foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Consumer {{ id }}?"
+      },
+      "detail": {
+        "title": "Consumer"
+      },
+      "id": "ID",
+      "name": "Name",
+      "street": "Street",
+      "neighborhood": "Neighborhood",
+      "propertyNumber": "Property Number",
+      "phone": "Phone",
+      "email": "Email",
+      "alert": "Alert"
+    }
+  }
+}

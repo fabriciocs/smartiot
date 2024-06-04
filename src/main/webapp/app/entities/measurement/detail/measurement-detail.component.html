@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (measurement()) {
+      <div>
+        <h2 data-cy="measurementDetailsHeading"><span jhiTranslate="smartIoTApp.measurement.detail.title">Measurement</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ measurement()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.measurement.measurementType">Measurement Type</span></dt>
+          <dd>
+            <span>{{ measurement()!.measurementType }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.measurement.value">Value</span></dt>
+          <dd>
+            <span>{{ measurement()!.value }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.measurement.measurementTime">Measurement Time</span></dt>
+          <dd>
+            <span>{{ measurement()!.measurementTime | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.measurement.enrollment">Enrollment</span></dt>
+          <dd>
+            @if (measurement()!.enrollment) {
+              <div>
+                <a [routerLink]="['/enrollment', measurement()!.enrollment?.id, 'view']">{{ measurement()!.enrollment?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/measurement', measurement()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

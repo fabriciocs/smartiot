@@ -1,0 +1,25 @@
+{
+  "smartIoTApp": {
+    "meter": {
+      "home": {
+        "title": "Meters",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Meter",
+        "createOrEditLabel": "Create or edit a Meter",
+        "notFound": "No Meters found"
+      },
+      "created": "A new Meter is created with identifier {{ param }}",
+      "updated": "A Meter is updated with identifier {{ param }}",
+      "deleted": "A Meter is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Meter {{ id }}?"
+      },
+      "detail": {
+        "title": "Meter"
+      },
+      "id": "ID",
+      "serialNumber": "Serial Number",
+      "location": "Location"
+    }
+  }
+}

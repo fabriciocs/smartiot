@@ -22,8 +22,8 @@
       "tipo": "Tipo",
       "configuracao": "Configuracao",
       "configuracaoAlertas": "Configuracao Alertas",
-      "dadoSensores": "Dado Sensores",
-      "cliente": "Cliente"
+      "cliente": "Cliente",
+      "dadoSensores": "Dado Sensores"
     }
   }
 }

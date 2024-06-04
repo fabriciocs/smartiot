@@ -26,7 +26,7 @@ class DadoSensorTest {
     }
 
     @Test
-    void sensorTest() throws Exception {
+    void sensorTest() {
         DadoSensor dadoSensor = getDadoSensorRandomSampleGenerator();
         Sensor sensorBack = getSensorRandomSampleGenerator();
 

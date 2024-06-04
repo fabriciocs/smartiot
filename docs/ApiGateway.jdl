@@ -1,0 +1,19 @@
+
+application {
+  config {
+    baseName ApiGateway
+    applicationType gateway
+    packageName br.com.supera.iotapp.apigateway
+    authenticationType jwt
+    databaseType no
+    devDatabaseType no
+    buildTool gradle
+    enableTranslation true
+    nativeLanguage en
+    languages [en, pt]
+  }
+  entities *
+}
+
+dto * with mapstruct
+service * with serviceClass

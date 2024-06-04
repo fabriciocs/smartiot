@@ -53,10 +53,10 @@ describe('Sensor Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Cliente query and add missing value', () => {
       const sensor: ISensor = { id: 456 };
-      const cliente: ICliente = { id: 21604 };
+      const cliente: ICliente = { id: 15672 };
       sensor.cliente = cliente;
 
-      const clienteCollection: ICliente[] = [{ id: 15981 }];
+      const clienteCollection: ICliente[] = [{ id: 4532 }];
       jest.spyOn(clienteService, 'query').mockReturnValue(of(new HttpResponse({ body: clienteCollection })));
       const additionalClientes = [cliente];
       const expectedCollection: ICliente[] = [...additionalClientes, ...clienteCollection];
@@ -75,10 +75,10 @@ describe('Sensor Management Update Component', () => {
 
     it('Should call DadoSensor query and add missing value', () => {
       const sensor: ISensor = { id: 456 };
-      const dadoSensores: IDadoSensor = { id: 7870 };
+      const dadoSensores: IDadoSensor = { id: 4537 };
       sensor.dadoSensores = dadoSensores;
 
-      const dadoSensorCollection: IDadoSensor[] = [{ id: 9530 }];
+      const dadoSensorCollection: IDadoSensor[] = [{ id: 23499 }];
       jest.spyOn(dadoSensorService, 'query').mockReturnValue(of(new HttpResponse({ body: dadoSensorCollection })));
       const additionalDadoSensors = [dadoSensores];
       const expectedCollection: IDadoSensor[] = [...additionalDadoSensors, ...dadoSensorCollection];
@@ -97,9 +97,9 @@ describe('Sensor Management Update Component', () => {
 
     it('Should update editForm', () => {
       const sensor: ISensor = { id: 456 };
-      const cliente: ICliente = { id: 11539 };
+      const cliente: ICliente = { id: 18137 };
       sensor.cliente = cliente;
-      const dadoSensores: IDadoSensor = { id: 2350 };
+      const dadoSensores: IDadoSensor = { id: 4321 };
       sensor.dadoSensores = dadoSensores;
 
       activatedRoute.data = of({ sensor });

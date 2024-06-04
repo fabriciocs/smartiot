@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20240603215042"
+  },
+  "applications": ["SmartIoT"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "notificationType",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "message",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sentDate",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Notification",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

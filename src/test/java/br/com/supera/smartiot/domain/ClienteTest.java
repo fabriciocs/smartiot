@@ -26,7 +26,7 @@ class ClienteTest {
     }
 
     @Test
-    void sensoresTest() throws Exception {
+    void sensoresTest() {
         Cliente cliente = getClienteRandomSampleGenerator();
         Sensor sensorBack = getSensorRandomSampleGenerator();
 

@@ -1,0 +1,164 @@
+
+
+entity Alert {
+  alertType String required,
+  description String required,
+  createdDate ZonedDateTime required
+}
+
+
+
+
+
+
+
+
+entity Consumer {
+  name String required,
+  street String required,
+  neighborhood String required,
+  propertyNumber Integer required,
+  phone String required,
+  email String required
+}
+
+entity Company {
+  name String required,
+  address String required
+}
+
+entity SysUser {
+  username String required,
+  email String required,
+  role String required
+}
+
+entity Payment {
+  amount BigDecimal required,
+  paymentDate LocalDate required,
+  status String required
+}
+
+entity CostCenter {
+  name String required,
+  budget BigDecimal required
+}
+
+entity Pricing {
+  price BigDecimal required,
+  validFrom LocalDate required,
+  validTo LocalDate
+}
+
+entity ResourceGroup {
+  name String required,
+  description String
+}
+
+
+
+
+
+
+
+
+entity AggregatedData {
+  dataType String required,
+  aggregatedValue Double required,
+  aggregationDate ZonedDateTime required
+}
+
+
+
+
+entity Enrollment {
+  registrationDate LocalDate required,
+  status String required
+}
+
+
+
+
+
+
+entity ManualEntry {
+  entryType String required,
+  entryData String required,
+  entryDate ZonedDateTime required
+}
+
+
+
+
+entity Measurement {
+  timestamp ZonedDateTime required,
+  waterUsage Double required,
+  unit String required
+}
+
+entity Meter {
+  serialNumber String required,
+  location String required
+}
+
+entity Transmitter {
+  serialNumber String required,
+  frequency Integer required
+}
+
+entity Concentrator {
+  serialNumber String required,
+  capacity Integer required
+}
+
+entity Repeater {
+  serialNumber String required,
+  range Integer required
+}
+
+
+
+
+
+
+entity Notification {
+  notificationType String required,
+  message String required,
+  sentDate ZonedDateTime required
+}
+
+
+
+
+entity Report {
+  reportName String required,
+  reportData String required
+}
+
+relationship OneToMany {
+  Consumer{alert} to Alert{consumer}
+}
+
+relationship ManyToOne {
+  Company{user} to SysUser{company}
+  Company{payment} to Payment{company}
+  Company{costCenter} to CostCenter{company}
+  Company{pricing} to Pricing{company}
+  Company{resourceGroup} to ResourceGroup{company}
+}
+
+relationship OneToMany {
+  Consumer{enrollment} to Enrollment{consumer}
+}
+
+relationship OneToMany {
+  Enrollment{measurement} to Measurement{enrollment}
+  ResourceGroup{meter} to Meter{resourceGroup}
+  ResourceGroup{transmitter} to Transmitter{resourceGroup}
+  ResourceGroup{concentrator} to Concentrator{resourceGroup}
+  ResourceGroup{repeater} to Repeater{resourceGroup}
+}
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination

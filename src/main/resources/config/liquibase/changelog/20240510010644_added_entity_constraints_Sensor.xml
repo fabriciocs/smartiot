@@ -10,11 +10,11 @@
     -->
     <changeSet id="20240510010644-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="configuracao_alertas_id"
+        <addForeignKeyConstraint baseColumnNames="cliente_id"
                                  baseTableName="sensor"
-                                 constraintName="fk_sensor__configuracao_alertas_id"
+                                 constraintName="fk_sensor__cliente_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="configuracao_alerta"
+                                 referencedTableName="cliente"
                                  />
 
         <addForeignKeyConstraint baseColumnNames="dado_sensores_id"

@@ -12,7 +12,7 @@
       "updated": "Um Cliente foi atualizado com o identificador {{ param }}",
       "deleted": "Um Cliente foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir o Cliente {{ id }}?"
+        "question": "Tem certeza de que deseja excluir Cliente {{ id }}?"
       },
       "detail": {
         "title": "Cliente"

@@ -1,0 +1,26 @@
+{
+  "smartIoTApp": {
+    "sysUser": {
+      "home": {
+        "title": "Sys Users",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Sys User",
+        "createOrEditLabel": "Criar ou editar Sys User",
+        "notFound": "Nenhum Sys User encontrado"
+      },
+      "created": "Um novo Sys User foi criado com o identificador {{ param }}",
+      "updated": "Um Sys User foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Sys User foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Sys User {{ id }}?"
+      },
+      "detail": {
+        "title": "Sys User"
+      },
+      "id": "ID",
+      "username": "Username",
+      "email": "Email",
+      "role": "Role"
+    }
+  }
+}

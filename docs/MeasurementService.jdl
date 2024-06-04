@@ -1,0 +1,56 @@
+
+application {
+  config {
+    baseName MeasurementService
+    applicationType microservice
+    packageName br.com.supera.iotapp.measurementservice
+    authenticationType jwt
+    databaseType sql
+    prodDatabaseType mysql
+    devDatabaseType h2Disk
+    cacheProvider ehcache
+    buildTool gradle
+    enableTranslation true
+    nativeLanguage en
+    languages [en, pt]
+  }
+  entities Measurement, Meter, Transmitter, Concentrator, Repeater
+}
+
+entity Measurement {
+  timestamp ZonedDateTime required,
+  waterUsage Double required,
+  unit String required
+}
+
+entity Meter {
+  serialNumber String required,
+  location String required
+}
+
+entity Transmitter {
+  serialNumber String required,
+  frequency Integer required
+}
+
+entity Concentrator {
+  serialNumber String required,
+  capacity Integer required
+}
+
+entity Repeater {
+  serialNumber String required,
+  range Integer required
+}
+
+relationship OneToMany {
+  Enrollment{measurement} to Measurement{enrollment}
+  ResourceGroup{meter} to Meter{resourceGroup}
+  ResourceGroup{transmitter} to Transmitter{resourceGroup}
+  ResourceGroup{concentrator} to Concentrator{resourceGroup}
+  ResourceGroup{repeater} to Repeater{resourceGroup}
+}
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination

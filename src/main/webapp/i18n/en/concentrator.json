@@ -1,0 +1,25 @@
+{
+  "smartIoTApp": {
+    "concentrator": {
+      "home": {
+        "title": "Concentrators",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Concentrator",
+        "createOrEditLabel": "Create or edit a Concentrator",
+        "notFound": "No Concentrators found"
+      },
+      "created": "A new Concentrator is created with identifier {{ param }}",
+      "updated": "A Concentrator is updated with identifier {{ param }}",
+      "deleted": "A Concentrator is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Concentrator {{ id }}?"
+      },
+      "detail": {
+        "title": "Concentrator"
+      },
+      "id": "ID",
+      "serialNumber": "Serial Number",
+      "capacity": "Capacity"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (alert()) {
+      <div>
+        <h2 data-cy="alertDetailsHeading"><span jhiTranslate="smartIoTApp.alert.detail.title">Alert</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ alert()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.alert.alertType">Alert Type</span></dt>
+          <dd>
+            <span>{{ alert()!.alertType }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.alert.description">Description</span></dt>
+          <dd>
+            <span>{{ alert()!.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.alert.createdDate">Created Date</span></dt>
+          <dd>
+            <span>{{ alert()!.createdDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.alert.consumer">Consumer</span></dt>
+          <dd>
+            @if (alert()!.consumer) {
+              <div>
+                <a [routerLink]="['/consumer', alert()!.consumer?.id, 'view']">{{ alert()!.consumer?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/alert', alert()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

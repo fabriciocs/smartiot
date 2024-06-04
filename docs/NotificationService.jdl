@@ -1,0 +1,28 @@
+
+application {
+  config {
+    baseName NotificationService
+    applicationType microservice
+    packageName br.com.supera.iotapp.notificationservice
+    authenticationType jwt
+    databaseType sql
+    prodDatabaseType mysql
+    devDatabaseType h2Disk
+    cacheProvider ehcache
+    buildTool gradle
+    enableTranslation true
+    nativeLanguage en
+    languages [en, pt]
+  }
+  entities Notification
+}
+
+entity Notification {
+  notificationType String required,
+  message String required,
+  sentDate ZonedDateTime required
+}
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination

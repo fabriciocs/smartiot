@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20240603215041"
+  },
+  "applications": ["SmartIoT"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "measurementType",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "value",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "measurementTime",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Measurement",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "enrollment",
+      "otherEntityRelationshipName": "measurement",
+      "relationshipName": "enrollment",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

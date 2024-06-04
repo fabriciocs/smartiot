@@ -1,0 +1,76 @@
+
+application {
+  config {
+    baseName ConsumerService
+    applicationType microservice
+    packageName br.com.supera.iotapp.consumerservice
+    authenticationType jwt
+    databaseType sql
+    prodDatabaseType mysql
+    devDatabaseType h2Disk
+    cacheProvider ehcache
+    buildTool gradle
+    enableTranslation true
+    nativeLanguage en
+    languages [en, pt]
+  }
+  entities Consumer, Company, User, Payment, CostCenter, Pricing, ResourceGroup
+}
+
+entity Consumer {
+  name String required,
+  street String required,
+  neighborhood String required,
+  propertyNumber Integer required,
+  phone String required,
+  email String required
+}
+
+entity Company {
+  name String required,
+  address String required
+}
+
+entity User {
+  username String required,
+  email String required,
+  role String required
+}
+
+entity Payment {
+  amount BigDecimal required,
+  paymentDate LocalDate required,
+  status String required
+}
+
+entity CostCenter {
+  name String required,
+  budget BigDecimal required
+}
+
+entity Pricing {
+  price BigDecimal required,
+  validFrom LocalDate required,
+  validTo LocalDate
+}
+
+entity ResourceGroup {
+  name String required,
+  description String
+}
+
+relationship OneToMany {
+  Company{user} to User{company}
+  Company{payment} to Payment{company}
+  Company{costCenter} to CostCenter{company}
+  Company{pricing} to Pricing{company}
+  Company{resourceGroup} to ResourceGroup{company}
+}
+
+relationship OneToMany {
+  Consumer{enrollment} to Enrollment{consumer}
+}
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination

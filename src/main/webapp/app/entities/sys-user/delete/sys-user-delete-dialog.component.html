@@ -1,0 +1,24 @@
+@if (sysUser) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(sysUser.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="sysUserDeleteDialogHeading" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error></jhi-alert-error>
+      <p id="jhi-delete-sysUser-heading" jhiTranslate="smartIoTApp.sysUser.delete.question" [translateValues]="{ id: sysUser.id }">
+        Are you sure you want to delete Sys User {{ sysUser.id }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+      </button>
+
+      <button id="jhi-confirm-delete-sysUser" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
+      </button>
+    </div>
+  </form>
+}

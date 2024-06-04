@@ -1,0 +1,27 @@
+{
+  "smartIoTApp": {
+    "alert": {
+      "home": {
+        "title": "Alerts",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Alert",
+        "createOrEditLabel": "Criar ou editar Alert",
+        "notFound": "Nenhum Alert encontrado"
+      },
+      "created": "Um novo Alert foi criado com o identificador {{ param }}",
+      "updated": "Um Alert foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Alert foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Alert {{ id }}?"
+      },
+      "detail": {
+        "title": "Alert"
+      },
+      "id": "ID",
+      "alertType": "Alert Type",
+      "description": "Description",
+      "createdDate": "Created Date",
+      "consumer": "Consumer"
+    }
+  }
+}

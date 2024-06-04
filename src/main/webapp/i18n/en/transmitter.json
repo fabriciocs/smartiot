@@ -1,0 +1,25 @@
+{
+  "smartIoTApp": {
+    "transmitter": {
+      "home": {
+        "title": "Transmitters",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Transmitter",
+        "createOrEditLabel": "Create or edit a Transmitter",
+        "notFound": "No Transmitters found"
+      },
+      "created": "A new Transmitter is created with identifier {{ param }}",
+      "updated": "A Transmitter is updated with identifier {{ param }}",
+      "deleted": "A Transmitter is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Transmitter {{ id }}?"
+      },
+      "detail": {
+        "title": "Transmitter"
+      },
+      "id": "ID",
+      "serialNumber": "Serial Number",
+      "frequency": "Frequency"
+    }
+  }
+}

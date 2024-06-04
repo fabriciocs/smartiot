@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,8 @@ class ClienteResourceIT {
     private static final String DEFAULT_NOME = "AAAAAAAAAA";
     private static final String UPDATED_NOME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_EMAIL = "9fCl@tXT$.o`Q";
-    private static final String UPDATED_EMAIL = "`Z@b.UMzaVj";
+    private static final String DEFAULT_EMAIL = "|DB@gb).3";
+    private static final String UPDATED_EMAIL = "*?N/@MX6H.yL^";
 
     private static final String ENTITY_API_URL = "/api/clientes";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -61,6 +62,8 @@ class ClienteResourceIT {
     private MockMvc restClienteMockMvc;
 
     private Cliente cliente;
+
+    private Cliente insertedCliente;
 
     /**
      * Create an entity for this test.
@@ -89,6 +92,14 @@ class ClienteResourceIT {
         cliente = createEntity(em);
     }
 
+    @AfterEach
+    public void cleanup() {
+        if (insertedCliente != null) {
+            clienteRepository.delete(insertedCliente);
+            insertedCliente = null;
+        }
+    }
+
     @Test
     @Transactional
     void createCliente() throws Exception {
@@ -109,6 +120,8 @@ class ClienteResourceIT {
         assertIncrementedRepositoryCount(databaseSizeBeforeCreate);
         var returnedCliente = clienteMapper.toEntity(returnedClienteDTO);
         assertClienteUpdatableFieldsEquals(returnedCliente, getPersistedCliente(returnedCliente));
+
+        insertedCliente = returnedCliente;
     }
 
     @Test
@@ -167,7 +180,7 @@ class ClienteResourceIT {
     @Transactional
     void getAllClientes() throws Exception {
         // Initialize the database
-        clienteRepository.saveAndFlush(cliente);
+        insertedCliente = clienteRepository.saveAndFlush(cliente);
 
         // Get all the clienteList
         restClienteMockMvc
@@ -183,7 +196,7 @@ class ClienteResourceIT {
     @Transactional
     void getCliente() throws Exception {
         // Initialize the database
-        clienteRepository.saveAndFlush(cliente);
+        insertedCliente = clienteRepository.saveAndFlush(cliente);
 
         // Get the cliente
         restClienteMockMvc
@@ -206,7 +219,7 @@ class ClienteResourceIT {
     @Transactional
     void putExistingCliente() throws Exception {
         // Initialize the database
-        clienteRepository.saveAndFlush(cliente);
+        insertedCliente = clienteRepository.saveAndFlush(cliente);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -292,7 +305,7 @@ class ClienteResourceIT {
     @Transactional
     void partialUpdateClienteWithPatch() throws Exception {
         // Initialize the database
-        clienteRepository.saveAndFlush(cliente);
+        insertedCliente = clienteRepository.saveAndFlush(cliente);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -320,7 +333,7 @@ class ClienteResourceIT {
     @Transactional
     void fullUpdateClienteWithPatch() throws Exception {
         // Initialize the database
-        clienteRepository.saveAndFlush(cliente);
+        insertedCliente = clienteRepository.saveAndFlush(cliente);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -410,7 +423,7 @@ class ClienteResourceIT {
     @Transactional
     void deleteCliente() throws Exception {
         // Initialize the database
-        clienteRepository.saveAndFlush(cliente);
+        insertedCliente = clienteRepository.saveAndFlush(cliente);
 
         long databaseSizeBeforeDelete = getRepositoryCount();
 

@@ -1,0 +1,25 @@
+{
+  "smartIoTApp": {
+    "resourceGroup": {
+      "home": {
+        "title": "Resource Groups",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Resource Group",
+        "createOrEditLabel": "Create or edit a Resource Group",
+        "notFound": "No Resource Groups found"
+      },
+      "created": "A new Resource Group is created with identifier {{ param }}",
+      "updated": "A Resource Group is updated with identifier {{ param }}",
+      "deleted": "A Resource Group is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Resource Group {{ id }}?"
+      },
+      "detail": {
+        "title": "Resource Group"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description"
+    }
+  }
+}

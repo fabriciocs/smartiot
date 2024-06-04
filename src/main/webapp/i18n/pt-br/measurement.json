@@ -1,0 +1,27 @@
+{
+  "smartIoTApp": {
+    "measurement": {
+      "home": {
+        "title": "Measurements",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Measurement",
+        "createOrEditLabel": "Criar ou editar Measurement",
+        "notFound": "Nenhum Measurement encontrado"
+      },
+      "created": "Um novo Measurement foi criado com o identificador {{ param }}",
+      "updated": "Um Measurement foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Measurement foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Measurement {{ id }}?"
+      },
+      "detail": {
+        "title": "Measurement"
+      },
+      "id": "ID",
+      "measurementType": "Measurement Type",
+      "value": "Value",
+      "measurementTime": "Measurement Time",
+      "enrollment": "Enrollment"
+    }
+  }
+}

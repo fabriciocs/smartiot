@@ -1,0 +1,28 @@
+
+application {
+  config {
+    baseName DataAggregationService
+    applicationType microservice
+    packageName br.com.supera.iotapp.dataaggregationservice
+    authenticationType jwt
+    databaseType sql
+    prodDatabaseType mysql
+    devDatabaseType h2Disk
+    cacheProvider ehcache
+    buildTool gradle
+    enableTranslation true
+    nativeLanguage en
+    languages [en, pt]
+  }
+  entities AggregatedData
+}
+
+entity AggregatedData {
+  dataType String required,
+  aggregatedValue Double required,
+  aggregationDate ZonedDateTime required
+}
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination

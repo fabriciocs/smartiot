@@ -1,0 +1,26 @@
+{
+  "smartIoTApp": {
+    "manualEntry": {
+      "home": {
+        "title": "Manual Entries",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Manual Entry",
+        "createOrEditLabel": "Create or edit a Manual Entry",
+        "notFound": "No Manual Entries found"
+      },
+      "created": "A new Manual Entry is created with identifier {{ param }}",
+      "updated": "A Manual Entry is updated with identifier {{ param }}",
+      "deleted": "A Manual Entry is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Manual Entry {{ id }}?"
+      },
+      "detail": {
+        "title": "Manual Entry"
+      },
+      "id": "ID",
+      "entryType": "Entry Type",
+      "value": "Value",
+      "entryDate": "Entry Date"
+    }
+  }
+}

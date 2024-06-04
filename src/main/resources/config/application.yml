@@ -44,7 +44,7 @@ management:
           - liquibase
   endpoint:
     health:
-      show-details: WHEN_AUTHORIZED
+      show-details: when_authorized
       roles: 'ROLE_ADMIN'
       probes:
         enabled: true
@@ -137,6 +137,12 @@ spring:
   mvc:
     problemdetails:
       enabled: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          authority-prefix: ''
+          authorities-claim-name: auth
   task:
     execution:
       thread-name-prefix: smart-io-t-task-

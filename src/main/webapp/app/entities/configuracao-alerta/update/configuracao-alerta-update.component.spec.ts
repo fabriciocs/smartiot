@@ -49,10 +49,10 @@ describe('ConfiguracaoAlerta Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Sensor query and add missing value', () => {
       const configuracaoAlerta: IConfiguracaoAlerta = { id: 456 };
-      const sensor: ISensor = { id: 5172 };
+      const sensor: ISensor = { id: 28479 };
       configuracaoAlerta.sensor = sensor;
 
-      const sensorCollection: ISensor[] = [{ id: 1926 }];
+      const sensorCollection: ISensor[] = [{ id: 5357 }];
       jest.spyOn(sensorService, 'query').mockReturnValue(of(new HttpResponse({ body: sensorCollection })));
       const additionalSensors = [sensor];
       const expectedCollection: ISensor[] = [...additionalSensors, ...sensorCollection];
@@ -71,7 +71,7 @@ describe('ConfiguracaoAlerta Management Update Component', () => {
 
     it('Should update editForm', () => {
       const configuracaoAlerta: IConfiguracaoAlerta = { id: 456 };
-      const sensor: ISensor = { id: 10021 };
+      const sensor: ISensor = { id: 14148 };
       configuracaoAlerta.sensor = sensor;
 
       activatedRoute.data = of({ configuracaoAlerta });

@@ -3,18 +3,19 @@ import dayjs from 'dayjs/esm';
 import { IDadoSensor, NewDadoSensor } from './dado-sensor.model';
 
 export const sampleWithRequiredData: IDadoSensor = {
-  id: 22259,
+  id: 16793,
 };
 
 export const sampleWithPartialData: IDadoSensor = {
-  id: 13212,
-  dados: 'vilify before',
+  id: 2092,
+  dados: 'good once yuck',
+  timestamp: dayjs('2024-05-09T01:53'),
 };
 
 export const sampleWithFullData: IDadoSensor = {
-  id: 14005,
-  dados: 'from',
-  timestamp: dayjs('2024-05-09T08:02'),
+  id: 1425,
+  dados: 'until',
+  timestamp: dayjs('2024-05-09T08:13'),
 };
 
 export const sampleWithNewData: NewDadoSensor = {

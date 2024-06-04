@@ -1,0 +1,25 @@
+{
+  "smartIoTApp": {
+    "costCenter": {
+      "home": {
+        "title": "Cost Centers",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Cost Center",
+        "createOrEditLabel": "Criar ou editar Cost Center",
+        "notFound": "Nenhum Cost Center encontrado"
+      },
+      "created": "Um novo Cost Center foi criado com o identificador {{ param }}",
+      "updated": "Um Cost Center foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Cost Center foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Cost Center {{ id }}?"
+      },
+      "detail": {
+        "title": "Cost Center"
+      },
+      "id": "ID",
+      "name": "Name",
+      "budget": "Budget"
+    }
+  }
+}

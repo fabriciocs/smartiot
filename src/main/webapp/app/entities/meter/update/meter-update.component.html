@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-meter-heading" data-cy="MeterCreateUpdateHeading" jhiTranslate="smartIoTApp.meter.home.createOrEditLabel">
+        Create or edit a Meter
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="smartIoTApp.meter.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_serialNumber" jhiTranslate="smartIoTApp.meter.serialNumber">Serial Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="serialNumber"
+            id="field_serialNumber"
+            data-cy="serialNumber"
+            formControlName="serialNumber"
+          />
+          @if (editForm.get('serialNumber')!.invalid && (editForm.get('serialNumber')!.dirty || editForm.get('serialNumber')!.touched)) {
+            <div>
+              @if (editForm.get('serialNumber')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_location" jhiTranslate="smartIoTApp.meter.location">Location</label>
+          <input type="text" class="form-control" name="location" id="field_location" data-cy="location" formControlName="location" />
+          @if (editForm.get('location')!.invalid && (editForm.get('location')!.dirty || editForm.get('location')!.touched)) {
+            <div>
+              @if (editForm.get('location')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

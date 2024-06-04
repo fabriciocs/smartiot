@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (manualEntry()) {
+      <div>
+        <h2 data-cy="manualEntryDetailsHeading"><span jhiTranslate="smartIoTApp.manualEntry.detail.title">Manual Entry</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ manualEntry()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.manualEntry.entryType">Entry Type</span></dt>
+          <dd>
+            <span>{{ manualEntry()!.entryType }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.manualEntry.value">Value</span></dt>
+          <dd>
+            <span>{{ manualEntry()!.value }}</span>
+          </dd>
+          <dt><span jhiTranslate="smartIoTApp.manualEntry.entryDate">Entry Date</span></dt>
+          <dd>
+            <span>{{ manualEntry()!.entryDate | formatMediumDatetime }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/manual-entry', manualEntry()!.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-enrollment-heading" data-cy="EnrollmentCreateUpdateHeading" jhiTranslate="smartIoTApp.enrollment.home.createOrEditLabel">
+        Create or edit a Enrollment
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="smartIoTApp.enrollment.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_enrollmentType" jhiTranslate="smartIoTApp.enrollment.enrollmentType">Enrollment Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="enrollmentType"
+            id="field_enrollmentType"
+            data-cy="enrollmentType"
+            formControlName="enrollmentType"
+          />
+          @if (
+            editForm.get('enrollmentType')!.invalid && (editForm.get('enrollmentType')!.dirty || editForm.get('enrollmentType')!.touched)
+          ) {
+            <div>
+              @if (editForm.get('enrollmentType')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_enrollmentDate" jhiTranslate="smartIoTApp.enrollment.enrollmentDate">Enrollment Date</label>
+          <div class="d-flex">
+            <input
+              id="field_enrollmentDate"
+              data-cy="enrollmentDate"
+              type="datetime-local"
+              class="form-control"
+              name="enrollmentDate"
+              formControlName="enrollmentDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (
+            editForm.get('enrollmentDate')!.invalid && (editForm.get('enrollmentDate')!.dirty || editForm.get('enrollmentDate')!.touched)
+          ) {
+            <div>
+              @if (editForm.get('enrollmentDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('enrollmentDate')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

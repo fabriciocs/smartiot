@@ -2,24 +2,24 @@
   "smartIoTApp": {
     "dadoSensor": {
       "home": {
-        "title": "Dados dos Sensores",
+        "title": "Dado Sensors",
         "refreshListLabel": "Atualizar lista",
-        "createLabel": "Criar novo Dado de Sensor",
-        "createOrEditLabel": "Criar ou editar Dado de Sensor",
-        "notFound": "Nenhum Dado de Sensor encontrado"
+        "createLabel": "Criar novo Dado Sensor",
+        "createOrEditLabel": "Criar ou editar Dado Sensor",
+        "notFound": "Nenhum Dado Sensor encontrado"
       },
-      "created": "Um novo Dado de Sensor foi criado com o identificador {{ param }}",
-      "updated": "Um Dado de Sensor foi atualizado com o identificador {{ param }}",
-      "deleted": "Um Dado de Sensor foi excluído com o identificador {{ param }}",
+      "created": "Um novo Dado Sensor foi criado com o identificador {{ param }}",
+      "updated": "Um Dado Sensor foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Dado Sensor foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir este Dado de Sensor {{ id }}?"
+        "question": "Tem certeza de que deseja excluir Dado Sensor {{ id }}?"
       },
       "detail": {
-        "title": "Dado de Sensor"
+        "title": "Dado Sensor"
       },
       "id": "ID",
       "dados": "Dados",
-      "timestamp": "Data/Hora",
+      "timestamp": "Timestamp",
       "sensor": "Sensor"
     }
   }

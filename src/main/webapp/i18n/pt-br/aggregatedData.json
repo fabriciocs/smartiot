@@ -1,0 +1,26 @@
+{
+  "smartIoTApp": {
+    "aggregatedData": {
+      "home": {
+        "title": "Aggregated Data",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Aggregated Data",
+        "createOrEditLabel": "Criar ou editar Aggregated Data",
+        "notFound": "Nenhum Aggregated Data encontrado"
+      },
+      "created": "Um novo Aggregated Data foi criado com o identificador {{ param }}",
+      "updated": "Um Aggregated Data foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Aggregated Data foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Aggregated Data {{ id }}?"
+      },
+      "detail": {
+        "title": "Aggregated Data"
+      },
+      "id": "ID",
+      "dataType": "Data Type",
+      "value": "Value",
+      "aggregationTime": "Aggregation Time"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+
+application {
+  config {
+    baseName ManualEntryService
+    applicationType microservice
+    packageName br.com.supera.iotapp.manualentryservice
+    authenticationType jwt
+    databaseType sql
+    prodDatabaseType mysql
+    devDatabaseType h2Disk
+    cacheProvider ehcache
+    buildTool gradle
+    enableTranslation true
+    nativeLanguage en
+    languages [en, pt]
+  }
+  entities ManualEntry
+}
+
+entity ManualEntry {
+  entryType String required,
+  entryData String required,
+  entryDate ZonedDateTime required
+}
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination

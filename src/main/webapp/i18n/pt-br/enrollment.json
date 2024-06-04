@@ -1,0 +1,26 @@
+{
+  "smartIoTApp": {
+    "enrollment": {
+      "home": {
+        "title": "Enrollments",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Enrollment",
+        "createOrEditLabel": "Criar ou editar Enrollment",
+        "notFound": "Nenhum Enrollment encontrado"
+      },
+      "created": "Um novo Enrollment foi criado com o identificador {{ param }}",
+      "updated": "Um Enrollment foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Enrollment foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Enrollment {{ id }}?"
+      },
+      "detail": {
+        "title": "Enrollment"
+      },
+      "id": "ID",
+      "enrollmentType": "Enrollment Type",
+      "enrollmentDate": "Enrollment Date",
+      "measurement": "Measurement"
+    }
+  }
+}

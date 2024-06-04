@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -48,8 +49,8 @@ class ConfiguracaoAlertaResourceIT {
     private static final BigDecimal DEFAULT_LIMITE = new BigDecimal(1);
     private static final BigDecimal UPDATED_LIMITE = new BigDecimal(2);
 
-    private static final String DEFAULT_EMAIL = "<.]1$@Kk;.pp";
-    private static final String UPDATED_EMAIL = "zf:@<FPog6.6";
+    private static final String DEFAULT_EMAIL = "`T@[\"2)[[.*ck$";
+    private static final String UPDATED_EMAIL = "~@CnBf.B:Knw";
 
     private static final String ENTITY_API_URL = "/api/configuracao-alertas";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -79,6 +80,8 @@ class ConfiguracaoAlertaResourceIT {
     private MockMvc restConfiguracaoAlertaMockMvc;
 
     private ConfiguracaoAlerta configuracaoAlerta;
+
+    private ConfiguracaoAlerta insertedConfiguracaoAlerta;
 
     /**
      * Create an entity for this test.
@@ -127,6 +130,14 @@ class ConfiguracaoAlertaResourceIT {
         configuracaoAlerta = createEntity(em);
     }
 
+    @AfterEach
+    public void cleanup() {
+        if (insertedConfiguracaoAlerta != null) {
+            configuracaoAlertaRepository.delete(insertedConfiguracaoAlerta);
+            insertedConfiguracaoAlerta = null;
+        }
+    }
+
     @Test
     @Transactional
     void createConfiguracaoAlerta() throws Exception {
@@ -150,6 +161,8 @@ class ConfiguracaoAlertaResourceIT {
             returnedConfiguracaoAlerta,
             getPersistedConfiguracaoAlerta(returnedConfiguracaoAlerta)
         );
+
+        insertedConfiguracaoAlerta = returnedConfiguracaoAlerta;
     }
 
     @Test
@@ -191,7 +204,7 @@ class ConfiguracaoAlertaResourceIT {
     @Transactional
     void getAllConfiguracaoAlertas() throws Exception {
         // Initialize the database
-        configuracaoAlertaRepository.saveAndFlush(configuracaoAlerta);
+        insertedConfiguracaoAlerta = configuracaoAlertaRepository.saveAndFlush(configuracaoAlerta);
 
         // Get all the configuracaoAlertaList
         restConfiguracaoAlertaMockMvc
@@ -224,7 +237,7 @@ class ConfiguracaoAlertaResourceIT {
     @Transactional
     void getConfiguracaoAlerta() throws Exception {
         // Initialize the database
-        configuracaoAlertaRepository.saveAndFlush(configuracaoAlerta);
+        insertedConfiguracaoAlerta = configuracaoAlertaRepository.saveAndFlush(configuracaoAlerta);
 
         // Get the configuracaoAlerta
         restConfiguracaoAlertaMockMvc
@@ -247,7 +260,7 @@ class ConfiguracaoAlertaResourceIT {
     @Transactional
     void putExistingConfiguracaoAlerta() throws Exception {
         // Initialize the database
-        configuracaoAlertaRepository.saveAndFlush(configuracaoAlerta);
+        insertedConfiguracaoAlerta = configuracaoAlertaRepository.saveAndFlush(configuracaoAlerta);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -337,7 +350,7 @@ class ConfiguracaoAlertaResourceIT {
     @Transactional
     void partialUpdateConfiguracaoAlertaWithPatch() throws Exception {
         // Initialize the database
-        configuracaoAlertaRepository.saveAndFlush(configuracaoAlerta);
+        insertedConfiguracaoAlerta = configuracaoAlertaRepository.saveAndFlush(configuracaoAlerta);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -368,7 +381,7 @@ class ConfiguracaoAlertaResourceIT {
     @Transactional
     void fullUpdateConfiguracaoAlertaWithPatch() throws Exception {
         // Initialize the database
-        configuracaoAlertaRepository.saveAndFlush(configuracaoAlerta);
+        insertedConfiguracaoAlerta = configuracaoAlertaRepository.saveAndFlush(configuracaoAlerta);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -461,7 +474,7 @@ class ConfiguracaoAlertaResourceIT {
     @Transactional
     void deleteConfiguracaoAlerta() throws Exception {
         // Initialize the database
-        configuracaoAlertaRepository.saveAndFlush(configuracaoAlerta);
+        insertedConfiguracaoAlerta = configuracaoAlertaRepository.saveAndFlush(configuracaoAlerta);
 
         long databaseSizeBeforeDelete = getRepositoryCount();
 

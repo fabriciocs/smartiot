@@ -28,7 +28,7 @@ class SensorTest {
     }
 
     @Test
-    void configuracaoAlertasTest() throws Exception {
+    void configuracaoAlertasTest() {
         Sensor sensor = getSensorRandomSampleGenerator();
         ConfiguracaoAlerta configuracaoAlertaBack = getConfiguracaoAlertaRandomSampleGenerator();
 
@@ -50,7 +50,7 @@ class SensorTest {
     }
 
     @Test
-    void clienteTest() throws Exception {
+    void clienteTest() {
         Sensor sensor = getSensorRandomSampleGenerator();
         Cliente clienteBack = getClienteRandomSampleGenerator();
 
@@ -62,7 +62,7 @@ class SensorTest {
     }
 
     @Test
-    void dadoSensoresTest() throws Exception {
+    void dadoSensoresTest() {
         Sensor sensor = getSensorRandomSampleGenerator();
         DadoSensor dadoSensorBack = getDadoSensorRandomSampleGenerator();
 

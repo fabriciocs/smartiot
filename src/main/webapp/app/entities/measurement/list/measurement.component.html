@@ -1,0 +1,134 @@
+<div>
+  <h2 id="page-heading" data-cy="MeasurementHeading">
+    <span jhiTranslate="smartIoTApp.measurement.home.title">Measurements</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="smartIoTApp.measurement.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-measurement"
+        [routerLink]="['/measurement/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="smartIoTApp.measurement.home.createLabel">Create a new Measurement</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (measurements?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="smartIoTApp.measurement.home.notFound">No Measurements found</span>
+    </div>
+  }
+
+  @if (measurements && measurements.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="measurementType">
+              <div class="d-flex">
+                <span jhiTranslate="smartIoTApp.measurement.measurementType">Measurement Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="value">
+              <div class="d-flex">
+                <span jhiTranslate="smartIoTApp.measurement.value">Value</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="measurementTime">
+              <div class="d-flex">
+                <span jhiTranslate="smartIoTApp.measurement.measurementTime">Measurement Time</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="enrollment.id">
+              <div class="d-flex">
+                <span jhiTranslate="smartIoTApp.measurement.enrollment">Enrollment</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (measurement of measurements; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/measurement', measurement.id, 'view']">{{ measurement.id }}</a>
+              </td>
+              <td>{{ measurement.measurementType }}</td>
+              <td>{{ measurement.value }}</td>
+              <td>{{ measurement.measurementTime | formatMediumDatetime }}</td>
+              <td>
+                @if (measurement.enrollment) {
+                  <div>
+                    <a [routerLink]="['/enrollment', measurement.enrollment.id, 'view']">{{ measurement.enrollment.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/measurement', measurement.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/measurement', measurement.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(measurement)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (measurements && measurements.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

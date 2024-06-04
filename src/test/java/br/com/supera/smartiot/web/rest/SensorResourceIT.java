@@ -21,6 +21,7 @@ import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -82,6 +83,8 @@ class SensorResourceIT {
 
     private Sensor sensor;
 
+    private Sensor insertedSensor;
+
     /**
      * Create an entity for this test.
      *
@@ -129,6 +132,14 @@ class SensorResourceIT {
         sensor = createEntity(em);
     }
 
+    @AfterEach
+    public void cleanup() {
+        if (insertedSensor != null) {
+            sensorRepository.delete(insertedSensor);
+            insertedSensor = null;
+        }
+    }
+
     @Test
     @Transactional
     void createSensor() throws Exception {
@@ -149,6 +160,8 @@ class SensorResourceIT {
         assertIncrementedRepositoryCount(databaseSizeBeforeCreate);
         var returnedSensor = sensorMapper.toEntity(returnedSensorDTO);
         assertSensorUpdatableFieldsEquals(returnedSensor, getPersistedSensor(returnedSensor));
+
+        insertedSensor = returnedSensor;
     }
 
     @Test
@@ -207,7 +220,7 @@ class SensorResourceIT {
     @Transactional
     void getAllSensors() throws Exception {
         // Initialize the database
-        sensorRepository.saveAndFlush(sensor);
+        insertedSensor = sensorRepository.saveAndFlush(sensor);
 
         // Get all the sensorList
         restSensorMockMvc
@@ -241,7 +254,7 @@ class SensorResourceIT {
     @Transactional
     void getSensor() throws Exception {
         // Initialize the database
-        sensorRepository.saveAndFlush(sensor);
+        insertedSensor = sensorRepository.saveAndFlush(sensor);
 
         // Get the sensor
         restSensorMockMvc
@@ -265,7 +278,7 @@ class SensorResourceIT {
     @Transactional
     void putExistingSensor() throws Exception {
         // Initialize the database
-        sensorRepository.saveAndFlush(sensor);
+        insertedSensor = sensorRepository.saveAndFlush(sensor);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -351,7 +364,7 @@ class SensorResourceIT {
     @Transactional
     void partialUpdateSensorWithPatch() throws Exception {
         // Initialize the database
-        sensorRepository.saveAndFlush(sensor);
+        insertedSensor = sensorRepository.saveAndFlush(sensor);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -359,7 +372,7 @@ class SensorResourceIT {
         Sensor partialUpdatedSensor = new Sensor();
         partialUpdatedSensor.setId(sensor.getId());
 
-        partialUpdatedSensor.configuracao(UPDATED_CONFIGURACAO);
+        partialUpdatedSensor.nome(UPDATED_NOME).tipo(UPDATED_TIPO).configuracao(UPDATED_CONFIGURACAO);
 
         restSensorMockMvc
             .perform(
@@ -379,7 +392,7 @@ class SensorResourceIT {
     @Transactional
     void fullUpdateSensorWithPatch() throws Exception {
         // Initialize the database
-        sensorRepository.saveAndFlush(sensor);
+        insertedSensor = sensorRepository.saveAndFlush(sensor);
 
         long databaseSizeBeforeUpdate = getRepositoryCount();
 
@@ -469,7 +482,7 @@ class SensorResourceIT {
     @Transactional
     void deleteSensor() throws Exception {
         // Initialize the database
-        sensorRepository.saveAndFlush(sensor);
+        insertedSensor = sensorRepository.saveAndFlush(sensor);
 
         long databaseSizeBeforeDelete = getRepositoryCount();
 

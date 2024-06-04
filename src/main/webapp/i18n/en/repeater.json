@@ -1,0 +1,25 @@
+{
+  "smartIoTApp": {
+    "repeater": {
+      "home": {
+        "title": "Repeaters",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Repeater",
+        "createOrEditLabel": "Create or edit a Repeater",
+        "notFound": "No Repeaters found"
+      },
+      "created": "A new Repeater is created with identifier {{ param }}",
+      "updated": "A Repeater is updated with identifier {{ param }}",
+      "deleted": "A Repeater is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Repeater {{ id }}?"
+      },
+      "detail": {
+        "title": "Repeater"
+      },
+      "id": "ID",
+      "serialNumber": "Serial Number",
+      "range": "Range"
+    }
+  }
+}
