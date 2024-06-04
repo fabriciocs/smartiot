@@ -1,0 +1,257 @@
+// Entities for Account Management
+entity UserAccount {
+  accountName String required,
+  emailAddress String required pattern(/^[^@]+@[^@]+\\.[^@]+$/),
+  admissionDate LocalDate required,
+  createdAt Instant required,
+  updatedAt Instant required,
+  isActive Boolean required,
+  mobilePhone String,
+  rpushFeedbackId Integer,
+  execCommands Boolean,
+  isBlocked Boolean,
+  employerName String,
+  pushConfiguration Integer,
+  traveledDistance Float,
+  language String,
+  blockedReason String,
+  blockedById Long,
+  blockedAt Instant,
+  deletedReason String,
+  deletedAt Instant,
+  deletedById Long,
+  lastModifiedBy String,
+  registrationCode String,
+  password String required minlength(8),
+  passwordHint String,
+  featureFlags String,
+  zipCode String,
+  publicPlace String,
+  addressNumber String,
+  streetName String,
+  addressComplement String,
+  cityName String,
+  stateName String,
+  cnhImage TextBlob,
+  profileImage TextBlob,
+  cnhExpirationDate LocalDate,
+  cnhStatus CNHSituation,
+  registrationStatus RegisterSituation,
+  analyzedBy String,
+  analyzedAt Instant,
+  signatureImage TextBlob,
+  residenceProofImage TextBlob,
+  customerIds TextBlob,
+  customerId String,
+  firstName String required,
+  lastName String required
+}
+
+// Entities for Storage Management
+entity StorageAttachment {
+  attachmentName String required,
+  recordType String required,
+  recordId Long required,
+  createdAt Instant required,
+  updatedAt Instant required,
+  lastModifiedBy String,
+  blobId Long required,
+  deletedAt Instant
+}
+
+entity StorageBlob {
+  fileName String required,
+  contentType String,
+  byteSize Long required,
+  checksum String required,
+  createdAt Instant required,
+  updatedAt Instant required,
+  lastModifiedBy String,
+  key String required,
+  metadata TextBlob,
+  deletedAt Instant
+}
+
+// Entities for Alerts
+entity SystemAlert {
+  createdAt Instant required,
+  updatedAt Instant,
+  alertDescription String required,
+  alertType String required,
+  severity String required,
+  status AlertStatus required
+}
+
+// Entities for Chat Management
+entity ChatSession {
+  sessionId String required,
+  createdAt Instant required,
+  updatedAt Instant,
+  status ChatContractStatus required
+}
+
+entity ChatMessage {
+  messageContent String required,
+  sender String required,
+  sentAt Instant required,
+  status MessageStatus required
+}
+
+// Entities for Vehicle Management
+entity VehicleInfo {
+  modelName String required,
+  registrationNumber String required,
+  status VehicleStatus required
+}
+
+entity Sensor {
+  nome String required,
+  deviceType DeviceType required,
+  status SensorStatus required
+}
+
+entity SensorData {
+  timestamp Instant required,
+  value Float required
+}
+
+entity AlertConfiguration {
+  email String required pattern(/^[^@]+@[^@]+\\.[^@]+$/),
+  alertType String required,
+  threshold Float required
+}
+
+entity CarRide {
+  startTime Instant required,
+  endTime Instant,
+  startLocation String,
+  endLocation String,
+  distanceTravelled Float,
+  driver String required
+}
+
+entity UserContract {
+  contractName String required,
+  startDate Instant required,
+  endDate Instant,
+  status ContractStatus required
+}
+
+entity VehicleService {
+  serviceName String required,
+  serviceDate Instant required,
+  cost Float required,
+  serviceStatus ServiceStatus required
+}
+
+entity ChatBooking {
+  bookingId String required,
+  session String required,
+  startTime Instant required,
+  endTime Instant,
+  status ReservationStatus required
+}
+
+entity Customer {
+  nome String required,
+  registrationNumber String required,
+  address String
+}
+
+entity VehicleDamage {
+  damageDescription String required,
+  reportedDate Instant required,
+  fixedDate Instant,
+  damageStatus DamageStatus required
+}
+
+// Enums
+enum VehicleStatus {
+  AVAILABLE, MAINTENANCE, OUT_OF_SERVICE
+}
+
+enum SensorStatus {
+  ACTIVE, INACTIVE, MAINTENANCE
+}
+
+enum CommandStatus {
+  PENDING, EXECUTED, FAILED
+}
+
+enum ReservationStatus {
+  PENDING, CONFIRMED, CANCELLED
+}
+
+enum ChatContractStatus {
+  ACTIVE, INACTIVE, EXPIRED
+}
+
+enum DamageStatus {
+  REPORTED, IN_PROGRESS, FIXED
+}
+
+enum CNHSituation {
+  VALID, INVALID
+}
+
+enum RegisterSituation {
+  PRE_REGISTRATION, UNDER_ANALYSIS, APPROVED, DISAPPROVED
+}
+
+enum DeviceType {
+  GPS, TELEMETRY, OTHER
+}
+
+enum TipoSensor {
+  TEMPERATURE, HUMIDITY, PRESSURE
+}
+
+enum AlertStatus {
+  NEW, IN_PROGRESS, RESOLVED
+}
+
+enum MessageStatus {
+  SENT, DELIVERED, READ
+}
+
+enum ContractStatus {
+  ACTIVE, INACTIVE, EXPIRED
+}
+
+enum ServiceStatus {
+  SCHEDULED, COMPLETED, CANCELLED
+}
+
+// Relationships
+relationship ManyToOne {
+  CarRide{driver(firstName)} to UserAccount,
+  VehicleDamage{vehicle(modelName)} to VehicleInfo,
+  ChatBooking{session(sessionId)} to ChatSession,
+  ChatMessage{sender(userName)} to ChatUser
+}
+
+relationship OneToMany {
+  VehicleInfo{damages(damageDescription)} to VehicleDamage{vehicle(modelName)},
+  VehicleInfo{reservations(startTime)} to ChatBooking{vehicle(modelName)},
+  VehicleInfo{services(serviceName)} to VehicleService{vehicle(modelName)},
+  VehicleInfo{alerts(alertDescription)} to SystemAlert{vehicle(modelName)},
+  VehicleInfo{devices(deviceId)} to Sensor{vehicle(modelName)},
+  ChatSession{messages(messageContent)} to ChatMessage{chatSession(sessionId)},
+  Customer{sensores(nome)} to Sensor{customer(nome) required},
+  SensorData{sensor(nome) required} to Sensor{data(timestamp)},
+  Sensor{alertConfigurations(email)} to AlertConfiguration{sensor(nome) required}
+}
+
+relationship ManyToMany {
+  UserContract{user(firstName)} to UserAccount{contracts(contractName)}
+}
+
+relationship OneToOne {
+  UserAccount{user(firstName)} to User with builtInEntity
+}
+
+// Options
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
+search * with no
